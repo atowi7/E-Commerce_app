@@ -18,24 +18,28 @@ class HandlingDataView extends StatelessWidget {
               ImageAssets.loading,
             ),
           )
-        : statusRequest == StatusRequest.offlineFailure
+        : statusRequest == StatusRequest.serverFailure
             ? Center(
                 child: Lottie.asset(
-                  ImageAssets.offline,
+                  ImageAssets.servererror,
                 ),
               )
-            : statusRequest == StatusRequest.serverFailure
+            : statusRequest == StatusRequest.offlineFailure
                 ? Center(
                     child: Lottie.asset(
-                      ImageAssets.servererror,
+                      ImageAssets.offline,
                     ),
                   )
-                : statusRequest == StatusRequest.noDatafailure
-                    ? Center(
-                        child: Lottie.asset(
-                          ImageAssets.nodata,
-                        ),
+                : statusRequest == StatusRequest.exception
+                    ? const Center(
+                        child: Text('Exception'),
                       )
-                    : widget;
+                    : statusRequest == StatusRequest.noDatafailure
+                        ? Center(
+                            child: Lottie.asset(
+                              ImageAssets.nodata,
+                            ),
+                          )
+                        : widget;
   }
 }

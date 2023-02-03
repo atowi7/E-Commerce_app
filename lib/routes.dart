@@ -9,16 +9,13 @@ import 'package:ecommerce_app/view/screen/auth/sucesssignupscreen.dart';
 import 'package:ecommerce_app/view/screen/auth/verfication_screen.dart';
 import 'package:ecommerce_app/view/screen/language_screen.dart';
 import 'package:ecommerce_app/view/screen/onboarding_screen.dart';
-
 import 'package:ecommerce_app/core/constant/route.dart';
-import 'package:ecommerce_app/view/widget/test_view.dart';
 import 'package:get/get.dart';
 
 List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.language,
-    page: () => const TestView(),
-    //page: () => const LanguageScreen(),
+    page: () => const LanguageScreen(),
     middlewares: [
       FirstMiddleware(),
     ],

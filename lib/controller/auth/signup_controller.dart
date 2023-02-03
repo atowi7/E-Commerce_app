@@ -1,9 +1,11 @@
+import 'package:ecommerce_app/core/class/Statusrequest.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
+import 'package:ecommerce_app/core/function/handle_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/auth/signup_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseSignupController extends GetxController {
-  signup();
   openLogin();
   openSignupVerfication();
 }
@@ -16,6 +18,10 @@ class SignupController extends BaseSignupController {
   late TextEditingController phone;
   late TextEditingController password;
 
+  SignupData signupData = SignupData(Get.find());
+
+  late StatusRequest statusRequest;
+
   @override
   void onInit() {
     userName = TextEditingController();
@@ -26,21 +32,34 @@ class SignupController extends BaseSignupController {
   }
 
   @override
-  signup() {}
-
-  @override
   openLogin() {
     Get.offNamed(AppRoute.login);
   }
 
   @override
-  openSignupVerfication() {
+  openSignupVerfication() async {
     if (formKey.currentState!.validate()) {
-      print('OK');
-      Get.offNamed(AppRoute.signupVerfication);
+      statusRequest = StatusRequest.loading;
+      var response = await signupData.postData(
+          userName.text, email.text, password.text, phone.text);
+      statusRequest = handleData(response);
+
+      if (statusRequest == StatusRequest.sucess) {
+        if (response['status'] == 'sucess') {
+          Get.offNamed(AppRoute.signupVerfication);
+        } else {
+          Get.defaultDialog(
+              title: 'ERROR', middleText: 'EMAIL OR PHONE EXISTS');
+          statusRequest = StatusRequest.noDatafailure;
+        }
+      } else {
+        Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+        statusRequest = StatusRequest.serverFailure;
+      }
     } else {
-      print('Not OK');
+      Get.defaultDialog(title: 'ERROR', middleText: 'Validation ERROR');
     }
+    update();
   }
 
   // @override
