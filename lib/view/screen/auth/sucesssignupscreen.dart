@@ -13,19 +13,31 @@ class SucessSignupScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text('Sucess'),
       ),
-      body: Column(
-        children: [
-          const Icon(
-            Icons.check_circle,
-            size: 300,
-          ),
-          const Text('Your are verfied'),
-          CustomButton(
-              title: 'Go to Login',
-              onPressed: () {
-                Get.offNamed(AppRoute.login);
-              }),
-        ],
+      body: Center(
+        child: Column(
+          children: [
+             Icon(
+              Icons.check_circle,
+              color: Theme.of(context).primaryColor,
+              size: 350,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Your are verfied',
+              style: TextStyle(fontSize: 30),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomButton(
+                title: 'Go to Login',
+                onPressed: () {
+                  Get.offNamed(AppRoute.login);
+                }),
+          ],
+        ),
       ),
     );
   }

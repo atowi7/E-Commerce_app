@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/core/constant/route.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseVerficationController extends GetxController {

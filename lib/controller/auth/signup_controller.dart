@@ -20,7 +20,7 @@ class SignupController extends BaseSignupController {
 
   SignupData signupData = SignupData(Get.find());
 
-  late StatusRequest statusRequest;
+   StatusRequest? statusRequest;
 
   @override
   void onInit() {
@@ -40,13 +40,16 @@ class SignupController extends BaseSignupController {
   openSignupVerfication() async {
     if (formKey.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
+      update();
       var response = await signupData.postData(
           userName.text, email.text, password.text, phone.text);
       statusRequest = handleData(response);
 
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
-          Get.offNamed(AppRoute.signupVerfication);
+          Get.offNamed(AppRoute.signupVerfication,arguments: {
+            'email' :email.text
+          });
         } else {
           Get.defaultDialog(
               title: 'ERROR', middleText: 'EMAIL OR PHONE EXISTS');
