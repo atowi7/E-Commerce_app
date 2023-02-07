@@ -1,74 +1,53 @@
 import 'package:ecommerce_app/core/class/Statusrequest.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
-import 'package:ecommerce_app/data/datasource/remote/auth/login_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/auth/foregetpassword/verifycode_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class BaseLoginController extends GetxController {
-  login();
-  openSignUp();
-  openForgerPassword();
+abstract class BaseVerifycodeController extends GetxController {
+  // check();
+  openResetPassword(String verifycode);
 }
 
-class LoginController extends BaseLoginController {
+class VerifycodeController extends BaseVerifycodeController {
   final formKey = GlobalKey<FormState>();
 
-  late TextEditingController email;
-  late TextEditingController pass;
+  String? email;
 
-  bool isPassHidden = true;
-
-  LoginData loginData = LoginData(Get.find());
+  VerifyCodeData verifyCodeData = VerifyCodeData(Get.find());
 
   StatusRequest? statusRequest;
 
-  showPassword() {
-    isPassHidden == true ? false : true;
-    update();
-  }
-
   @override
   void onInit() {
-    email = TextEditingController();
-    pass = TextEditingController();
+    email = Get.arguments['email'];
     super.onInit();
   }
 
   @override
-  login() {
+  openResetPassword(verifycode) {
     if (formKey.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response = loginData.postData(email.text, pass.text);
+      var response = verifyCodeData.postData(email!, verifycode);
 
       statusRequest = handleData(response);
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
-          Get.offNamed(AppRoute.homePage);
+          Get.offNamed(AppRoute.resetPassword, arguments: {'email': email});
         } else {
-          Get.defaultDialog(
-              title: 'ERROR',
-              middleText: 'THERE IS PROBLEM IN EMAIL OR PASSWORD');
+          Get.defaultDialog(title: 'ERROR', middleText: 'VERIFY CODE ERROR');
           //statusRequest = StatusRequest.noDatafailure;
         }
       } else {
         Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+        statusRequest = StatusRequest.serverFailure;
       }
     } else {
       Get.defaultDialog(title: 'ERROR', middleText: 'VALIDATION ERROR');
     }
     update();
-  }
-
-  @override
-  openSignUp() {
-    Get.offNamed(AppRoute.signup);
-  }
-
-  @override
-  openForgerPassword() {
-    Get.offNamed(AppRoute.checkemail);
   }
 
   // @override

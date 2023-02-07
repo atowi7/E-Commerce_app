@@ -30,16 +30,35 @@ class HandlingDataView extends StatelessWidget {
                       ImageAssets.offline,
                     ),
                   )
-                : statusRequest == StatusRequest.exception
-                    ? const Center(
-                        child: Text('Exception'),
+                : statusRequest == StatusRequest.noDatafailure
+                    ? Center(
+                        child: Lottie.asset(
+                          ImageAssets.nodata,
+                        ),
                       )
                     : statusRequest == StatusRequest.noDatafailure
-                        ? Center(
-                            child: Lottie.asset(
-                              ImageAssets.nodata,
-                            ),
+                        ? const Center(
+                            child: Text('UNEXPECTED ERROR'),
                           )
                         : widget;
+  }
+}
+
+class HandlingDataReqest extends StatelessWidget {
+  final StatusRequest statusRequest;
+  final Widget widget;
+
+  const HandlingDataReqest(
+      {super.key, required this.statusRequest, required this.widget});
+
+  @override
+  Widget build(BuildContext context) {
+    return statusRequest == StatusRequest.loading
+        ? Center(
+            child: Lottie.asset(
+              ImageAssets.loading,
+            ),
+          )
+        : widget;
   }
 }

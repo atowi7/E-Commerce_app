@@ -1,12 +1,13 @@
 import 'package:ecommerce_app/core/middleware/firstmiddlewares.dart';
-import 'package:ecommerce_app/view/screen/auth/forgetpassword_screen.dart';
+import 'package:ecommerce_app/view/screen/forgetpassword/checkemail_screen.dart';
 import 'package:ecommerce_app/view/screen/auth/login_screen.dart';
-import 'package:ecommerce_app/view/screen/auth/resetpassword_screen.dart';
+import 'package:ecommerce_app/view/screen/forgetpassword/resetpassword_screen.dart';
 import 'package:ecommerce_app/view/screen/auth/signup_screen.dart';
 import 'package:ecommerce_app/view/screen/auth/signup_verfication_screen.dart';
-import 'package:ecommerce_app/view/screen/auth/sucessresetpasswordscreen.dart';
+import 'package:ecommerce_app/view/screen/forgetpassword/sucessresetpasswordscreen.dart';
 import 'package:ecommerce_app/view/screen/auth/sucesssignupscreen.dart';
-import 'package:ecommerce_app/view/screen/auth/verfication_screen.dart';
+import 'package:ecommerce_app/view/screen/forgetpassword/verfication_screen.dart';
+import 'package:ecommerce_app/view/screen/home_screen.dart';
 import 'package:ecommerce_app/view/screen/language_screen.dart';
 import 'package:ecommerce_app/view/screen/onboarding_screen.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
@@ -19,6 +20,10 @@ List<GetPage<dynamic>>? routes = [
     middlewares: [
       FirstMiddleware(),
     ],
+  ),
+  GetPage(
+    name: AppRoute.onBoarding,
+    page: () => const OnBoardingScreen(),
   ),
   GetPage(
     name: AppRoute.login,
@@ -37,8 +42,8 @@ List<GetPage<dynamic>>? routes = [
     page: () => const SucessSignupScreen(),
   ),
   GetPage(
-    name: AppRoute.forgetPasswoed,
-    page: () => const ForgetPasswordScreen(),
+    name: AppRoute.checkemail,
+    page: () => const CheckemailScreen(),
   ),
   GetPage(
     name: AppRoute.verfication,
@@ -53,7 +58,7 @@ List<GetPage<dynamic>>? routes = [
     page: () => const SucessResetPasswordScreen(),
   ),
   GetPage(
-    name: AppRoute.onBoarding,
-    page: () => const OnBoardingScreen(),
+    name: AppRoute.homePage,
+    page: () => const HomeScreen(),
   ),
 ];
