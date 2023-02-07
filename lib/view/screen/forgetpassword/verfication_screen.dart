@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/auth/forgetpassword/verifycode_controller.dart';
+import 'package:ecommerce_app/controller/forgetpassword/verifycode_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/view/widget/auth/customtextbody.dart';
 import 'package:ecommerce_app/view/widget/auth/customtexttitle.dart';

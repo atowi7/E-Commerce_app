@@ -1,43 +1,43 @@
 import 'package:ecommerce_app/core/class/Statusrequest.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
-import 'package:ecommerce_app/data/datasource/remote/auth/foregetpassword/checkemail_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/foregetpassword/verifycode_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class BaseCheckEmailController extends GetxController {
+abstract class BaseVerifycodeController extends GetxController {
   // check();
-  openVerfication();
+  openResetPassword(String verifycode);
 }
 
-class CheckEmailController extends BaseCheckEmailController {
+class VerifycodeController extends BaseVerifycodeController {
   final formKey = GlobalKey<FormState>();
 
-  late TextEditingController email;
+  String? email;
 
-  CheckEmailData checkEmailData = CheckEmailData(Get.find());
+  VerifyCodeData verifyCodeData = VerifyCodeData(Get.find());
 
   StatusRequest? statusRequest;
 
   @override
   void onInit() {
-    email = TextEditingController();
+    email = Get.arguments['email'];
     super.onInit();
   }
 
   @override
-  openVerfication() {
+  openResetPassword(verifycode) {
     if (formKey.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response = checkEmailData.postData(email.text);
+      var response = verifyCodeData.postData(email!, verifycode);
 
       statusRequest = handleData(response);
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
-          Get.offNamed(AppRoute.verfication, arguments: {'email': email.text});
+          Get.offNamed(AppRoute.resetPassword, arguments: {'email': email});
         } else {
-          Get.defaultDialog(title: 'ERROR', middleText: 'EMAIL DOES NOT EXIST');
+          Get.defaultDialog(title: 'ERROR', middleText: 'VERIFY CODE ERROR');
           //statusRequest = StatusRequest.noDatafailure;
         }
       } else {

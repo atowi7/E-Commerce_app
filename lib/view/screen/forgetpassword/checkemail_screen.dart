@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/auth/forgetpassword/checkemail_controller.dart';
+import 'package:ecommerce_app/controller/forgetpassword/checkemail_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/function/input_validation.dart';
 import 'package:ecommerce_app/view/widget/auth/custombutton.dart';

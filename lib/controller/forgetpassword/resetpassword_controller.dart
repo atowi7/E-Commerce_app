@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/core/class/Statusrequest.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
-import 'package:ecommerce_app/data/datasource/remote/auth/foregetpassword/resetpassword_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/foregetpassword/resetpassword_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
