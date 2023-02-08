@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/data/datasource/remote/foregetpassword/resetpassword_data.dart';
@@ -17,9 +17,11 @@ class ResetPasswordController extends BaseResetPasswordController {
   late TextEditingController password;
   late TextEditingController repassword;
 
-  ResetPasswordData resetPasswordData = Get.find();
+  bool isPassHidden = true;
 
-  StatusRequest? statusRequest;
+  ResetPasswordData resetPasswordData = ResetPasswordData(Get.find());
+
+  StatusRequest statusRequest = StatusRequest.none;
 
   @override
   void onInit() {
@@ -29,13 +31,18 @@ class ResetPasswordController extends BaseResetPasswordController {
     super.onInit();
   }
 
+  showPassword() {
+    isPassHidden == true ? false : true;
+    update();
+  }
+
   @override
-  openSucess() {
+  openSucess() async {
     if (formKey.currentState!.validate()) {
       if (password.text == repassword.text) {
         statusRequest = StatusRequest.loading;
         update();
-        var response = resetPasswordData.postData(email!, password.text);
+        var response = await resetPasswordData.postData(email!, password.text);
 
         statusRequest = handleData(response);
         if (statusRequest == StatusRequest.sucess) {
@@ -50,8 +57,7 @@ class ResetPasswordController extends BaseResetPasswordController {
           statusRequest = StatusRequest.serverFailure;
         }
       } else {
-        Get.defaultDialog(
-            title: 'ERROR', middleText: 'PASSWORDS DOES NOT MATCH');
+        Get.defaultDialog(title: 'ERROR', middleText: 'PASSWORDS NOT MATCH');
       }
     } else {
       Get.defaultDialog(title: 'ERROR', middleText: 'VALIDATION ERROR');

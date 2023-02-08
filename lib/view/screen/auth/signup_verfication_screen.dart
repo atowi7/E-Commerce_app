@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/controller/auth/signupverfication_controller.dart';
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/view/widget/auth/customtextbody.dart';
@@ -23,7 +23,7 @@ class SignupVerficationScreen extends StatelessWidget {
       ),
       body: GetBuilder<SignupVerficationController>(builder: (controller) {
         return HandlingDataReqest(
-          statusRequest: controller.statusRequest!,
+          statusRequest: controller.statusRequest,
           widget: ListView(
             children: [
               const Logo(),

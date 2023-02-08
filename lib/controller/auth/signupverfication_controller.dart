@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/data/datasource/remote/auth/signupverification_data.dart';
@@ -11,7 +11,7 @@ abstract class BaseSignupVerficationController extends GetxController {
 class SignupVerficationController extends BaseSignupVerficationController {
   SignupVerificationData signupVerificationData =
       SignupVerificationData(Get.find());
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
   String? email;
   //String verifyCode;
 

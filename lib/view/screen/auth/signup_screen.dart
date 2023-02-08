@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/controller/auth/signup_controller.dart';
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/core/function/exitapp_alert.dart';
@@ -31,7 +31,7 @@ class SignupScreen extends StatelessWidget {
         },
         child: GetBuilder<SignupController>(builder: (controller) {
           return HandlingDataReqest(
-            statusRequest: controller.statusRequest!,
+            statusRequest: controller.statusRequest,
             widget: Form(
               key: controller.formKey,
               child: ListView(
@@ -45,10 +45,12 @@ class SignupScreen extends StatelessWidget {
                     hintText: 'User Name',
                     icon: Icons.person,
                     isNumber: false,
+                    obscureText: controller.isPassHidden,
                     controller: controller.userName,
                     validator: (val) {
                       return inputValidation('username', val!, 10, 50);
                     },
+                    onTapIcon: controller.showPassword(),
                   ),
                   CustomTextForm(
                     labelText: 'Email',

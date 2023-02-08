@@ -20,7 +20,7 @@ class VerficationScreen extends StatelessWidget {
       ),
       body: GetBuilder<VerifycodeController>(builder: (controller) {
         return HandlingDataReqest(
-          statusRequest: controller.statusRequest!,
+          statusRequest: controller.statusRequest,
           widget: ListView(
             children: [
               const Logo(),

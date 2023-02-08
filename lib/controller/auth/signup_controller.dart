@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/data/datasource/remote/auth/signup_data.dart';
@@ -18,9 +18,11 @@ class SignupController extends BaseSignupController {
   late TextEditingController phone;
   late TextEditingController password;
 
+  bool isPassHidden = true;
+
   SignupData signupData = SignupData(Get.find());
 
-   StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
 
   @override
   void onInit() {
@@ -29,6 +31,11 @@ class SignupController extends BaseSignupController {
     phone = TextEditingController();
     password = TextEditingController();
     super.onInit();
+  }
+
+  showPassword() {
+    isPassHidden == true ? false : true;
+    update();
   }
 
   @override
@@ -47,9 +54,8 @@ class SignupController extends BaseSignupController {
 
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
-          Get.offNamed(AppRoute.signupVerfication,arguments: {
-            'email' :email.text
-          });
+          Get.offNamed(AppRoute.signupVerfication,
+              arguments: {'email': email.text});
         } else {
           Get.defaultDialog(
               title: 'ERROR', middleText: 'EMAIL OR PHONE EXISTS');

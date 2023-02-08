@@ -22,7 +22,7 @@ class CheckemailScreen extends StatelessWidget {
       ),
       body: GetBuilder<CheckEmailController>(builder: (controller) {
         return HandlingDataReqest(
-          statusRequest: controller.statusRequest!,
+          statusRequest: controller.statusRequest,
           widget: Form(
             key: controller.formKey,
             child: ListView(

@@ -21,7 +21,7 @@ class ResetPasswordScreen extends StatelessWidget {
       ),
       body: GetBuilder<ResetPasswordController>(builder: (controller) {
         return HandlingDataReqest(
-          statusRequest: controller.statusRequest!,
+          statusRequest: controller.statusRequest,
           widget: Form(
             key: controller.formKey,
             child: ListView(
@@ -35,21 +35,25 @@ class ResetPasswordScreen extends StatelessWidget {
                   labelText: 'Password',
                   hintText: 'Password',
                   isNumber: false,
+                  obscureText: controller.isPassHidden,
                   icon: Icons.lock,
                   controller: controller.password,
                   validator: (val) {
                     return inputValidation('password', val!, 10, 50);
                   },
+                  onTapIcon: controller.showPassword(),
                 ),
                 CustomTextForm(
                   labelText: 'RePassword',
                   hintText: 'RePassword',
                   icon: Icons.lock,
                   isNumber: false,
+                  obscureText: controller.isPassHidden,
                   controller: controller.repassword,
                   validator: (val) {
                     return inputValidation('password', val!, 10, 50);
                   },
+                  onTapIcon: controller.showPassword(),
                 ),
 
                 CustomButton(

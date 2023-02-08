@@ -7,14 +7,14 @@ import 'package:get/get.dart';
 
 class LanguageScreen extends GetView<LocalLangChange> {
   const LanguageScreen({super.key});
-  ch() async {
-    var res = await checkInternet();
-    print(res);
-  }
+  // ch() async {
+  //   var res = await checkInternet();
+  //   print(res);
+  // }
 
   @override
   Widget build(BuildContext context) {
-    ch();
+    // ch();
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

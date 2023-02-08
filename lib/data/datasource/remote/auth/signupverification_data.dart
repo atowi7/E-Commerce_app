@@ -6,7 +6,7 @@ class SignupVerificationData {
   SignupVerificationData(this.curd);
 
   postData(String email, String verifyCode) async {
-    var response = await curd.postData(AppLink.verifyCode, {
+    var response = await curd.postData(AppLink.sifnupVerifyCode, {
       'email': email,
       'verifycode': verifyCode,
     });

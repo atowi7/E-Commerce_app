@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/data/datasource/remote/test_data.dart';
 import 'package:get/get.dart';

@@ -4,10 +4,10 @@ class AppLink {
 
   //Auth
   static const String signup = '$server/auth/signup.php';
-  static const String verifyCode = '$server/auth/verifycode.php';
+  static const String sifnupVerifyCode = '$server/auth/verifycode.php';
   static const String login = '$server/auth/login.php';
-  static const String checkemail = '$server/forgetpassword/checkemail.php';
-  static const String verifycode = '$server/forgetpassword/verifycode.php';
+  static const String checkemail = '$server/forget_password/checkemail.php';
+  static const String verifyCode = '$server/forget_password/verifycode.php';
   static const String resetpassword =
-      '$server/forgetpassword/resetpassword.php';
+      '$server/forget_password/resetpassword.php';
 }

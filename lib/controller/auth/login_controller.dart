@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/data/datasource/remote/auth/login_data.dart';
@@ -21,12 +21,7 @@ class LoginController extends BaseLoginController {
 
   LoginData loginData = LoginData(Get.find());
 
-  StatusRequest? statusRequest;
-
-  showPassword() {
-    isPassHidden == true ? false : true;
-    update();
-  }
+  StatusRequest statusRequest = StatusRequest.none;
 
   @override
   void onInit() {
@@ -35,12 +30,17 @@ class LoginController extends BaseLoginController {
     super.onInit();
   }
 
+  showPassword() {
+    isPassHidden == true ? false : true;
+    update();
+  }
+
   @override
-  login() {
+  login() async {
     if (formKey.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response = loginData.postData(email.text, pass.text);
+      var response = await loginData.postData(email.text, pass.text);
 
       statusRequest = handleData(response);
       if (statusRequest == StatusRequest.sucess) {

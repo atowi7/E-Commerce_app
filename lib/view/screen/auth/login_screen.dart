@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/controller/auth/login_controller.dart';
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/core/function/exitapp_alert.dart';
@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
         },
         child: GetBuilder<LoginController>(builder: (controller) {
           return HandlingDataReqest(
-              statusRequest: controller.statusRequest!,
+              statusRequest: controller.statusRequest,
               widget: Form(
                 key: controller.formKey,
                 child: ListView(

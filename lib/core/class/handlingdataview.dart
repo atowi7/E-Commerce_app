@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/class/Statusrequest.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
