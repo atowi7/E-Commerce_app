@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/core/constant/route.dart';
-import 'package:ecommerce_app/core/function/check_internet.dart';
 import 'package:ecommerce_app/core/localization/localalngchange.dart';
 import 'package:ecommerce_app/view/widget/language/custombuttonlanguage.dart';
 import 'package:flutter/material.dart';

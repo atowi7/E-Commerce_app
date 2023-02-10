@@ -31,7 +31,7 @@ class OnboardingController extends BaseOnboardingController {
   next() {
     pageIndex++;
     if (pageIndex == onBoardinglist.length) {
-      appServices.sharedPreferences.setString('m1', 'visited');
+      appServices.sharedPreferences.setString('page', 'l');
       Get.offAllNamed(AppRoute.login);
     } else {
       pageController.animateToPage(pageIndex,

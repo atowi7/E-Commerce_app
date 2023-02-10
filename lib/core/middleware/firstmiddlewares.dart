@@ -13,8 +13,10 @@ class FirstMiddleware extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
-    return appServices.sharedPreferences.getString('m1') == 'visited'
+    return appServices.sharedPreferences.getString('page') == 'l'
         ? const RouteSettings(name: AppRoute.login)
-        : null;
+        : appServices.sharedPreferences.getString('page') == 'h'
+            ? const RouteSettings(name: AppRoute.homePage)
+            : null;
   }
 }

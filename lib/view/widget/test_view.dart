@@ -8,7 +8,7 @@ class TestView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('test')),
+      appBar: AppBar(title: const Text('test')),
       body: GetBuilder<TestConroller>(
         init: TestConroller(),
         builder: (controller) => HandlingDataView(

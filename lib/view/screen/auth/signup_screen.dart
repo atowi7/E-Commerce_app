@@ -45,7 +45,6 @@ class SignupScreen extends StatelessWidget {
                     hintText: 'User Name',
                     icon: Icons.person,
                     isNumber: false,
-                    obscureText: controller.isPassHidden,
                     controller: controller.userName,
                     validator: (val) {
                       return inputValidation('username', val!, 10, 50);
@@ -78,6 +77,7 @@ class SignupScreen extends StatelessWidget {
                     icon: Icons.lock,
                     isNumber: false,
                     controller: controller.password,
+                    obscureText: controller.isPassHidden,
                     validator: (val) {
                       return inputValidation('password', val!, 10, 50);
                     },

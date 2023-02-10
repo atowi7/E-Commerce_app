@@ -1,7 +1,5 @@
 import 'package:ecommerce_app/controller/auth/login_controller.dart';
-import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
-import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/core/function/exitapp_alert.dart';
 import 'package:ecommerce_app/core/function/input_validation.dart';
 import 'package:ecommerce_app/view/widget/auth/custombutton.dart';
@@ -12,8 +10,6 @@ import 'package:ecommerce_app/view/widget/auth/customtexttitle.dart';
 import 'package:ecommerce_app/view/widget/auth/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 

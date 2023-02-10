@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
+import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/auth/login_data.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,10 +25,14 @@ class LoginController extends BaseLoginController {
 
   StatusRequest statusRequest = StatusRequest.none;
 
+  AppServices appServices = Get.find();
+
   @override
   void onInit() {
     email = TextEditingController();
     pass = TextEditingController();
+
+    FirebaseMessaging.instance.getToken().then((value) => print(value));
     super.onInit();
   }
 
@@ -45,6 +51,13 @@ class LoginController extends BaseLoginController {
       statusRequest = handleData(response);
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
+          appServices.sharedPreferences
+              .setString('userid', response['data']['id']);
+          appServices.sharedPreferences
+              .setString('username', response['data']['name']);
+          appServices.sharedPreferences
+              .setString('page', 'h');
+
           Get.offNamed(AppRoute.homePage);
         } else {
           Get.defaultDialog(

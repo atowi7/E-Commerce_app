@@ -2,8 +2,6 @@ import 'package:ecommerce_app/controller/onboarding_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/data/datasource/static/static.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class CostumeController extends StatelessWidget {
