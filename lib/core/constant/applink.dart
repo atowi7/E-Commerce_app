@@ -10,4 +10,7 @@ class AppLink {
   static const String verifyCode = '$server/forget_password/verifycode.php';
   static const String resetpassword =
       '$server/forget_password/resetpassword.php';
+
+  //Home
+  static const String home = '$server/home.php';
 }
