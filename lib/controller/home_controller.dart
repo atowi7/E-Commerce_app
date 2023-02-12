@@ -39,6 +39,7 @@ class HomeController extends BaseHomeController {
   void onInit() {
     id = appServices.sharedPreferences.getString('userid');
     name = appServices.sharedPreferences.getString('username');
+    getData();
     super.onInit();
   }
 }

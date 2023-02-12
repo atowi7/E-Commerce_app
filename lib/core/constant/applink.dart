@@ -1,6 +1,10 @@
 class AppLink {
-  static const String server = 'https://atowi7.com/ECommerce_app'; // buy host
+  static const String server = 'https://atowi7.com/ECommerce_app';
   static const String test = '$server/test.php';
+
+  //image
+  static const String image = '$server/upload';
+  static const String categrieImage = '$image/categorie';
 
   //Auth
   static const String signup = '$server/auth/signup.php';

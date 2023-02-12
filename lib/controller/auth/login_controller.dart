@@ -32,7 +32,7 @@ class LoginController extends BaseLoginController {
     email = TextEditingController();
     pass = TextEditingController();
 
-    FirebaseMessaging.instance.getToken().then((value) => print(value));
+    //FirebaseMessaging.instance.getToken().then((value) => print(value));
     super.onInit();
   }
 

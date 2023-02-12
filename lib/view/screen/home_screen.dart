@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/controller/home_controller.dart';
+import 'package:ecommerce_app/core/constant/applink.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,6 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
     return Scaffold(
       body: ListView(
         children: [
@@ -47,23 +50,37 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            height: 100,
-            width: double.infinity,
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            decoration: BoxDecoration(
-              color: AppColor.blue,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              children: [
-                const Text(
-                  'Discount Summer',
-                  style: TextStyle(fontSize: 30),
-                )
-              ],
-            ),
-          )
+          GetBuilder<HomeController>(builder: (controller) {
+            return Container(
+              height: 100,
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              decoration: BoxDecoration(
+                color: AppColor.blue,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  const Text(
+                    'Discount Summer',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                  ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: SvgPicture.network(
+                            '${AppLink.categrieImage}/${controller.categories[index]['image']}'),
+                      ),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 20),
+                      itemCount: controller.categories.length),
+                ],
+              ),
+            );
+          }),
         ],
       ),
     );
