@@ -5,6 +5,7 @@ class AppLink {
   //image
   static const String image = '$server/upload';
   static const String categrieImage = '$image/categorie';
+  static const String itemImage = '$image/item';
 
   //Auth
   static const String signup = '$server/auth/signup.php';

@@ -15,6 +15,7 @@ class HomeController extends BaseHomeController {
   HomeData homeData = HomeData(Get.find());
 
   List categories = [];
+  List items = [];
 
   late StatusRequest statusRequest;
   @override
@@ -28,6 +29,7 @@ class HomeController extends BaseHomeController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         categories.addAll(response['categories']);
+        items.addAll(response['items']);
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
