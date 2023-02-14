@@ -3,8 +3,8 @@ import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CostumeButton extends GetView<OnboardingController> {
-  const CostumeButton({super.key});
+class customeButton extends GetView<OnboardingController> {
+  const customeButton({super.key});
 
   @override
   Widget build(BuildContext context) {

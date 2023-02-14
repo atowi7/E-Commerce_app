@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/controller/onboarding_controller.dart';
-import 'package:ecommerce_app/view/widget/onboarding/costumebutton.dart';
-import 'package:ecommerce_app/view/widget/onboarding/costumeslider.dart';
-import 'package:ecommerce_app/view/widget/onboarding/customecontroller.dart';
+import 'package:ecommerce_app/view/widget/onboarding/custombutton.dart';
+import 'package:ecommerce_app/view/widget/onboarding/customslider.dart';
+import 'package:ecommerce_app/view/widget/onboarding/customcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,12 +15,12 @@ class OnBoardingScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: const [
-            Expanded(flex: 5, child: CostumeSlider()),
-            Expanded(flex: 3, child: CostumeController()),
+            Expanded(flex: 5, child: customeSlider()),
+            Expanded(flex: 3, child: customeController()),
             SizedBox(
               height: 10,
             ),
-            Expanded(flex: 2, child: CostumeButton()),
+            Expanded(flex: 2, child: customeButton()),
           ],
         ),
       ),

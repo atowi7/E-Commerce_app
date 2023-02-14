@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class CostumeSlider extends GetView<OnboardingController> {
-  const CostumeSlider({super.key});
+class customeSlider extends GetView<OnboardingController> {
+  const customeSlider({super.key});
 
   @override
   Widget build(BuildContext context) {

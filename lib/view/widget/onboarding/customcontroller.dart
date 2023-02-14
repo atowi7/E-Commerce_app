@@ -4,8 +4,8 @@ import 'package:ecommerce_app/data/datasource/static/static.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class CostumeController extends StatelessWidget {
-  const CostumeController({super.key});
+class customeController extends StatelessWidget {
+  const customeController({super.key});
 
   @override
   Widget build(BuildContext context) {
