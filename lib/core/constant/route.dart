@@ -14,4 +14,6 @@ class AppRoute {
 
   //Home
   static const String homePage = '/homepage';
+
+  static const String product = '/product';
 }

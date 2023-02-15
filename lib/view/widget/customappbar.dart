@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomeAppbar extends StatelessWidget {
+class CustomAppbar extends StatelessWidget {
   final String searchHint;
   final void Function()? searchonPressed;
   final void Function()? notifyPressed;
-  const CustomeAppbar(
+  const CustomAppbar(
       {super.key,
       required this.searchHint,
       required this.searchonPressed,

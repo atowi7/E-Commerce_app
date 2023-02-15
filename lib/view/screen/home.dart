@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/controller/home_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:ecommerce_app/view/widget/home/categorie_section.dart';
-import 'package:ecommerce_app/view/widget/home/customappbar.dart';
 import 'package:ecommerce_app/view/widget/home/customcard.dart';
 import 'package:ecommerce_app/view/widget/home/customtitile.dart';
 import 'package:ecommerce_app/view/widget/home/item_section.dart';
@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
         statusRequest: controller.statusRequest,
         widget: ListView(
           children: [
-            CustomeAppbar(
+            CustomAppbar(
               searchHint: 'Find products',
               searchonPressed: () {},
               notifyPressed: () {},

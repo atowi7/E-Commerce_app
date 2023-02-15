@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/home_data.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 
 abstract class BaseHomeController extends GetxController {
   getData();
+  goToItem(List categories, int selcat);
 }
 
 class HomeController extends BaseHomeController {
@@ -43,5 +45,13 @@ class HomeController extends BaseHomeController {
     name = appServices.sharedPreferences.getString('username');
     getData();
     super.onInit();
+  }
+
+  @override
+  goToItem(categories, selcat) {
+    Get.toNamed(AppRoute.product, arguments: {
+      'categories': categories,
+      'selcat': selcat,
+    });
   }
 }

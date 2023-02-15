@@ -19,36 +19,45 @@ class CategorieSection extends StatelessWidget {
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => CategorieWidget(
-              categorie: CategorieModel.fromJson(controller.categories[index])),
+                categorie:
+                    CategorieModel.fromJson(controller.categories[index]),
+                i: index,
+              ),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
           itemCount: controller.categories.length),
     );
   }
 }
 
-class CategorieWidget extends StatelessWidget {
+class CategorieWidget extends GetView<HomeController> {
   final CategorieModel categorie;
-  const CategorieWidget({super.key, required this.categorie});
+  final int i;
+  const CategorieWidget({super.key, required this.categorie, required this.i});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      decoration: BoxDecoration(
-        color: AppColor.blue,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColor.black),
-      ),
-      child: Column(
-        children: [
-          SvgPicture.network(
-            '${AppLink.categrieImage}/${categorie.image}',
-            color: AppColor.white,
-          ),
-          Text(
-            '${categorie.name}',
-            style: const TextStyle(fontSize: 20),
-          )
-        ],
+    return InkWell(
+      onTap: () {
+        controller.goToItem(controller.categories, i);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        decoration: BoxDecoration(
+          color: AppColor.blue,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColor.black),
+        ),
+        child: Column(
+          children: [
+            SvgPicture.network(
+              '${AppLink.categrieImage}/${categorie.image}',
+              color: AppColor.white,
+            ),
+            Text(
+              '${categorie.name}',
+              style: const TextStyle(fontSize: 20),
+            )
+          ],
+        ),
       ),
     );
   }

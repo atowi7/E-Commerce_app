@@ -1,8 +1,7 @@
 import 'package:ecommerce_app/controller/homescreen_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
-import 'package:ecommerce_app/view/widget/home/custombotton_bottomappbar.dart';
+import 'package:ecommerce_app/view/widget/home/custombottomappbar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,20 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   controller.currentPage == 0 ? AppColor.blue : AppColor.black,
             )),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomAppBar(
-            height: 70,
-            shape: const CircularNotchedRectangle(),
-            notchMargin: 20,
-            child: Row(
-              children: List.generate(controller.pages.length, (index) {
-                return CustomBottonBottomAppBar(
-                  title: controller.pagetitle[index],
-                  icon: Icons.home_outlined,
-                  active: controller.currentPage == index ? true : false,
-                  onPressed: () => controller.changePage(index),
-                );
-              }),
-            )),
+        bottomNavigationBar:const  CustomBottomAppBar(),
       );
     });
   }
