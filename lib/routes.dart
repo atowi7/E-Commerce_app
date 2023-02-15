@@ -7,7 +7,7 @@ import 'package:ecommerce_app/view/screen/auth/signup_verfication_screen.dart';
 import 'package:ecommerce_app/view/screen/forgetpassword/sucessresetpasswordscreen.dart';
 import 'package:ecommerce_app/view/screen/auth/sucesssignupscreen.dart';
 import 'package:ecommerce_app/view/screen/forgetpassword/verfication_screen.dart';
-import 'package:ecommerce_app/view/screen/home_screen.dart';
+import 'package:ecommerce_app/view/screen/homescreen.dart';
 import 'package:ecommerce_app/view/screen/language_screen.dart';
 import 'package:ecommerce_app/view/screen/onboarding_screen.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
