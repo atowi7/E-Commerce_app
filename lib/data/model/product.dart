@@ -1,4 +1,4 @@
-class ItemModel {
+class ProductModel {
   String? id;
   String? name;
   String? name_ar;
@@ -16,7 +16,7 @@ class ItemModel {
   String? c_name_ar;
   String? c_image;
   String? c_createdat;
-  ItemModel(
+  ProductModel(
       this.id,
       this.name,
       this.name_ar,
@@ -34,7 +34,7 @@ class ItemModel {
       this.c_name_ar,
       this.c_image,
       this.c_createdat);
-  ItemModel.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     name_ar = json['name_ar'];

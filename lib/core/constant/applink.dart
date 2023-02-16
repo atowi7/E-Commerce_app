@@ -5,7 +5,7 @@ class AppLink {
   //image
   static const String image = '$server/upload';
   static const String categrieImage = '$image/categorie';
-  static const String itemImage = '$image/item';
+  static const String productImage = '$image/item';
 
   //Auth
   static const String signup = '$server/auth/signup.php';
@@ -18,4 +18,7 @@ class AppLink {
 
   //Home
   static const String home = '$server/home.php';
+
+  //product
+  static const String product = '$server/product.php';
 }

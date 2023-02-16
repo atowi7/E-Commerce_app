@@ -4,7 +4,7 @@ import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:ecommerce_app/view/widget/home/categorie_section.dart';
 import 'package:ecommerce_app/view/widget/home/customcard.dart';
 import 'package:ecommerce_app/view/widget/home/customtitile.dart';
-import 'package:ecommerce_app/view/widget/home/item_section.dart';
+import 'package:ecommerce_app/view/widget/home/producthome_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
             const CustomCard(title: 'Summer Discount', disc: '20%'),
             const CategorieSection(),
             const Custometitle(title: 'Suggestios for products'),
-            const ItemSection(),
+            const ProductHomeSection(),
           ],
         ),
       );

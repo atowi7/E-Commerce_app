@@ -1,7 +1,8 @@
 import 'package:ecommerce_app/controller/product_controller.dart';
-import 'package:ecommerce_app/core/constant/color.dart';
-import 'package:ecommerce_app/data/model/categorie.dart';
+import 'package:ecommerce_app/data/model/product.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerce_app/core/constant/applink.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 class ProductSection extends GetView<ProductController> {
@@ -9,48 +10,58 @@ class ProductSection extends GetView<ProductController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: double.infinity,
-      margin: const EdgeInsets.only(left: 10, right: 10),
-      child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => ProductWidget(
-                categorieModel:
-                    CategorieModel.fromJson(controller.categories[index]),
-                i: index,
-              ),
-          separatorBuilder: (context, index) => const SizedBox(width: 10),
-          itemCount: controller.categories.length),
-    );
+    return GridView.builder(
+        itemCount: 2,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (context, index) {
+          return ProductWedget(
+            productModel: ProductModel.fromJson(controller.products[index]),
+          );
+        });
   }
 }
 
-class ProductWidget extends GetView<ProductController> {
-  final CategorieModel categorieModel;
-  final int i;
-  const ProductWidget(
-      {super.key, required this.categorieModel, required this.i});
-
+class ProductWedget extends GetView<ProductController> {
+  final ProductModel productModel;
+  const ProductWedget({super.key, required this.productModel});
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => controller.getselcat(i),
+    return Card(
       child: Column(
         children: [
-          GetBuilder<ProductController>(builder: (controller) {
-            return Container(
-              decoration: controller.selcat == i
-                  ? const BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(width: 5, color: AppColor.black)))
-                  : null,
-              child: Text(
-                '${categorieModel.name}',
-                style: const TextStyle(fontSize: 20),
-              ),
-            );
-          }),
+          CachedNetworkImage(
+            imageUrl: '${AppLink.productImage}/${productModel.image}',
+            height: 100,
+            width: 100,
+          ),
+          Text(
+            '${productModel.name}',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Rating'),
+              Row(
+                  children: List.generate(
+                      5,
+                      (index) => IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.star),
+                            iconSize: 10,
+                          )))
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('${productModel.price}'),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))
+            ],
+          ),
         ],
       ),
     );

@@ -1,12 +1,12 @@
 import 'package:ecommerce_app/controller/home_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
-import 'package:ecommerce_app/data/model/item.dart';
+import 'package:ecommerce_app/data/model/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ItemSection extends GetView<HomeController> {
-  const ItemSection({super.key});
+class ProductHomeSection extends GetView<HomeController> {
+  const ProductHomeSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class ItemSection extends GetView<HomeController> {
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => ItemWidget(
-                itemModel: ItemModel.fromJson(controller.items[index]),
+                productModel: ProductModel.fromJson(controller.items[index]),
               ),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
           itemCount: controller.items.length),
@@ -26,8 +26,8 @@ class ItemSection extends GetView<HomeController> {
 }
 
 class ItemWidget extends StatelessWidget {
-  final ItemModel itemModel;
-  const ItemWidget({super.key, required this.itemModel});
+  final ProductModel productModel;
+  const ItemWidget({super.key, required this.productModel});
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +41,14 @@ class ItemWidget extends StatelessWidget {
             border: Border.all(color: AppColor.black),
           ),
           child: Image.network(
-            '${AppLink.itemImage}/${itemModel.image}',
+            '${AppLink.productImage}/${productModel.image}',
             color: AppColor.white,
           ),
         ),
         Positioned(
           left: 10,
           child: Text(
-            '${itemModel.name}',
+            '${productModel.name}',
             style: const TextStyle(fontSize: 20),
           ),
         ),
