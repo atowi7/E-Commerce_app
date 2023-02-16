@@ -6,8 +6,10 @@ class ProductData {
 
   ProductData(this.crud);
 
-  getData() async {
-    var response = await crud.postData(AppLink.product, {});
+  getData(String cid) async {
+    var response = await crud.postData(AppLink.product, {
+      'cid':cid
+    });
     return response.fold((l) => l, (r) => r);
   }
 }

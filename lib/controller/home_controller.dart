@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 abstract class BaseHomeController extends GetxController {
   getData();
-  goToItem(List categories, int selcat);
+  goToItem(List categories, String cid);
 }
 
 class HomeController extends BaseHomeController {
@@ -48,10 +48,10 @@ class HomeController extends BaseHomeController {
   }
 
   @override
-  goToItem(categories, selcat) {
+  goToItem(categories, cid) {
     Get.toNamed(AppRoute.product, arguments: {
       'categories': categories,
-      'selcat': selcat,
+      'cid': cid,
     });
   }
 }

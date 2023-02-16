@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/controller/home_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
+import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/data/model/categorie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,9 +20,8 @@ class CategorieSection extends StatelessWidget {
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => CategorieWidget(
-                categorie:
+                categorieModel:
                     CategorieModel.fromJson(controller.categories[index]),
-                i: index,
               ),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
           itemCount: controller.categories.length),
@@ -30,14 +30,14 @@ class CategorieSection extends StatelessWidget {
 }
 
 class CategorieWidget extends GetView<HomeController> {
-  final CategorieModel categorie;
-  final int i;
-  const CategorieWidget({super.key, required this.categorie, required this.i});
+  final CategorieModel categorieModel;
+  //final int i;
+  const CategorieWidget({super.key, required this.categorieModel});
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.goToItem(controller.categories, i);
+        controller.goToItem(controller.categories, categorieModel.id!);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -49,12 +49,15 @@ class CategorieWidget extends GetView<HomeController> {
         child: Column(
           children: [
             SvgPicture.network(
-              '${AppLink.categrieImage}/${categorie.image}',
+              '${AppLink.categrieImage}/${categorieModel.image}',
               color: AppColor.white,
+              height: 50,
+              width: 50,
             ),
             Text(
-              '${categorie.name}',
-              style: const TextStyle(fontSize: 20),
+              langTranslateDataBase(
+                  categorieModel.name_ar!, categorieModel.name!),
+              style: const TextStyle(fontSize: 16),
             )
           ],
         ),

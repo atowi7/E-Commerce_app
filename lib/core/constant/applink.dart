@@ -20,5 +20,5 @@ class AppLink {
   static const String home = '$server/home.php';
 
   //product
-  static const String product = '$server/product.php';
+  static const String product = '$server/product/view.php';
 }

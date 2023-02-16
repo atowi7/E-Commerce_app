@@ -18,7 +18,6 @@ class CategoriesSection extends GetView<ProductController> {
           itemBuilder: (context, index) => CategoriesWidget(
                 categorieModel:
                     CategorieModel.fromJson(controller.categories[index]),
-                i: index,
               ),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
           itemCount: controller.categories.length),
@@ -28,19 +27,18 @@ class CategoriesSection extends GetView<ProductController> {
 
 class CategoriesWidget extends GetView<ProductController> {
   final CategorieModel categorieModel;
-  final int i;
   const CategoriesWidget(
-      {super.key, required this.categorieModel, required this.i});
+      {super.key, required this.categorieModel});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => controller.getselcat(i),
+      onTap: () => controller.getselcat(categorieModel.id!),
       child: Column(
         children: [
           GetBuilder<ProductController>(builder: (controller) {
             return Container(
-              decoration: controller.selcat == i
+              decoration: controller.cid == categorieModel.id
                   ? const BoxDecoration(
                       border: Border(
                           bottom: BorderSide(width: 5, color: AppColor.black)))

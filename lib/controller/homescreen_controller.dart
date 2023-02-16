@@ -14,6 +14,12 @@ class HomeScreenController extends BaseHomeScreenController {
     'Setting',
     'Favorite',
   ];
+  List pageicon= [
+    Icons.home_outlined,
+    Icons.person_2_outlined,
+    Icons.settings_outlined,
+    Icons.favorite_border_outlined,
+  ];
   List<Widget> pages = [
     const Home(),
     const Center(child: Text('p')),

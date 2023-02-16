@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 
 abstract class BaseProductController extends GetxController {
   initialData();
-  getselcat(int i);
+  getselcat(String catid);
 }
 
 class ProductController extends BaseProductController {
   List categories = [];
   List products = [];
-  int? selcat;
+  String? cid;
 
   ProductData productData = ProductData(Get.find());
 
@@ -21,30 +21,33 @@ class ProductController extends BaseProductController {
   @override
   void onInit() {
     initialData();
+    getData(cid!);
     super.onInit();
   }
 
   @override
   initialData() {
     categories = Get.arguments['categories'];
-    selcat = Get.arguments['selcat'];
+    cid = Get.arguments['cid'];
   }
 
   @override
-  getselcat(int i) {
-    selcat = i;
+  getselcat(catid) {
+    cid = catid;
+    getData(cid!);
     update();
   }
 
-  getData() async {
+  getData(String cid) async {
     statusRequest = StatusRequest.loading;
 
-    var response = await productData.getData();
+    var response = await productData.getData(cid);
 
     statusRequest = handleData(response);
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
+        products.clear();
         products.addAll(response['data']);
       } else {
         statusRequest = StatusRequest.noDatafailure;
