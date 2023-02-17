@@ -10,6 +10,7 @@ import 'package:ecommerce_app/view/widget/auth/customtexttitle.dart';
 import 'package:ecommerce_app/view/widget/auth/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -19,7 +20,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Sign in'),
+        title: Text('19'.tr),
       ),
       body: WillPopScope(
         onWillPop: () async {
@@ -34,11 +35,11 @@ class LoginScreen extends StatelessWidget {
                 child: ListView(
                   children: [
                     const Logo(),
-                    CustomTextTitle(title: '2'.tr),
-                    CustomTextBody(title: '3'.tr),
+                    CustomTextTitle(title: '19'.tr),
+                    CustomTextBody(title: '20'.tr),
                     CustomTextForm(
-                      labelText: 'Email',
-                      hintText: 'Email',
+                      labelText: '16'.tr,
+                      hintText: '16'.tr,
                       icon: Icons.email,
                       isNumber: false,
                       controller: controller.email,
@@ -48,8 +49,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                     GetBuilder<LoginController>(builder: (controller) {
                       return CustomTextForm(
-                        labelText: 'Password',
-                        hintText: 'Password',
+                        labelText: '18'.tr,
+                        hintText: '18'.tr,
                         icon: Icons.lock,
                         isNumber: false,
                         obscureText: controller.isPassHidden,
@@ -64,17 +65,16 @@ class LoginScreen extends StatelessWidget {
                         onTap: () {
                           controller.openForgerPassword();
                         },
-                        child: const Text('Forget Password',
-                            textAlign: TextAlign.end)),
+                        child: Text('21'.tr, textAlign: TextAlign.end)),
                     CustomButton(
-                      title: 'Sign in',
+                      title: '19'.tr,
                       onPressed: () {
                         controller.login();
                       },
                     ),
                     CustomTextAuth(
-                      t1: 'Don\'t have an account ',
-                      t2: ' Sign Up',
+                      t1: '22'.tr,
+                      t2: '13'.tr,
                       onTap: () {
                         controller.openSignUp();
                       },

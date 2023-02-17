@@ -22,7 +22,7 @@ class customeButton extends GetView<OnboardingController> {
           controller.next();
         },
         child: Text(
-          'Continue',
+          '12'.tr,
           style: Theme.of(context).textTheme.button,
         ),
       ),

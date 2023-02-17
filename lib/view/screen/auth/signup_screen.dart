@@ -1,7 +1,5 @@
 import 'package:ecommerce_app/controller/auth/signup_controller.dart';
-import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
-import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/core/function/exitapp_alert.dart';
 import 'package:ecommerce_app/core/function/input_validation.dart';
 import 'package:ecommerce_app/view/widget/auth/custombutton.dart';
@@ -11,7 +9,6 @@ import 'package:ecommerce_app/view/widget/auth/customtextform.dart';
 import 'package:ecommerce_app/view/widget/auth/customtexttitle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -22,7 +19,7 @@ class SignupScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Sign Up'),
+        title: Text('13'.tr),
       ),
       body: WillPopScope(
         onWillPop: () async {
@@ -36,13 +33,11 @@ class SignupScreen extends StatelessWidget {
               key: controller.formKey,
               child: ListView(
                 children: [
-                  const CustomTextTitle(title: 'Welcom Back'),
-                  const CustomTextBody(
-                      title:
-                          'Sign up with your email and password or continue with socail media'),
+                  CustomTextTitle(title: '13'.tr),
+                  CustomTextBody(title: '14'.tr),
                   CustomTextForm(
-                    labelText: 'User Name',
-                    hintText: 'User Name',
+                    labelText: '15'.tr,
+                    hintText: '15'.tr,
                     icon: Icons.person,
                     isNumber: false,
                     controller: controller.userName,
@@ -52,8 +47,8 @@ class SignupScreen extends StatelessWidget {
                     onTapIcon: controller.showPassword(),
                   ),
                   CustomTextForm(
-                    labelText: 'Email',
-                    hintText: 'Email',
+                    labelText: '16'.tr,
+                    hintText: '16'.tr,
                     icon: Icons.email,
                     isNumber: false,
                     controller: controller.email,
@@ -62,8 +57,8 @@ class SignupScreen extends StatelessWidget {
                     },
                   ),
                   CustomTextForm(
-                    labelText: 'Phone',
-                    hintText: 'Phone',
+                    labelText: '17'.tr,
+                    hintText: '17'.tr,
                     icon: Icons.phone,
                     isNumber: true,
                     controller: controller.phone,
@@ -72,8 +67,8 @@ class SignupScreen extends StatelessWidget {
                     },
                   ),
                   CustomTextForm(
-                    labelText: 'Password',
-                    hintText: 'Password',
+                    labelText: '18'.tr,
+                    hintText: '18'.tr,
                     icon: Icons.lock,
                     isNumber: false,
                     controller: controller.password,
@@ -83,14 +78,14 @@ class SignupScreen extends StatelessWidget {
                     },
                   ),
                   CustomButton(
-                    title: 'Sign Up',
+                    title: '13'.tr,
                     onPressed: () {
                       controller.openSignupVerfication();
                     },
                   ),
                   CustomTextAuth(
-                    t1: 'Already have an account ',
-                    t2: ' Sign in',
+                    t1: '23'.tr,
+                    t2: '19'.tr,
                     onTap: () {
                       controller.openLogin();
                     },

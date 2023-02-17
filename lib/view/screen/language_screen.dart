@@ -23,13 +23,13 @@ class LanguageScreen extends GetView<LocalLangChange> {
             style: Theme.of(context).textTheme.headline1,
           ),
           CustomButtonLang(
-              text: 'AR',
+              text: '2'.tr,
               onPressed: () {
                 controller.changeLang('ar');
                 Get.toNamed(AppRoute.onBoarding);
               }),
           CustomButtonLang(
-              text: 'EN',
+              text: '3'.tr,
               onPressed: () {
                 controller.changeLang('en');
                 Get.toNamed(AppRoute.onBoarding);
