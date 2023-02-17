@@ -22,19 +22,19 @@ ThemeData englishTheme = ThemeData(
 
 ThemeData arabicTheme = ThemeData(
   textTheme: const TextTheme(
-      headline1: TextStyle(
+      displayLarge: TextStyle(
         fontFamily: 'Cairo',
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: FontWeight.bold,
         //color: AppColor.black,
       ),
-      bodyText1: TextStyle(
+      displayMedium: TextStyle(
         fontFamily: 'Cairo',
-        fontSize: 20,
+        fontSize: 18,
       ),
-      button: TextStyle(
+      labelLarge: TextStyle(
           fontFamily: 'Cairo',
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: FontWeight.bold,
           color: AppColor.white)),
 );

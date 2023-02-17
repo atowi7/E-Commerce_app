@@ -1,8 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/controller/productdetail_controller.dart';
-import 'package:ecommerce_app/core/constant/applink.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
+import 'package:ecommerce_app/view/widget/productdetail/Image_section.dart';
+import 'package:ecommerce_app/view/widget/productdetail/amountandprice_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,16 +20,68 @@ class ProductDetailScreen extends StatelessWidget {
               searchHint: 'Find ...',
               searchonPressed: () {},
               notifyPressed: () {}),
-          Container(
-            height: 100,
-            decoration: const BoxDecoration(
-                color: AppColor.blue,
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(25))),
-            child: CachedNetworkImage(
-                imageUrl: '${AppLink.productImage}/${controller.productModel.image}'),
-          )
+          const ImageSection(),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            '${langTranslateDataBase(controller.productModel.name_ar!, controller.productModel.name!)}',
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          AmountAndPriceSection(
+            price: controller.productModel.price!,
+            onPressedAdd: () {},
+            onPressedRemove: () {},
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            '${langTranslateDataBase(controller.productModel.description_ar!, controller.productModel.description!)}',
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            'Color',
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                controller.itemf.length,
+                (index) => Container(
+                  decoration: BoxDecoration(
+                      color: controller.itemf[index]['active'] == 1
+                          ? AppColor.blue
+                          : null,
+                      border: Border.all(color: AppColor.blue),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Text(
+                    controller.itemf[index]['name'],
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                ),
+              )),
         ],
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: AppColor.blue,
+        ),
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        child: const MaterialButton(
+          onPressed: null,
+          child: Text('Add to cart'),
+        ),
       ),
     );
   }

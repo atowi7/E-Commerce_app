@@ -10,4 +10,6 @@ class ImageAssets {
   static const nodata = '$rootLottie/nodata.json';
   static const offline = '$rootLottie/offline.json';
   static const servererror = '$rootLottie/servererror.json';
+
+  static const profile = '$rootLottie/profile.json';
 }

@@ -36,14 +36,17 @@ class ProductWedget extends GetView<ProductController> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>controller.goToProductDetial(productModel),
+      onTap: () => controller.goToProductDetial(productModel),
       child: Card(
         child: Column(
           children: [
-            CachedNetworkImage(
-              imageUrl: '${AppLink.productImage}/${productModel.image}',
-              height: 70,
-              width: 70,
+            Hero(
+              tag: '${productModel.id}',
+              child: CachedNetworkImage(
+                imageUrl: '${AppLink.productImage}/${productModel.image}',
+                height: 70,
+                width: 70,
+              ),
             ),
             Text(
               '${productModel.name}',

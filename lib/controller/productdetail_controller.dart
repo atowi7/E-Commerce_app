@@ -12,6 +12,12 @@ class ProductDetailController extends BaseProductDetailController {
 
   late StatusRequest statusRequest;
 
+  List itemf = [
+    {'name': 'red', 'active': 0},
+    {'name': 'blue', 'active': 1},
+    {'name': 'green', 'active': 0},
+  ];
+
   @override
   void onInit() {
     initialData();
