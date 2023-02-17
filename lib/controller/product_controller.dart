@@ -1,12 +1,15 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/data/datasource/remote/product_data.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
+import 'package:ecommerce_app/data/model/product.dart';
 
 import 'package:get/get.dart';
 
 abstract class BaseProductController extends GetxController {
   initialData();
   getselcat(String catid);
+  goToProductDetial(ProductModel productModel);
 }
 
 class ProductController extends BaseProductController {
@@ -54,5 +57,12 @@ class ProductController extends BaseProductController {
       }
     }
     update();
+  }
+
+  @override
+  goToProductDetial(ProductModel productModel) {
+    Get.toNamed(AppRoute.productdetail, arguments: {
+      'productmodel': productModel,
+    });
   }
 }

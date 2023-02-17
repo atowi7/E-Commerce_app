@@ -30,45 +30,48 @@ class ProductSection extends StatelessWidget {
   }
 }
 
-class ProductWedget extends StatelessWidget {
+class ProductWedget extends GetView<ProductController> {
   final ProductModel productModel;
   const ProductWedget({super.key, required this.productModel});
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          CachedNetworkImage(
-            imageUrl: '${AppLink.productImage}/${productModel.image}',
-            height: 70,
-            width: 70,
-          ),
-          Text(
-            '${productModel.name}',
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Rating'),
-              Row(
-                  children: List.generate(
-                      3,
-                      (index) => IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.star),
-                            iconSize: 10,
-                          )))
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('${productModel.price}\$'),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))
-            ],
-          ),
-        ],
+    return InkWell(
+      onTap: ()=>controller.goToProductDetial(productModel),
+      child: Card(
+        child: Column(
+          children: [
+            CachedNetworkImage(
+              imageUrl: '${AppLink.productImage}/${productModel.image}',
+              height: 70,
+              width: 70,
+            ),
+            Text(
+              '${productModel.name}',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Rating'),
+                Row(
+                    children: List.generate(
+                        3,
+                        (index) => IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.star),
+                              iconSize: 10,
+                            )))
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('${productModel.price}\$'),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
