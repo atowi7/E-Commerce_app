@@ -70,7 +70,11 @@ class ProductWedget extends GetView<ProductController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('${productModel.price}\$'),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))
+                IconButton(
+                    onPressed: () {},
+                    icon: productModel.favorite == '1'
+                        ? const Icon(Icons.favorite)
+                        : const Icon(Icons.favorite_border_outlined))
               ],
             ),
           ],

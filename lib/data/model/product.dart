@@ -16,6 +16,7 @@ class ProductModel {
   String? c_name_ar;
   String? c_image;
   String? c_createdat;
+  String? favorite;
   ProductModel(
       this.id,
       this.name,
@@ -33,24 +34,26 @@ class ProductModel {
       this.c_name,
       this.c_name_ar,
       this.c_image,
-      this.c_createdat);
+      this.c_createdat,
+      this.favorite);
   ProductModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    name_ar = json['name_ar'];
-    description = json['description'];
-    description_ar = json['description_ar'];
-    image = json['image'];
-    price = json['price'];
-    discount = json['discount'];
-    active = json['active'];
-    count = json['count'];
-    createdat = json['createdat'];
-    categorie_id = json['categorie_id'];
+    id = json['pro_id'];
+    name = json['pro_name'];
+    name_ar = json['pro_name_ar'];
+    description = json['pro_description'];
+    description_ar = json['pro_description_ar'];
+    image = json['pro_image'];
+    price = json['pro_price'];
+    discount = json['pro_discount'];
+    active = json['pro_active'];
+    count = json['pro_count'];
+    createdat = json['pro_createdat'];
+    categorie_id = json['pro_categorie_id'];
     c_id = json['c_id'];
     c_name = json['c_name'];
     c_name_ar = json['c_name_ar'];
     c_image = json['c_image'];
     c_createdat = json['c_createdat'];
+    favorite = json['favorite'];
   }
 }

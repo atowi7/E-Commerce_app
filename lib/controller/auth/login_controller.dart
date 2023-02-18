@@ -52,9 +52,9 @@ class LoginController extends BaseLoginController {
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
           appServices.sharedPreferences
-              .setString('userid', response['data']['id']);
+              .setString('userid', response['data']['user_id']);
           appServices.sharedPreferences
-              .setString('username', response['data']['name']);
+              .setString('username', response['data']['user_name']);
           appServices.sharedPreferences
               .setString('page', 'h');
 

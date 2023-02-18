@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
+import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/product_data.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/data/model/product.dart';
@@ -13,11 +14,13 @@ abstract class BaseProductController extends GetxController {
 }
 
 class ProductController extends BaseProductController {
+  String? userid;
   List categories = [];
   List products = [];
   String? cid;
 
   ProductData productData = ProductData(Get.find());
+  AppServices appServices = Get.find();
 
   late StatusRequest statusRequest;
 
@@ -30,6 +33,7 @@ class ProductController extends BaseProductController {
 
   @override
   initialData() {
+    userid = appServices.sharedPreferences.getString('userid');
     categories = Get.arguments['categories'];
     cid = Get.arguments['cid'];
   }
@@ -44,7 +48,7 @@ class ProductController extends BaseProductController {
   getData(String cid) async {
     statusRequest = StatusRequest.loading;
 
-    var response = await productData.getData(cid);
+    var response = await productData.getData(userid!,cid);
 
     statusRequest = handleData(response);
 

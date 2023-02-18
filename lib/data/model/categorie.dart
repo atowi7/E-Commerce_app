@@ -12,10 +12,10 @@ class CategorieModel {
   );
 
   CategorieModel.fromJson(Map<String,dynamic> json){
-   id=json['id'];
-    name=json['name'];
-     name_ar=json['name_ar'];
-      image=json['image'];
+   id=json['categorie_id'];
+    name=json['categorie_name'];
+     name_ar=json['categorie_name_ar'];
+      image=json['categorie_image'];
   }
 
   // Map<String,dynamic> toJson(){
