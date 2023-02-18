@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controller/favorite_controller.dart';
 import 'package:ecommerce_app/controller/product_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/data/model/product.dart';
@@ -11,6 +12,7 @@ class ProductSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FavoriteController favoriteController = Get.put(FavoriteController());
     return GetBuilder<ProductController>(builder: (controller) {
       return HandlingDataView(
         statusRequest: controller.statusRequest,
@@ -21,6 +23,8 @@ class ProductSection extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2),
             itemBuilder: (context, index) {
+              favoriteController.isFav[controller.products[index]['pro_id']] =
+                  controller.products[index]['favorite'];
               return ProductWedget(
                 productModel: ProductModel.fromJson(controller.products[index]),
               );
@@ -70,11 +74,21 @@ class ProductWedget extends GetView<ProductController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('${productModel.price}\$'),
-                IconButton(
-                    onPressed: () {},
-                    icon: productModel.favorite == '1'
-                        ? const Icon(Icons.favorite)
-                        : const Icon(Icons.favorite_border_outlined))
+                GetBuilder<FavoriteController>(builder: (controller) {
+                  return IconButton(
+                      onPressed: () {
+                        if (controller.isFav[productModel.id] == '0') {
+                          controller.setFavorite(productModel.id!, '1');
+                          controller.addFavorite(productModel.id!);
+                        } else {
+                          controller.setFavorite(productModel.id!, '0');
+                          controller.deleteFavorite(productModel.id!);
+                        }
+                      },
+                      icon: controller.isFav[productModel.id] == '0'
+                          ? const Icon(Icons.favorite_outline_rounded)
+                          : const Icon(Icons.favorite));
+                })
               ],
             ),
           ],

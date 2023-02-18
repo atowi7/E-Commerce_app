@@ -21,4 +21,8 @@ class AppLink {
 
   //product
   static const String product = '$server/product/view.php';
+
+  //favorite
+  static const String favoriteAdd = '$server/favorite/add.php';
+  static const String favoriteDelete = '$server/favorite/delete.php';
 }
