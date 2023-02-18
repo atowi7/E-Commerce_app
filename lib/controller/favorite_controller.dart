@@ -1,3 +1,6 @@
+import 'package:dartz/dartz_streaming.dart';
+import 'package:ecommerce_app/core/class/status_request.dart';
+import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/favorite_data.dart';
 import 'package:get/get.dart';
@@ -16,6 +19,8 @@ class FavoriteController extends BaseFavoriteController {
 
   FavoriteData favoritedata = FavoriteData(Get.find());
 
+  late StatusRequest statusRequest;
+
   @override
   void onInit() {
     userid = appServices.sharedPreferences.getString('user_id');
@@ -29,12 +34,36 @@ class FavoriteController extends BaseFavoriteController {
   }
 
   @override
-  addFavorite(proid) {
-    favoritedata.addFavorite(userid!, proid);
+  addFavorite(proid) async {
+    statusRequest = StatusRequest.loading;
+
+    var response = await favoritedata.addFavorite(userid!, proid);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.sucess == statusRequest) {
+      if (response['status'] == 'sucess') {
+        Get.snackbar('NOTFY', 'add to fav sucess');
+      } else {
+        statusRequest = StatusRequest.noDatafailure;
+      }
+    }
   }
 
   @override
-  deleteFavorite(String proid) {
-    favoritedata.deleteFavorite(userid!, proid);
+  deleteFavorite(String proid) async {
+    statusRequest = StatusRequest.loading;
+
+    var response = await favoritedata.addFavorite(userid!, proid);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.sucess == statusRequest) {
+      if (response['status'] == 'sucess') {
+        Get.snackbar('NOTFY', 'delete from fav sucess');
+      } else {
+        statusRequest = StatusRequest.noDatafailure;
+      }
+    }
   }
 }
