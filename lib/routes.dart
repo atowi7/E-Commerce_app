@@ -13,6 +13,7 @@ import 'package:ecommerce_app/view/screen/onboarding_screen.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/view/screen/productdetial_screen.dart';
 import 'package:ecommerce_app/view/screen/product_screen.dart';
+import 'package:ecommerce_app/view/screen/userfavorite_screen.dart';
 import 'package:get/get.dart';
 
 List<GetPage<dynamic>>? routes = [
@@ -63,12 +64,16 @@ List<GetPage<dynamic>>? routes = [
     name: AppRoute.homePage,
     page: () => const HomeScreen(),
   ),
-   GetPage(
+  GetPage(
     name: AppRoute.product,
     page: () => const ProductScreen(),
   ),
   GetPage(
     name: AppRoute.productdetail,
     page: () => const ProductDetailScreen(),
+  ),
+  GetPage(
+    name: AppRoute.userfavorite,
+    page: () => const userFavoriteScreen(),
   ),
 ];

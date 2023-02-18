@@ -17,9 +17,11 @@ class ProductDetailScreen extends StatelessWidget {
       body: ListView(
         children: [
           CustomAppbar(
-              searchHint: 'Find ...',
-              searchonPressed: () {},
-              notifyPressed: () {}),
+            searchHint: 'Find ...',
+            searchonPressed: () {},
+            notifyPressed: () {},
+            favPressed: () {},
+          ),
           const ImageSection(),
           const SizedBox(
             height: 10,

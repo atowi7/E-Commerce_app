@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/home_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:ecommerce_app/view/widget/home/categorie_section.dart';
 import 'package:ecommerce_app/view/widget/home/customcard.dart';
@@ -23,6 +24,9 @@ class Home extends StatelessWidget {
               searchHint: 'Find products',
               searchonPressed: () {},
               notifyPressed: () {},
+              favPressed: () {
+                Get.toNamed(AppRoute.userfavorite);
+              },
             ),
             const CustomCard(title: 'Summer Discount', disc: '20%'),
             const CategorieSection(),

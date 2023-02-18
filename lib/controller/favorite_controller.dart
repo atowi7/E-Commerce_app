@@ -1,4 +1,3 @@
-import 'package:dartz/dartz_streaming.dart';
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
@@ -12,7 +11,7 @@ abstract class BaseFavoriteController extends GetxController {
 }
 
 class FavoriteController extends BaseFavoriteController {
-  String? userid;
+  // String? userid;
   Map isFav = {};
 
   AppServices appServices = Get.find();
@@ -20,12 +19,6 @@ class FavoriteController extends BaseFavoriteController {
   FavoriteData favoritedata = FavoriteData(Get.find());
 
   late StatusRequest statusRequest;
-
-  @override
-  void onInit() {
-    userid = appServices.sharedPreferences.getString('user_id');
-    super.onInit();
-  }
 
   @override
   setFavorite(proid, isfav) {
@@ -37,7 +30,8 @@ class FavoriteController extends BaseFavoriteController {
   addFavorite(proid) async {
     statusRequest = StatusRequest.loading;
 
-    var response = await favoritedata.addFavorite(userid!, proid);
+    var response = await favoritedata.addFavorite(
+        appServices.sharedPreferences.getString('userid')!, proid);
 
     statusRequest = handleData(response);
 
@@ -45,6 +39,7 @@ class FavoriteController extends BaseFavoriteController {
       if (response['status'] == 'sucess') {
         Get.snackbar('NOTFY', 'add to fav sucess');
       } else {
+        Get.snackbar('NOTFY', 'add to fav Fail');
         statusRequest = StatusRequest.noDatafailure;
       }
     }
@@ -54,7 +49,8 @@ class FavoriteController extends BaseFavoriteController {
   deleteFavorite(String proid) async {
     statusRequest = StatusRequest.loading;
 
-    var response = await favoritedata.addFavorite(userid!, proid);
+    var response = await favoritedata.deleteFavorite(
+        appServices.sharedPreferences.getString('userid')!, proid);
 
     statusRequest = handleData(response);
 
