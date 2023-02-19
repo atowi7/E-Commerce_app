@@ -74,6 +74,6 @@ List<GetPage<dynamic>>? routes = [
   ),
   GetPage(
     name: AppRoute.userfavorite,
-    page: () => const userFavoriteScreen(),
+    page: () => const UserFavoriteScreen(),
   ),
 ];

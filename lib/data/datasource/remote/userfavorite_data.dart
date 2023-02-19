@@ -12,4 +12,11 @@ class UserFavoriteData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+   deleteData(String favid) async {
+    var response = await crud.postData(AppLink.deleteFromuserfavorite, {
+      'favid': favid,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

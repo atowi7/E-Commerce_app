@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 abstract class BaseUserFavoriteController extends GetxController {
   getData();
+  deletData(String favid);
 }
 
 class UserFavoriteController extends BaseUserFavoriteController {
@@ -40,5 +41,14 @@ class UserFavoriteController extends BaseUserFavoriteController {
         statusRequest = StatusRequest.noDatafailure;
       }
     }
+    update();
+  }
+
+  @override
+  deletData(favid) {
+    userfavoritedata.deleteData(favid);
+    datalist.removeWhere((element) => element.favId == favid);
+    Get.snackbar('WARRNING', 'YOUR FAVORITE PRODUCT IS DELETED');
+    update();
   }
 }
