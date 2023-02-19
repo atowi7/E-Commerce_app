@@ -8,24 +8,24 @@ class CustomBottomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeScreenController>(
-      builder: (controller) {
-        return BottomAppBar(
-                height: 70,
-                shape: const CircularNotchedRectangle(),
-                notchMargin: 20,
-                child: Row(
-                  children: List.generate(controller.pages.length+1, (index) {
-                    int i =index >2 ? index-1:index;
-                    return index==2?const Spacer(): CustomBottonBottomAppBar(
-                      title: controller.pagetitle[i],
-                      icon: controller.pageicon[i],
+    return GetBuilder<HomeScreenController>(builder: (controller) {
+      return BottomAppBar(
+          height: 70,
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 20,
+          child: Row(
+            children: List.generate(controller.pages.length + 1, (index) {
+              int i = index > 2 ? index - 1 : index;
+              return index == 2
+                  ? const Spacer()
+                  : CustomBottonBottomAppBar(
+                      title: controller.icons[index]['title'],
+                      icon: controller.icons[i]['icon'],
                       active: controller.currentPage == i ? true : false,
                       onPressed: () => controller.changePage(i),
                     );
-                  }),
-                ));
-      }
-    );
+            }),
+          ));
+    });
   }
 }

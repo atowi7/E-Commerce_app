@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 abstract class BaseSignupVerficationController extends GetxController {
   openSucess(String verifyCode);
+  resend();
 }
 
 class SignupVerficationController extends BaseSignupVerficationController {
@@ -22,7 +23,7 @@ class SignupVerficationController extends BaseSignupVerficationController {
   }
 
   @override
-  openSucess(verifyCode)async {
+  openSucess(verifyCode) async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await signupVerificationData.postData(email!, verifyCode);
@@ -32,6 +33,24 @@ class SignupVerficationController extends BaseSignupVerficationController {
         Get.offNamed(AppRoute.successSignup);
       } else {
         Get.defaultDialog(title: 'ERROR', middleText: 'VCODE ERROR');
+        statusRequest = StatusRequest.noDatafailure;
+      }
+    } else {
+      Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+      statusRequest = StatusRequest.serverFailure;
+    }
+    update();
+  }
+
+  @override
+  resend() async {
+    var response = await signupVerificationData.resend(email!);
+    statusRequest = handleData(response);
+    if (statusRequest == StatusRequest.sucess) {
+      if (response['status'] == 'sucess') {
+        Get.defaultDialog(title: 'Warring', middleText: 'VCODE is send');
+      } else {
+        Get.defaultDialog(title: 'ERROR', middleText: 'VCODE is not send');
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {

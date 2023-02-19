@@ -36,6 +36,12 @@ class SignupVerficationScreen extends StatelessWidget {
                   controller.openSucess(value);
                 },
               ),
+              InkWell(
+                onTap: () {
+                  controller.resend();
+                },
+                child: const Text('resend'),
+              )
             ],
           ),
         );

@@ -51,13 +51,19 @@ class LoginController extends BaseLoginController {
       statusRequest = handleData(response);
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
-          appServices.sharedPreferences
-              .setString('userid', response['data']['userid']);
-          appServices.sharedPreferences
-              .setString('username', response['data']['username']);
-          appServices.sharedPreferences.setString('page', 'h');
+          if (response['data']['user_approval'] == 1) {
+            appServices.sharedPreferences
+                .setString('userid', response['data']['userid']);
+            appServices.sharedPreferences
+                .setString('username', response['data']['username']);
+            appServices.sharedPreferences.setString('page', 'h');
 
-          Get.offNamed(AppRoute.homePage);
+            Get.offNamed(AppRoute.homePage);
+          } else {
+            Get.offNamed(AppRoute.signupVerfication, arguments: {
+              'email': email.text,
+            });
+          }
         } else {
           Get.defaultDialog(
               title: 'ERROR',

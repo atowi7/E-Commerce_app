@@ -13,4 +13,12 @@ class SignupVerificationData {
 
     return response.fold((l) => l, (r) => r);
   }
+
+  resend(String email) async {
+    var response = await curd.postData(AppLink.resendVerifyCode, {
+      'email': email,
+    });
+
+    return response.fold((l) => l, (r) => r);
+  }
 }
