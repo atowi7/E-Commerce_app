@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/middleware/firstmiddlewares.dart';
+import 'package:ecommerce_app/view/screen/cart_screen.dart';
 import 'package:ecommerce_app/view/screen/forgetpassword/checkemail_screen.dart';
 import 'package:ecommerce_app/view/screen/auth/login_screen.dart';
 import 'package:ecommerce_app/view/screen/forgetpassword/resetpassword_screen.dart';
@@ -19,7 +20,7 @@ import 'package:get/get.dart';
 List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.language,
-    page: () => const LanguageScreen(),
+    page: () => const CartScreen(),
     middlewares: [
       FirstMiddleware(),
     ],
