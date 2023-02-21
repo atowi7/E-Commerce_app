@@ -51,11 +51,12 @@ class LoginController extends BaseLoginController {
       statusRequest = handleData(response);
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
-          if (response['data']['user_approval'] == 1) {
+          print(response['data']['user_approval']);
+          if (response['data']['user_approval'] == '1') {
             appServices.sharedPreferences
-                .setString('userid', response['data']['userid']);
+                .setString('userid', response['data']['user_id']);
             appServices.sharedPreferences
-                .setString('username', response['data']['username']);
+                .setString('username', response['data']['user_name']);
             appServices.sharedPreferences.setString('page', 'h');
 
             Get.offNamed(AppRoute.homePage);

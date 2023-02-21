@@ -40,7 +40,11 @@ class SignupVerficationScreen extends StatelessWidget {
                 onTap: () {
                   controller.resend();
                 },
-                child: const Text('resend'),
+                child: Center(
+                    child: Text(
+                  'resend',
+                  style: Theme.of(context).textTheme.displaySmall,
+                )),
               )
             ],
           ),

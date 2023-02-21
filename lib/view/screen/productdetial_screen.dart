@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/controller/productdetail_controller.dart';
+import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
@@ -12,68 +13,78 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductDetailController controller = Get.put(ProductDetailController());
+    Get.put(ProductDetailController());
     return Scaffold(
-      body: ListView(
-        children: [
-          CustomAppbar(
-            searchHint: 'Find ...',
-            searchonPressed: () {},
-            notifyPressed: () {},
-            favPressed: () {},
+      body: GetBuilder<ProductDetailController>(builder: (controller) {
+        return HandlingDataView(
+          statusRequest: controller.statusRequest,
+          widget: ListView(
+            children: [
+              CustomAppbar(
+                searchHint: 'Find ...',
+                searchonPressed: () {},
+                notifyPressed: () {},
+                favPressed: () {},
+              ),
+              const ImageSection(),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                '${langTranslateDataBase(controller.productModel.name_ar!, controller.productModel.name!)}',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AmountAndPriceSection(
+                price: controller.productModel.price!,
+                onPressedAdd: () {
+                  controller.addCount();
+                },
+                count: controller.count,
+                onPressedDelete: () {
+                  controller.deleteCount();
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                '${langTranslateDataBase(controller.productModel.description_ar!, controller.productModel.description!)}',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Color',
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    controller.itemf.length,
+                    (index) => Container(
+                      decoration: BoxDecoration(
+                          color: controller.itemf[index]['active'] == 1
+                              ? AppColor.blue
+                              : null,
+                          border: Border.all(color: AppColor.blue),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Text(
+                        controller.itemf[index]['name'],
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                    ),
+                  )),
+            ],
           ),
-          const ImageSection(),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            '${langTranslateDataBase(controller.productModel.name_ar!, controller.productModel.name!)}',
-            style: Theme.of(context).textTheme.headlineLarge,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          AmountAndPriceSection(
-            price: controller.productModel.price!,
-            onPressedAdd: () {},
-            onPressedRemove: () {},
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            '${langTranslateDataBase(controller.productModel.description_ar!, controller.productModel.description!)}',
-            style: Theme.of(context).textTheme.headlineLarge,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Color',
-            style: Theme.of(context).textTheme.displayLarge,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                controller.itemf.length,
-                (index) => Container(
-                  decoration: BoxDecoration(
-                      color: controller.itemf[index]['active'] == 1
-                          ? AppColor.blue
-                          : null,
-                      border: Border.all(color: AppColor.blue),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Text(
-                    controller.itemf[index]['name'],
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                ),
-              )),
-        ],
-      ),
+        );
+      }),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),

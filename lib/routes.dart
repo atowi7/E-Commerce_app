@@ -20,7 +20,7 @@ import 'package:get/get.dart';
 List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.language,
-    page: () => const CartScreen(),
+    page: () => const LanguageScreen(),
     middlewares: [
       FirstMiddleware(),
     ],

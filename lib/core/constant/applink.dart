@@ -29,4 +29,10 @@ class AppLink {
       '$server/favorite/deletefromuserfav.php';
   static const String favoriteAdd = '$server/favorite/add.php';
   static const String favoriteDelete = '$server/favorite/delete.php';
+
+  //cart
+  static const String cartview = '$server/cart/view.php';
+  static const String cartAdd = '$server/cart/add.php';
+  static const String cartDelete = '$server/cart/delete.php';
+  static const String getcount = '$server/cart/getcount.php';
 }
