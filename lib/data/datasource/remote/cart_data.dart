@@ -5,6 +5,12 @@ class CartData {
   Crud crud;
 
   CartData(this.crud);
+   getData(String userid) async {
+    var response = await crud.postData(AppLink.cartview, {
+      'userid': userid,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 
   addCart(String userid, String proid) async {
     var response = await crud.postData(AppLink.cartAdd, {

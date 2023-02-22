@@ -2,26 +2,56 @@ import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/cart_data.dart';
+import 'package:ecommerce_app/data/model/cartmodel.dart';
 import 'package:get/get.dart';
 
 abstract class BaseCartController extends GetxController {
-  viewCart(String cartid);
+  viewCart();
   addCart(String proid);
   deleteCart(String proid);
   getCount(String proid);
 }
 
 class CartController extends BaseCartController {
+  List<CartModel> dataList = [];
+  int prosAmount = 0;
+  double totalPrice = 0.0;
+  double shipping = 100.0;
+
   AppServices appServices = Get.find();
 
   CartData cartdata = CartData(Get.find());
 
   late StatusRequest statusRequest;
 
+@override
+  void onInit() {
+    viewCart();
+    super.onInit();
+  }
   @override
-  viewCart(String cartid) {
-    // TODO: implement viewCart
-    throw UnimplementedError();
+  viewCart() async {
+    statusRequest = StatusRequest.loading;
+
+    var response = await cartdata
+        .getData(appServices.sharedPreferences.getString('userid')!);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.sucess == statusRequest) {
+      if (response['status'] == 'sucess') {
+        List data = response['data'];
+        print(data);
+        dataList.addAll(data.map((e) => CartModel.fromJson(e)));
+
+        Map amountAndprice = response['amountandprice'];
+        prosAmount = int.parse(amountAndprice['amount']);
+        totalPrice = double.parse(amountAndprice['totalprice']);
+      } else {
+        statusRequest = StatusRequest.noDatafailure;
+      }
+    }
+    update();
   }
 
   @override

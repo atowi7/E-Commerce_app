@@ -2,7 +2,7 @@ import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/userfavorite_data.dart';
-import 'package:ecommerce_app/data/model/userfavorite.dart';
+import 'package:ecommerce_app/data/model/userfavoritemodel.dart';
 import 'package:get/get.dart';
 
 abstract class BaseUserFavoriteController extends GetxController {

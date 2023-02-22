@@ -1,4 +1,5 @@
-import 'package:ecommerce_app/core/constant/imageassets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/core/constant/applink.dart';
 import 'package:flutter/material.dart';
 
 class CartProductSection extends StatelessWidget {
@@ -16,7 +17,11 @@ class CartProductSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset(image),
+      leading: CachedNetworkImage(
+        imageUrl: '${AppLink.productImage}/$image',
+        height: 70,
+        width: 70,
+      ),
       title: Text(title),
       subtitle: Text('Price $price\$'),
       trailing: Column(

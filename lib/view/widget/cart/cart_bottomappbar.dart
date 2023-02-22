@@ -14,7 +14,7 @@ class CartBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -51,7 +51,7 @@ class CartBottomAppBar extends StatelessWidget {
               Text('$total\$'),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -62,7 +62,7 @@ class CartBottomAppBar extends StatelessWidget {
             ),
             child: MaterialButton(
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 'Order',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),

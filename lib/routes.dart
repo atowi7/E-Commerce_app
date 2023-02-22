@@ -63,7 +63,7 @@ List<GetPage<dynamic>>? routes = [
   ),
   GetPage(
     name: AppRoute.homePage,
-    page: () => const HomeScreen(),
+    page: () => const CartScreen(),
   ),
   GetPage(
     name: AppRoute.product,

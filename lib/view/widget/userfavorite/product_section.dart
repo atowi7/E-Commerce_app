@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/controller/userfavorite_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
-import 'package:ecommerce_app/data/model/userfavorite.dart';
+import 'package:ecommerce_app/data/model/userfavoritemodel.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
 import 'package:cached_network_image/cached_network_image.dart';

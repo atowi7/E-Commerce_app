@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/controller/product_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
-import 'package:ecommerce_app/data/model/categorie.dart';
+import 'package:ecommerce_app/data/model/categoriemodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

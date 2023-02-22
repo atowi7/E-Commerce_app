@@ -3,7 +3,7 @@ import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/product_data.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
-import 'package:ecommerce_app/data/model/product.dart';
+import 'package:ecommerce_app/data/model/productmodel.dart';
 
 import 'package:get/get.dart';
 
