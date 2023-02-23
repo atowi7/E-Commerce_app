@@ -63,7 +63,7 @@ List<GetPage<dynamic>>? routes = [
   ),
   GetPage(
     name: AppRoute.homePage,
-    page: () => const CartScreen(),
+    page: () => const HomeScreen(),
   ),
   GetPage(
     name: AppRoute.product,
@@ -76,5 +76,9 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.userfavorite,
     page: () => const UserFavoriteScreen(),
+  ),
+  GetPage(
+    name: AppRoute.cart,
+    page: () => const CartScreen(),
   ),
 ];

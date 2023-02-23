@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/controller/cart_controller.dart';
-import 'package:ecommerce_app/core/constant/color.dart';
-import 'package:ecommerce_app/core/constant/imageassets.dart';
+import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_bottomappbar.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_productsection.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_topappbar.dart';
@@ -14,39 +14,56 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(CartController());
-    return GetBuilder<CartController>(builder: (controller) {
-      return Scaffold(
-        body: ListView(
-          children: [
-            const CartTopAppBar(
-              title: 'Cart',
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              'You have ${controller.prosAmount} products',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ...List.generate(
-                controller.dataList.length,
-                (index) => CartProductSection(
-                      title: '${controller.dataList[index].proName}',
-                      price: '${controller.dataList[index].proPrice}',
-                      image: '${controller.dataList[index].proImage}',
-                      amount: '${controller.dataList[index].proCount}',
-                    )),
-          ],
-        ),
-        bottomNavigationBar: CartBottomAppBar(
-          price: '${controller.totalPrice}',
-          shipping: '${controller.shipping}',
-          total: '${controller.totalPrice+controller.shipping}',
-        ),
-      );
-    });
+    return Scaffold(
+      body: GetBuilder<CartController>(builder: (controller) {
+        return HandlingDataView(
+          statusRequest: controller.statusRequest,
+          widget: ListView(
+            children: [
+              const CartTopAppBar(
+                title: 'Cart',
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'You have ${controller.prosAmount} products',
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ...List.generate(
+                  controller.dataList.length,
+                  (index) => CartProductSection(
+                        title: langTranslateDataBase(
+                            controller.dataList[index].proNameAr!,
+                            controller.dataList[index].proNameAr!),
+                        price: '${controller.dataList[index].proPrice}',
+                        image: '${controller.dataList[index].proImage}',
+                        amount: '${controller.dataList[index].prosCount}',
+                        onPressedAdd: () {
+                          controller.addCart(controller.dataList[index].proId!);
+                        },
+                        onPressedDelete: () {
+                          controller
+                              .deleteCart(controller.dataList[index].proId!);
+                        },
+                      )),
+            ],
+          ),
+        );
+      }),
+      bottomNavigationBar: GetBuilder<CartController>(builder: (controller) {
+        return HandlingDataView(
+          statusRequest: controller.statusRequest,
+          widget: CartBottomAppBar(
+            price: '${controller.totalPrice}',
+            shipping: '${controller.shipping}',
+            total: '${controller.totalPrice + controller.shipping}',
+          ),
+        );
+      }),
+    );
   }
 }

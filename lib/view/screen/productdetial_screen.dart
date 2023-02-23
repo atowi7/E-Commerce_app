@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/controller/productdetail_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:ecommerce_app/view/widget/productdetail/Image_section.dart';
@@ -31,7 +32,7 @@ class ProductDetailScreen extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                '${langTranslateDataBase(controller.productModel.name_ar!, controller.productModel.name!)}',
+                '${langTranslateDataBase(controller.productModel.nameAr!, controller.productModel.name!)}',
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(
@@ -51,7 +52,7 @@ class ProductDetailScreen extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                '${langTranslateDataBase(controller.productModel.description_ar!, controller.productModel.description!)}',
+                '${langTranslateDataBase(controller.productModel.descriptionAr!, controller.productModel.description!)}',
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(
@@ -91,9 +92,11 @@ class ProductDetailScreen extends StatelessWidget {
           color: AppColor.blue,
         ),
         margin: const EdgeInsets.symmetric(horizontal: 20),
-        child: const MaterialButton(
-          onPressed: null,
-          child: Text('Add to cart'),
+        child: MaterialButton(
+          onPressed: () {
+            Get.toNamed(AppRoute.cart);
+          },
+          child: const Text('Go to cart'),
         ),
       ),
     );

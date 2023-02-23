@@ -56,7 +56,7 @@ class CategorieWidget extends GetView<HomeController> {
             ),
             Text(
               langTranslateDataBase(
-                  categorieModel.name_ar!, categorieModel.name!),
+                  categorieModel.nameAr!, categorieModel.name!),
               style: const TextStyle(fontSize: 16),
             )
           ],

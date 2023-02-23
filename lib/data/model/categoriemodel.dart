@@ -1,21 +1,20 @@
 class CategorieModel {
   String? id;
   String? name;
-  String? name_ar;
+  String? nameAr;
   String? image;
-  CategorieModel(
+  CategorieModel({
     this.id,
     this.name,
-    this.name_ar,
+    this.nameAr,
     this.image,
-  
-  );
+  });
 
-  CategorieModel.fromJson(Map<String,dynamic> json){
-   id=json['categorie_id'];
-    name=json['categorie_name'];
-     name_ar=json['categorie_name_ar'];
-      image=json['categorie_image'];
+  CategorieModel.fromJson(Map<String, dynamic> json) {
+    id = json['categorie_id'];
+    name = json['categorie_name'];
+    nameAr = json['categorie_name_ar'];
+    image = json['categorie_image'];
   }
 
   // Map<String,dynamic> toJson(){

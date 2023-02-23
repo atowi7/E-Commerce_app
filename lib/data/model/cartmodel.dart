@@ -1,6 +1,6 @@
 class CartModel {
-  String? prosprice;
-  String? proscount;
+  String? prosPrice;
+  String? prosCount;
   String? proId;
   String? proName;
   String? proNameAr;
@@ -18,27 +18,27 @@ class CartModel {
   String? cartProid;
 
   CartModel(
-      {prosprice,
-      proscount,
-      proId,
-      proName,
-      proNameAr,
-      proDescription,
-      proDescriptionAr,
-      proImage,
-      proPrice,
-      proDiscount,
-      proActive,
-      proCount,
-      proCreatedat,
-      catId,
-      cartId,
-      cartUserid,
-      cartProid});
+      {this.prosPrice,
+      this.prosCount,
+      this.proId,
+      this.proName,
+      this.proNameAr,
+      this.proDescription,
+      this.proDescriptionAr,
+      this.proImage,
+      this.proPrice,
+      this.proDiscount,
+      this.proActive,
+      this.proCount,
+      this.proCreatedat,
+      this.catId,
+      this.cartId,
+      this.cartUserid,
+      this.cartProid});
 
   CartModel.fromJson(json) {
-    prosprice = json['pros_price'];
-    proscount = json['pros_count'];
+    prosPrice = json['pros_price'];
+    prosCount = json['pros_count'];
     proId = json['pro_id'];
     proName = json['pro_name'];
     proNameAr = json['pro_name_ar'];
@@ -58,8 +58,8 @@ class CartModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['pros_price'] = prosprice;
-    data['pros_count'] = proscount;
+    data['pros_price'] = prosPrice;
+    data['pros_count'] = prosCount;
     data['pro_id'] = proId;
     data['pro_name'] = proName;
     data['pro_name_ar'] = proNameAr;

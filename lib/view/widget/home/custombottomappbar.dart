@@ -16,7 +16,6 @@ class CustomBottomAppBar extends StatelessWidget {
           child: Row(
             children: List.generate(controller.pages.length + 1, (index) {
               int i = index > 2 ? index - 1 : index;
-              print(i);
               return index == 2
                   ? const Spacer()
                   : CustomBottonBottomAppBar(

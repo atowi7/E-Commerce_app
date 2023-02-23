@@ -9,7 +9,6 @@ abstract class BaseCartController extends GetxController {
   viewCart();
   addCart(String proid);
   deleteCart(String proid);
-  getCount(String proid);
 }
 
 class CartController extends BaseCartController {
@@ -24,11 +23,12 @@ class CartController extends BaseCartController {
 
   late StatusRequest statusRequest;
 
-@override
+  @override
   void onInit() {
     viewCart();
     super.onInit();
   }
+
   @override
   viewCart() async {
     statusRequest = StatusRequest.loading;
@@ -41,7 +41,7 @@ class CartController extends BaseCartController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         List data = response['data'];
-        print(data);
+        dataList.clear();
         dataList.addAll(data.map((e) => CartModel.fromJson(e)));
 
         Map amountAndprice = response['amountandprice'];
@@ -57,7 +57,7 @@ class CartController extends BaseCartController {
   @override
   addCart(proid) async {
     statusRequest = StatusRequest.loading;
-
+    update();
     var response = await cartdata.addCart(
         appServices.sharedPreferences.getString('userid')!, proid);
 
@@ -65,18 +65,22 @@ class CartController extends BaseCartController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
+        prosAmount = 0;
+        totalPrice = 0.0;
         Get.snackbar('NOTFY', 'add to cart sucess');
+        update();
       } else {
         Get.snackbar('NOTFY', 'add to cart Fail');
         statusRequest = StatusRequest.noDatafailure;
       }
     }
+    update();
   }
 
   @override
   deleteCart(String proid) async {
     statusRequest = StatusRequest.loading;
-
+    update();
     var response = await cartdata.deleteCart(
         appServices.sharedPreferences.getString('userid')!, proid);
 
@@ -84,25 +88,16 @@ class CartController extends BaseCartController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
+        prosAmount = 0;
+        totalPrice = 0.0;
         Get.snackbar('NOTFY', 'delete from cart sucess');
+        update();
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
       statusRequest = StatusRequest.serverFailure;
     }
-  }
-
-  @override
-  getCount(String proid) async {
-    var response = await cartdata.getCount(
-        appServices.sharedPreferences.getString('userid')!, proid);
-
-    statusRequest = handleData(response);
-
-    if (statusRequest == StatusRequest.sucess) {
-      int count = int.parse(response['data']);
-      return count;
-    }
+    update();
   }
 }
