@@ -7,7 +7,7 @@ class ProductData {
   ProductData(this.crud);
 
   getData(String userid,String cid) async {
-    var response = await crud.postData(AppLink.product, {
+    var response = await crud.postData(AppLink.productView, {
       'userid':userid,
       'cid':cid
     });

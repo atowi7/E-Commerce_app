@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 
 class CustomAppbar extends StatelessWidget {
   final String searchHint;
+  final TextEditingController controller;
+  final void Function(String)? onChanged;
   final void Function()? searchonPressed;
   final void Function()? notifyPressed;
   final void Function()? favPressed;
+
   const CustomAppbar(
       {super.key,
       required this.searchHint,
+      required this.controller,
+      required this.onChanged,
       required this.searchonPressed,
       required this.notifyPressed,
       required this.favPressed});
@@ -25,6 +30,8 @@ class CustomAppbar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20)),
             child: TextFormField(
               style: const TextStyle(color: Colors.white),
+              controller: controller,
+              onChanged: onChanged,
               decoration: InputDecoration(
                 hintText: searchHint,
                 filled: true,

@@ -21,7 +21,8 @@ class AppLink {
   static const String home = '$server/home.php';
 
   //product
-  static const String product = '$server/product/view.php';
+  static const String productView = '$server/product/view.php';
+  static const String productSearch = '$server/product/search.php';
 
   //favorite
   static const String userfavorite = '$server/favorite/view.php';

@@ -18,6 +18,8 @@ class SettingScreen extends StatelessWidget {
       children: [
         CustomAppbar(
           searchHint: 'Find products',
+          controller: TextEditingController(),
+          onChanged: null,
           searchonPressed: () {},
           notifyPressed: () {},
           favPressed: () {

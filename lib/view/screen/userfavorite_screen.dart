@@ -13,6 +13,8 @@ class UserFavoriteScreen extends StatelessWidget {
       body: ListView(children: [
         CustomAppbar(
           searchHint: 'Find products',
+          controller: TextEditingController(),
+          onChanged: null,
           searchonPressed: () {},
           notifyPressed: () {},
           favPressed: () {},

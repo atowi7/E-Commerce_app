@@ -17,10 +17,10 @@ class ProductHomeSection extends GetView<HomeController> {
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => ItemWidget(
-                productModel: ProductModel.fromJson(controller.items[index]),
+                productModel: ProductModel.fromJson(controller.products[index]),
               ),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
-          itemCount: controller.items.length),
+          itemCount: controller.products.length),
     );
   }
 }

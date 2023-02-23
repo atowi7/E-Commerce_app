@@ -32,7 +32,7 @@ class CartController extends BaseCartController {
   @override
   viewCart() async {
     statusRequest = StatusRequest.loading;
-
+    update();
     var response = await cartdata
         .getData(appServices.sharedPreferences.getString('userid')!);
 
@@ -43,7 +43,6 @@ class CartController extends BaseCartController {
         List data = response['data'];
         dataList.clear();
         dataList.addAll(data.map((e) => CartModel.fromJson(e)));
-
         Map amountAndprice = response['amountandprice'];
         prosAmount = int.parse(amountAndprice['amount']);
         totalPrice = double.parse(amountAndprice['totalprice']);
@@ -65,10 +64,7 @@ class CartController extends BaseCartController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        prosAmount = 0;
-        totalPrice = 0.0;
         Get.snackbar('NOTFY', 'add to cart sucess');
-        update();
       } else {
         Get.snackbar('NOTFY', 'add to cart Fail');
         statusRequest = StatusRequest.noDatafailure;
@@ -88,10 +84,7 @@ class CartController extends BaseCartController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        prosAmount = 0;
-        totalPrice = 0.0;
         Get.snackbar('NOTFY', 'delete from cart sucess');
-        update();
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }

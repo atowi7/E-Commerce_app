@@ -16,6 +16,8 @@ class ProductScreen extends StatelessWidget {
         children: [
           CustomAppbar(
             searchHint: 'Find Product',
+            controller: TextEditingController(),
+            onChanged: null,
             searchonPressed: () {},
             notifyPressed: () {},
             favPressed: () {},
