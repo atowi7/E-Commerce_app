@@ -48,14 +48,19 @@ class Home extends StatelessWidget {
                         ProductHomeSection(),
                       ],
                     )
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.searchProducts.length,
-                      itemBuilder: (context, i) {
-                        return ProductSearchWedget(
-                            productModel: controller.searchProducts[i]);
-                      }));
+                  : Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 50),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: controller.searchProducts.length,
+                          itemBuilder: (context, i) {
+                            print(controller.searchProducts.length);
+                            return ProductSearchWedget(
+                                productModel: controller.searchProducts[i]);
+                          }),
+                    ));
         }),
       ],
     );

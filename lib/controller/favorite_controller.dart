@@ -2,8 +2,6 @@ import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/favorite_data.dart';
-import 'package:ecommerce_app/data/model/productmodel.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseFavoriteController extends GetxController {
@@ -15,12 +13,6 @@ abstract class BaseFavoriteController extends GetxController {
 class FavoriteController extends BaseFavoriteController {
   // String? userid;
   Map isFav = {};
-  
-
-  List<ProductModel> searchProducts = [];
-
-   TextEditingController? searchTextController;
-  bool isSearch = false;
 
   AppServices appServices = Get.find();
 

@@ -3,6 +3,7 @@ import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
+import 'package:ecommerce_app/data/datasource/remote/home_data.dart';
 import 'package:ecommerce_app/data/model/productmodel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ class HomeController extends BaseHomeController {
   String? id;
   String? name;
 
-
+  HomeData homeData = HomeData(Get.find());
   AppServices appServices = Get.find();
 
   List categories = [];

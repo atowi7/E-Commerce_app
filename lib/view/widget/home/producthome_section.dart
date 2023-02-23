@@ -16,7 +16,7 @@ class ProductHomeSection extends GetView<HomeController> {
       margin: const EdgeInsets.only(left: 10, right: 10),
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => ItemWidget(
+          itemBuilder: (context, index) => ProductWidget(
                 productModel: ProductModel.fromJson(controller.products[index]),
               ),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
@@ -25,9 +25,9 @@ class ProductHomeSection extends GetView<HomeController> {
   }
 }
 
-class ItemWidget extends StatelessWidget {
+class ProductWidget extends StatelessWidget {
   final ProductModel productModel;
-  const ItemWidget({super.key, required this.productModel});
+  const ProductWidget({super.key, required this.productModel});
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +52,11 @@ class ItemWidget extends StatelessWidget {
             style: const TextStyle(fontSize: 20),
           ),
         ),
-        Container(
-          color: Colors.black,
-        ),
+        if (productModel.discount != '0')
+          const Positioned(top: 10, child: Icon(Icons.discount_rounded))
+        // Container(
+        //   color: Colors.black,
+        // ),
       ],
     );
   }

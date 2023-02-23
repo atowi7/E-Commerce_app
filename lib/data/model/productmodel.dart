@@ -17,25 +17,28 @@ class ProductModel {
   String? cImage;
   String? cCreatedat;
   String? favorite;
-  ProductModel(
-      {this.id,
-      this.name,
-      this.nameAr,
-      this.description,
-      this.descriptionAr,
-      this.image,
-      this.price,
-      this.discount,
-      this.active,
-      this.count,
-      this.createdat,
-      this.categorieId,
-      this.cId,
-      this.cName,
-      this.cNameAr,
-      this.cImage,
-      this.cCreatedat,
-      this.favorite});
+  String? priceafterdiscount;
+  ProductModel({
+    this.id,
+    this.name,
+    this.nameAr,
+    this.description,
+    this.descriptionAr,
+    this.image,
+    this.price,
+    this.discount,
+    this.active,
+    this.count,
+    this.createdat,
+    this.categorieId,
+    this.cId,
+    this.cName,
+    this.cNameAr,
+    this.cImage,
+    this.cCreatedat,
+    this.favorite,
+    this.priceafterdiscount,
+  });
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['pro_id'];
     name = json['pro_name'];
@@ -55,5 +58,6 @@ class ProductModel {
     cImage = json['c_image'];
     cCreatedat = json['c_createdat'];
     favorite = json['favorite'];
+    priceafterdiscount = json['priceafterdiscount'];
   }
 }

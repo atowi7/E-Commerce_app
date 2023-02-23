@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/controller/product_controller.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
-import 'package:ecommerce_app/view/widget/item/categories_section.dart';
-import 'package:ecommerce_app/view/widget/item/product_section.dart';
+import 'package:ecommerce_app/view/widget/product/categories_section.dart';
+import 'package:ecommerce_app/view/widget/product/product_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

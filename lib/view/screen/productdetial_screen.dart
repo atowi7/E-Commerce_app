@@ -41,7 +41,7 @@ class ProductDetailScreen extends StatelessWidget {
                 height: 10,
               ),
               AmountAndPriceSection(
-                price: controller.productModel.price!,
+                price: controller.productModel.priceafterdiscount!,
                 onPressedAdd: () {
                   controller.addCount();
                 },
