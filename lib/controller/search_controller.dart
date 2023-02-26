@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
-import 'package:ecommerce_app/data/datasource/remote/home_data.dart';
 import 'package:ecommerce_app/data/datasource/remote/search_data.dart';
 import 'package:ecommerce_app/data/model/productmodel.dart';
 import 'package:flutter/material.dart';

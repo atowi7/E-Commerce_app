@@ -16,7 +16,7 @@ class CustomButton extends StatelessWidget {
           backgroundColor: AppColor.blue,
         ),
         onPressed: onPressed,
-        child: Text(title, style: Theme.of(context).textTheme.headline1),
+        child: Text(title, style: Theme.of(context).textTheme.labelLarge),
       ),
     );
   }

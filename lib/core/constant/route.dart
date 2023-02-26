@@ -20,4 +20,10 @@ class AppRoute {
 
   //Cart
   static const String cart = '/cart';
+
+  //address
+   static const String addressview = '/addressview';
+  static const String addressadd = '/addressadd';
+  static const String addressadddetail = '/addressadddetail';
+  static const String addressedit = '/addressedit';
 }

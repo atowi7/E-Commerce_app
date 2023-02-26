@@ -28,7 +28,7 @@ class SettingScreen extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(50),
-          decoration: BoxDecoration(
+          decoration:const  BoxDecoration(
             color: AppColor.blue,
           ),
           child: Lottie.asset(ImageAssets.profile),
@@ -36,6 +36,7 @@ class SettingScreen extends StatelessWidget {
         ...List.generate(
             settingController.sections.length,
             (index) => ListTile(
+              onTap: ()=>Get.toNamed(AppRoute.addressview),
                   title: Text(settingController.sections[index]['title']),
                   trailing: Icon(settingController.sections[index]['icon']),
                 ))

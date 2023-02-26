@@ -56,7 +56,6 @@ class Home extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.searchProducts.length,
                           itemBuilder: (context, i) {
-                            print(controller.searchProducts.length);
                             return ProductSearchWedget(
                                 productModel: controller.searchProducts[i]);
                           }),

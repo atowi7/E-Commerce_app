@@ -12,18 +12,23 @@ class SettingController extends BaseSettingController {
     {
       'title': 'About us',
       'icon': Icons.details_outlined,
+      'onpress': () {},
     },
     {
       'title': 'Contact us',
       'icon': Icons.contact_page_rounded,
+      'onpress': () {},
     },
     {
       'title': 'Address',
       'icon': Icons.location_on_outlined,
+      'onpress': () {
+      },
     },
     {
       'title': 'Display notifications',
       'icon': Icons.notifications_paused_outlined,
+      'onpress': () {},
     }
   ];
   AppServices appServices = Get.find();

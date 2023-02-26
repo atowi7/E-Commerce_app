@@ -3,8 +3,8 @@ import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class customeButton extends GetView<OnboardingController> {
-  const customeButton({super.key});
+class CustomeButton extends GetView<OnboardingController> {
+  const CustomeButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class customeButton extends GetView<OnboardingController> {
         },
         child: Text(
           '12'.tr,
-          style: Theme.of(context).textTheme.button,
+          style: Theme.of(context).textTheme.labelLarge,
         ),
       ),
     );

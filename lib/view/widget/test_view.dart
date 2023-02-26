@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class TestView extends StatelessWidget {
-  const TestView();
+  const TestView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

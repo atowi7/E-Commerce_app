@@ -3,7 +3,6 @@ import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/auth/login_data.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,7 +50,6 @@ class LoginController extends BaseLoginController {
       statusRequest = handleData(response);
       if (statusRequest == StatusRequest.sucess) {
         if (response['status'] == 'sucess') {
-          print(response['data']['user_approval']);
           if (response['data']['user_approval'] == '1') {
             appServices.sharedPreferences
                 .setString('userid', response['data']['user_id']);

@@ -15,12 +15,12 @@ class OnBoardingScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: const [
-            Expanded(flex: 5, child: customeSlider()),
-            Expanded(flex: 3, child: customeController()),
+            Expanded(flex: 5, child: CustomeSlider()),
+            Expanded(flex: 3, child: CustomeController()),
             SizedBox(
               height: 10,
             ),
-            Expanded(flex: 2, child: customeButton()),
+            Expanded(flex: 2, child: CustomeButton()),
           ],
         ),
       ),

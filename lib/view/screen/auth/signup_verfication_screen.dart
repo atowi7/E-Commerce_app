@@ -1,14 +1,11 @@
 import 'package:ecommerce_app/controller/auth/signupverfication_controller.dart';
-import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
-import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/view/widget/auth/customtextbody.dart';
 import 'package:ecommerce_app/view/widget/auth/customtexttitle.dart';
 import 'package:ecommerce_app/view/widget/auth/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 class SignupVerficationScreen extends StatelessWidget {
   const SignupVerficationScreen({super.key});

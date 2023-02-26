@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class customeSlider extends GetView<OnboardingController> {
-  const customeSlider({super.key});
+class CustomeSlider extends GetView<OnboardingController> {
+  const CustomeSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,14 @@ class customeSlider extends GetView<OnboardingController> {
       itemBuilder: (context, i) => Column(
         children: [
           Text(onBoardinglist[i].title,
-              style: Theme.of(context).textTheme.headline1),
+              style: Theme.of(context).textTheme.displayLarge),
           Expanded(
             child: Lottie.asset(
               onBoardinglist[i].image,
             ),
           ),
           Text(onBoardinglist[i].content,
-              style: Theme.of(context).textTheme.bodyText1),
+              style: Theme.of(context).textTheme.displayMedium),
         ],
       ),
     );

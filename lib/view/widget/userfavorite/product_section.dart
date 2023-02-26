@@ -36,7 +36,6 @@ class ProductWedget extends StatelessWidget {
   const ProductWedget({super.key, required this.userFavoriteModel});
   @override
   Widget build(BuildContext context) {
-    print(userFavoriteModel.favId);
     return Card(
       child: Column(
         children: [
