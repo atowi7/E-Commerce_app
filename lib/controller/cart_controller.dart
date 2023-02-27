@@ -1,21 +1,33 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/cart_data.dart';
 import 'package:ecommerce_app/data/model/cartmodel.dart';
+import 'package:ecommerce_app/data/model/coupponmodel.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseCartController extends GetxController {
   viewCart();
   addCart(String proid);
   deleteCart(String proid);
+  applyCoupon();
+  double getTotalPrice();
+  goToCheckout();
 }
 
 class CartController extends BaseCartController {
   List<CartModel> dataList = [];
+  CouponModel? couponModel;
   int prosAmount = 0;
-  double totalPrice = 0.0;
-  double shipping = 100.0;
+  double price = 0;
+  double shipping = 0;
+
+  String? couponName;
+  int discount = 0;
+
+  TextEditingController? couponController;
 
   AppServices appServices = Get.find();
 
@@ -26,6 +38,7 @@ class CartController extends BaseCartController {
   @override
   void onInit() {
     viewCart();
+    couponController = TextEditingController();
     super.onInit();
   }
 
@@ -45,10 +58,12 @@ class CartController extends BaseCartController {
         dataList.addAll(data.map((e) => CartModel.fromJson(e)));
         Map amountAndprice = response['amountandprice'];
         prosAmount = int.parse(amountAndprice['amount']);
-        totalPrice = double.parse(amountAndprice['totalprice']);
+        price = double.parse(amountAndprice['totalprice']);
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
+    } else {
+      statusRequest = StatusRequest.serverFailure;
     }
     update();
   }
@@ -69,6 +84,8 @@ class CartController extends BaseCartController {
         Get.snackbar('NOTFY', 'add to cart Fail');
         statusRequest = StatusRequest.noDatafailure;
       }
+    } else {
+      statusRequest = StatusRequest.serverFailure;
     }
     update();
   }
@@ -92,5 +109,41 @@ class CartController extends BaseCartController {
       statusRequest = StatusRequest.serverFailure;
     }
     update();
+  }
+
+  @override
+  applyCoupon() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cartdata.checkCoupon(couponController!.text);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.sucess == statusRequest) {
+      if (response['status'] == 'sucess') {
+        Map<String, dynamic> data = response['data'];
+        couponModel = CouponModel.fromJson(data);
+        couponName = couponModel!.couponName;
+        discount = int.parse(couponModel!.couponDiscount!);
+        getTotalPrice();
+      } else {
+        // couponName = 'invalid';
+        discount = 0;
+        Get.snackbar('NOTFY', 'Invalid coupon');
+      }
+    } else {
+      Get.snackbar('NOTFY', 'Server Error');
+    }
+    update();
+  }
+
+  @override
+  double getTotalPrice() {
+    return price - (price * (discount / 100));
+  }
+
+  @override
+  goToCheckout() {
+    Get.toNamed(AppRoute.checkout);
   }
 }

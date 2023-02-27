@@ -1,23 +1,59 @@
+import 'package:ecommerce_app/controller/cart_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
-import 'package:flutter/material.dart';
 
-class CartBottomAppBar extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class CartBottomAppBar extends GetView<CartController> {
+  final TextEditingController textController;
+  final void Function()? onApply;
   final String price;
+  final String discount;
   final String shipping;
   final String total;
-  const CartBottomAppBar(
-      {super.key,
-      required this.price,
-      required this.shipping,
-      required this.total});
+  const CartBottomAppBar({
+    super.key,
+    required this.textController,
+    required this.onApply,
+    required this.price,
+    required this.discount,
+    required this.shipping,
+    required this.total,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColor.blue, width: 2),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          controller.couponName == null
+              ? Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: TextFormField(
+                        controller: textController,
+                        decoration: const InputDecoration(hintText: 'Coupon'),
+                      ),
+                    ),
+                    Expanded(
+                        flex: 1,
+                        child: MaterialButton(
+                          color: AppColor.blue,
+                          onPressed: onApply,
+                          child: const Text('Apply'),
+                        )),
+                  ],
+                )
+              : Text(
+                  'Coupon ${controller.couponName}',
+                  style: const TextStyle(color: AppColor.blue),
+                ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -26,6 +62,16 @@ class CartBottomAppBar extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text('$price\$'),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Discount',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(discount),
             ],
           ),
           Row(
@@ -61,7 +107,9 @@ class CartBottomAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             child: MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                controller.goToCheckout();
+              },
               child: const Text(
                 'Order',
                 style: TextStyle(fontWeight: FontWeight.bold),

@@ -3,7 +3,6 @@ import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_bottomappbar.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_productsection.dart';
-import 'package:ecommerce_app/view/widget/cart/cart_topappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,17 +13,14 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(CartController());
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cart'),
+      ),
       body: GetBuilder<CartController>(builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
           widget: ListView(
             children: [
-              const CartTopAppBar(
-                title: 'Cart',
-              ),
-              const SizedBox(
-                height: 10,
-              ),
               Text(
                 'You have ${controller.prosAmount} products',
                 textAlign: TextAlign.center,
@@ -57,9 +53,14 @@ class CartScreen extends StatelessWidget {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
           widget: CartBottomAppBar(
-            price: '${controller.totalPrice}',
+            textController: controller.couponController!,
+            onApply: () {
+              controller.applyCoupon();
+            },
+            price: '${controller.price}',
+            discount: '${controller.discount}',
             shipping: '${controller.shipping}',
-            total: '${controller.totalPrice + controller.shipping}',
+            total: '${controller.getTotalPrice()}',
           ),
         );
       }),

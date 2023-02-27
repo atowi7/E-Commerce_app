@@ -5,7 +5,7 @@ class CartData {
   Crud crud;
 
   CartData(this.crud);
-   getData(String userid) async {
+  getData(String userid) async {
     var response = await crud.postData(AppLink.cartview, {
       'userid': userid,
     });
@@ -32,6 +32,13 @@ class CartData {
     var response = await crud.postData(AppLink.getcount, {
       'userid': userid,
       'proid': proid,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
+  checkCoupon(String name) async {
+    var response = await crud.postData(AppLink.chechcoupon, {
+      'name': name,
     });
     return response.fold((l) => l, (r) => r);
   }
