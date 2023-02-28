@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/auth/address/viewaddress_controller.dart';
+import 'package:ecommerce_app/controller/address/viewaddress_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/data/model/Addressmodel.dart';

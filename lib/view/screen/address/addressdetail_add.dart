@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/auth/address/addaddressdetail_controller.dart';
+import 'package:ecommerce_app/controller/address/addaddressdetail_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/view/widget/auth/custombutton.dart';
 import 'package:ecommerce_app/view/widget/auth/customtextform.dart';

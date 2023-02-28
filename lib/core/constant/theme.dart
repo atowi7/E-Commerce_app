@@ -6,6 +6,7 @@ ThemeData englishTheme = ThemeData(
     titleTextStyle: TextStyle(
       color: AppColor.blue,
       fontWeight: FontWeight.bold,
+      fontSize: 20,
       fontFamily: 'Cairo',
     ),
     iconTheme: IconThemeData(color: AppColor.blue),
@@ -18,13 +19,17 @@ ThemeData englishTheme = ThemeData(
   textTheme: const TextTheme(
       displayLarge: TextStyle(
         fontFamily: 'Roboto',
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: FontWeight.bold,
         //color: AppColor.black,
       ),
       displayMedium: TextStyle(
         fontFamily: 'Roboto',
-        fontSize: 20,
+        fontSize: 18,
+      ),
+       displaySmall: TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: 16,
       ),
       labelLarge: TextStyle(
           fontFamily: 'Roboto',

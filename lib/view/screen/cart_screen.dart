@@ -24,6 +24,7 @@ class CartScreen extends StatelessWidget {
               Text(
                 'You have ${controller.prosAmount} products',
                 textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
               const SizedBox(
                 height: 10,
@@ -39,10 +40,12 @@ class CartScreen extends StatelessWidget {
                         amount: '${controller.dataList[index].prosCount}',
                         onPressedAdd: () {
                           controller.addCart(controller.dataList[index].proId!);
+                          controller.refreshPage();
                         },
                         onPressedDelete: () {
                           controller
                               .deleteCart(controller.dataList[index].proId!);
+                              controller.refreshPage();
                         },
                       )),
             ],

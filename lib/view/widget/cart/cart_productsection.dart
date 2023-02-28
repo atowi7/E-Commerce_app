@@ -32,16 +32,21 @@ class CartProductSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
-            flex: 1,
+            flex: 2,
             child: IconButton(
               onPressed: onPressedAdd,
               icon: const Icon(Icons.add),
+              iconSize: 15,
             ),
           ),
           Expanded(
-            flex: 2,
-            child: Text(
-              amount,
+            flex: 1,
+            child: Container(
+              margin: const EdgeInsets.only(top: 3),
+              child: Text(
+                amount,
+                style: const TextStyle(height: 1,),
+              ),
             ),
           ),
           Expanded(
@@ -49,6 +54,7 @@ class CartProductSection extends StatelessWidget {
               child: IconButton(
                 onPressed: onPressedDelete,
                 icon: const Icon(Icons.remove),
+                iconSize: 15,
               ))
         ],
       ),

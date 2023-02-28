@@ -14,6 +14,7 @@ abstract class BaseCartController extends GetxController {
   deleteCart(String proid);
   applyCoupon();
   double getTotalPrice();
+  refreshPage();
   goToCheckout();
 }
 
@@ -145,5 +146,14 @@ class CartController extends BaseCartController {
   @override
   goToCheckout() {
     Get.toNamed(AppRoute.checkout);
+  }
+  
+  @override
+  refreshPage() async{
+   await viewCart();
+    dataList.clear();
+    price=0;
+    prosAmount=0;
+    
   }
 }
