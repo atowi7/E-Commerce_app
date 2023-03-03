@@ -11,6 +11,7 @@ class CartBottomAppBar extends GetView<CartController> {
   final String discount;
   final String shipping;
   final String total;
+  final void Function()? goToCheckout;
   const CartBottomAppBar({
     super.key,
     required this.textController,
@@ -19,6 +20,7 @@ class CartBottomAppBar extends GetView<CartController> {
     required this.discount,
     required this.shipping,
     required this.total,
+    required this.goToCheckout,
   });
 
   @override
@@ -107,9 +109,7 @@ class CartBottomAppBar extends GetView<CartController> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: MaterialButton(
-              onPressed: () {
-                controller.goToCheckout();
-              },
+              onPressed: goToCheckout,
               child: const Text(
                 'Order',
                 style: TextStyle(fontWeight: FontWeight.bold),

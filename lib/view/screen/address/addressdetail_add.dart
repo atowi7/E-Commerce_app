@@ -25,7 +25,7 @@ class AddressDetailAdd extends StatelessWidget {
               icon: Icons.add_location_alt,
               isNumber: false,
               controller: controller.name,
-              validator: (val) {},
+              validator: null,
             ),
             CustomTextForm(
               labelText: 'street',
@@ -33,7 +33,7 @@ class AddressDetailAdd extends StatelessWidget {
               icon: Icons.streetview_rounded,
               isNumber: false,
               controller: controller.street,
-              validator: (val) {},
+              validator: null,
             ),
             CustomTextForm(
               labelText: 'City',
@@ -41,7 +41,7 @@ class AddressDetailAdd extends StatelessWidget {
               icon: Icons.location_city_rounded,
               isNumber: false,
               controller: controller.city,
-              validator: (val) {},
+              validator: null,
             ),
             CustomButton(
                 title: 'ADD',

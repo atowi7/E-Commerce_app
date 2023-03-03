@@ -50,7 +50,8 @@ class CategorieWidget extends GetView<HomeController> {
           children: [
             SvgPicture.network(
               '${AppLink.categrieImage}/${categorieModel.image}',
-              color: AppColor.white,
+              colorFilter:
+                  const ColorFilter.mode(AppColor.white, BlendMode.srcIn),
               height: 50,
               width: 50,
             ),

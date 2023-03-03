@@ -4,7 +4,7 @@ import 'package:ecommerce_app/view/screen/address/addressdetail_add.dart';
 import 'package:ecommerce_app/view/screen/address/address_edit.dart';
 import 'package:ecommerce_app/view/screen/address/address_add.dart';
 import 'package:ecommerce_app/view/screen/cart_screen.dart';
-import 'package:ecommerce_app/view/screen/checkout.dart';
+import 'package:ecommerce_app/view/screen/checkout_screen.dart';
 import 'package:ecommerce_app/view/screen/forgetpassword/checkemail_screen.dart';
 import 'package:ecommerce_app/view/screen/auth/login_screen.dart';
 import 'package:ecommerce_app/view/screen/forgetpassword/resetpassword_screen.dart';

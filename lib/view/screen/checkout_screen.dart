@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/controller/checkout_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
-import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/view/widget/checkout/addressbox.dart';
 import 'package:ecommerce_app/view/widget/checkout/cardbox.dart';
 import 'package:ecommerce_app/view/widget/checkout/cashbox.dart';
@@ -8,7 +7,6 @@ import 'package:ecommerce_app/view/widget/checkout/deliverybox.dart';
 import 'package:ecommerce_app/view/widget/checkout/myselfbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 class CheckOutScreen extends StatelessWidget {
   const CheckOutScreen({super.key});
@@ -68,22 +66,24 @@ class CheckOutScreen extends StatelessWidget {
                     },
                     child: DeliveryBox(
                         title: 'Delivery',
-                        active:
-                            controller.delivery == 'delivery' ? true : false)),
+                        active: controller.deliveryType == 'delivery'
+                            ? true
+                            : false)),
                 InkWell(
                     onTap: () {
                       controller.chooseDeliveryType('myself');
                     },
                     child: MySelfBox(
                         title: 'My self',
-                        active:
-                            controller.delivery == 'myself' ? true : false)),
+                        active: controller.deliveryType == 'myself'
+                            ? true
+                            : false)),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-            if (controller.delivery == 'delivery')
+            if (controller.deliveryType == 'delivery')
               Column(
                 children: [
                   Text(

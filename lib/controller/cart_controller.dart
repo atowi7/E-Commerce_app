@@ -22,9 +22,10 @@ class CartController extends BaseCartController {
   List<CartModel> dataList = [];
   CouponModel? couponModel;
   int prosAmount = 0;
-  double price = 0;
+  double totalPrice = 0;
   double shipping = 0;
 
+  String? couponId;
   String? couponName;
   int discount = 0;
 
@@ -59,7 +60,7 @@ class CartController extends BaseCartController {
         dataList.addAll(data.map((e) => CartModel.fromJson(e)));
         Map amountAndprice = response['amountandprice'];
         prosAmount = int.parse(amountAndprice['amount']);
-        price = double.parse(amountAndprice['totalprice']);
+        totalPrice = double.parse(amountAndprice['totalprice']);
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
@@ -124,6 +125,7 @@ class CartController extends BaseCartController {
       if (response['status'] == 'sucess') {
         Map<String, dynamic> data = response['data'];
         couponModel = CouponModel.fromJson(data);
+        couponId = couponModel!.couponId;
         couponName = couponModel!.couponName;
         discount = int.parse(couponModel!.couponDiscount!);
         getTotalPrice();
@@ -140,20 +142,23 @@ class CartController extends BaseCartController {
 
   @override
   double getTotalPrice() {
-    return price - (price * (discount / 100));
+    return totalPrice - (totalPrice * (discount / 100));
   }
 
   @override
   goToCheckout() {
-    Get.toNamed(AppRoute.checkout);
+    if (dataList.isEmpty) return Get.snackbar('Notify', 'Cart is empty');
+    Get.toNamed(AppRoute.checkout, arguments: {
+      'totalPrice': totalPrice.toString(),
+      'couponName:': couponName ?? '0',
+    });
   }
-  
+
   @override
-  refreshPage() async{
-   await viewCart();
+  refreshPage() async {
+    await viewCart();
     dataList.clear();
-    price=0;
-    prosAmount=0;
-    
+    totalPrice = 0;
+    prosAmount = 0;
   }
 }

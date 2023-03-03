@@ -45,7 +45,7 @@ class CartScreen extends StatelessWidget {
                         onPressedDelete: () {
                           controller
                               .deleteCart(controller.dataList[index].proId!);
-                              controller.refreshPage();
+                          controller.refreshPage();
                         },
                       )),
             ],
@@ -60,10 +60,13 @@ class CartScreen extends StatelessWidget {
             onApply: () {
               controller.applyCoupon();
             },
-            price: '${controller.price}',
+            price: '${controller.totalPrice}',
             discount: '${controller.discount}',
             shipping: '${controller.shipping}',
             total: '${controller.getTotalPrice()}',
+            goToCheckout: () {
+              controller.goToCheckout();
+            },
           ),
         );
       }),
