@@ -53,7 +53,12 @@ class ProductWidget extends StatelessWidget {
           ),
         ),
         if (productModel.discount != '0')
-          const Positioned(top: 10, child: Icon(Icons.discount_rounded))
+          const Positioned(
+              top: 10,
+              child: Icon(
+                Icons.discount_rounded,
+                color: AppColor.black,
+              ))
         // Container(
         //   color: Colors.black,
         // ),

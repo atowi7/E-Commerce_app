@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/cart_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_bottomappbar.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_productsection.dart';
@@ -14,7 +15,18 @@ class CartScreen extends StatelessWidget {
     Get.put(CartController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cart'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('Cart'),
+            IconButton(
+                iconSize: 30,
+                onPressed: () {
+                  Get.toNamed(AppRoute.ordersView);
+                },
+                icon: const Icon(Icons.shopping_bag_rounded)),
+          ],
+        ),
       ),
       body: GetBuilder<CartController>(builder: (controller) {
         return HandlingDataView(
@@ -61,7 +73,7 @@ class CartScreen extends StatelessWidget {
               controller.applyCoupon();
             },
             price: '${controller.totalPrice}',
-            discount: '${controller.discount}',
+            discount: '${controller.couponDiscount}',
             shipping: '${controller.shipping}',
             total: '${controller.getTotalPrice()}',
             goToCheckout: () {

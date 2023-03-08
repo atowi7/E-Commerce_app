@@ -9,16 +9,18 @@ class CheckoutData {
   addOrder(
     String price,
     String deliveryprice,
-    String coupon,
+    String couponId,
+    String couponDiscount,
     String paymentmethod,
     String deliveryType,
     String addressid,
     String userid,
   ) async {
-    var response = await crud.postData(AppLink.addressAdd, {
+    var response = await crud.postData(AppLink.checkoutOrders, {
       'orders_price': price,
       'orders_deliveryprice': deliveryprice,
-      'orders_coupon': coupon,
+      'orders_couponid': couponId,
+      'orders_coupondiscount': couponDiscount,
       'orders_paymentmethod': paymentmethod,
       'orders_type': deliveryType,
       'orders_addressid': addressid,

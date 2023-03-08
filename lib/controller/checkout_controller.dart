@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/address_data.dart';
@@ -17,11 +18,13 @@ abstract class BaseCheckoutController extends GetxController {
 class CheckoutController extends BaseCheckoutController {
   String? payment;
   String? deliveryType;
+  String? deliveryPrice;
   String? addressId;
   String? userId;
 
   late String totalPrice;
-  late String couponName;
+  late String couponId;
+  late String couponDiscount;
 
   List<AddressModel> dataList = [];
 
@@ -36,7 +39,10 @@ class CheckoutController extends BaseCheckoutController {
   void onInit() {
     userId = appServices.sharedPreferences.getString('userid');
     totalPrice = Get.arguments['totalPrice'];
-    couponName = Get.arguments['couponName'];
+    deliveryPrice = '10';
+    couponId = Get.arguments['couponId'] ?? '0';
+    couponDiscount = Get.arguments['couponDiscount'] ?? '0';
+    addressId = '0';
     getShippingAdderss();
     super.onInit();
   }
@@ -81,12 +87,25 @@ class CheckoutController extends BaseCheckoutController {
 
   @override
   checkout() async {
+    if (payment == null) {
+      return Get.snackbar('NOTFY', 'Please choose payment method');
+    }
+    if (deliveryType == null) {
+      return Get.snackbar('NOTFY', 'Please choose delivery type');
+    }
+
+    if (deliveryType == '0') {
+      if (addressId == '0') {
+        return Get.snackbar('NOTFY', 'Please choose address');
+      }
+    }
     statusRequest = StatusRequest.loading;
     update();
     var response = await checkoutData.addOrder(
       totalPrice,
-      '10',
-      couponName,
+      deliveryType == '1' ? '0' : deliveryPrice!,
+      couponId,
+      couponDiscount,
       payment!,
       deliveryType!,
       addressId!,
@@ -97,11 +116,13 @@ class CheckoutController extends BaseCheckoutController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        List data = response['data'];
-        print(data);
+        Get.snackbar('NOTFY', 'add to Order sucess');
+        Get.offNamed(AppRoute.homePage);
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('NOTFY', 'add to Order Fail, please try again');
       }
+    } else {
+      Get.snackbar('NOTFY', 'Server Error');
     }
     update();
   }

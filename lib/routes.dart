@@ -17,6 +17,7 @@ import 'package:ecommerce_app/view/screen/homescreen.dart';
 import 'package:ecommerce_app/view/screen/language_screen.dart';
 import 'package:ecommerce_app/view/screen/onboarding_screen.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
+import 'package:ecommerce_app/view/screen/orders/vieworders.dart';
 import 'package:ecommerce_app/view/screen/productdetial_screen.dart';
 import 'package:ecommerce_app/view/screen/product_screen.dart';
 import 'package:ecommerce_app/view/screen/userfavorite_screen.dart';
@@ -103,7 +104,11 @@ List<GetPage<dynamic>>? routes = [
     page: () => const AddressEdit(),
   ),
   GetPage(
-    name: AppRoute.checkout,
+    name: AppRoute.ordersCheckout,
     page: () => const CheckOutScreen(),
+  ),
+  GetPage(
+    name: AppRoute.ordersView,
+    page: () => const ViewOrdersScreen(),
   ),
 ];

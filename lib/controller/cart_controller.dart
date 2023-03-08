@@ -27,7 +27,7 @@ class CartController extends BaseCartController {
 
   String? couponId;
   String? couponName;
-  int discount = 0;
+  int couponDiscount = 0;
 
   TextEditingController? couponController;
 
@@ -35,7 +35,7 @@ class CartController extends BaseCartController {
 
   CartData cartdata = CartData(Get.find());
 
-  late StatusRequest statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
 
   @override
   void onInit() {
@@ -65,7 +65,7 @@ class CartController extends BaseCartController {
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      statusRequest = StatusRequest.serverFailure;
+      //statusRequest = StatusRequest.serverFailure;
     }
     update();
   }
@@ -127,11 +127,11 @@ class CartController extends BaseCartController {
         couponModel = CouponModel.fromJson(data);
         couponId = couponModel!.couponId;
         couponName = couponModel!.couponName;
-        discount = int.parse(couponModel!.couponDiscount!);
+        couponDiscount = int.parse(couponModel!.couponDiscount!);
         getTotalPrice();
       } else {
-        // couponName = 'invalid';
-        discount = 0;
+        couponName = 'invalid';
+        couponDiscount = 0;
         Get.snackbar('NOTFY', 'Invalid coupon');
       }
     } else {
@@ -142,23 +142,25 @@ class CartController extends BaseCartController {
 
   @override
   double getTotalPrice() {
-    return totalPrice - (totalPrice * (discount / 100));
+    return totalPrice - (totalPrice * (couponDiscount! / 100));
   }
 
   @override
   goToCheckout() {
     if (dataList.isEmpty) return Get.snackbar('Notify', 'Cart is empty');
-    Get.toNamed(AppRoute.checkout, arguments: {
-      'totalPrice': totalPrice.toString(),
-      'couponName:': couponName ?? '0',
+    Get.toNamed(AppRoute.ordersCheckout, arguments: {
+      'totalPrice': getTotalPrice().toString(),
+      'couponId': couponId,
+      'couponName': couponName,
+      'couponDiscount': couponDiscount.toString(),
     });
   }
 
   @override
-  refreshPage() async {
-    await viewCart();
+  refreshPage() {
     dataList.clear();
     totalPrice = 0;
     prosAmount = 0;
+    viewCart();
   }
 }

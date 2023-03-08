@@ -33,7 +33,7 @@ class CartBottomAppBar extends GetView<CartController> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          controller.couponName == null
+          controller.couponName == 'invalid' || controller.couponName == null
               ? Row(
                   children: [
                     Expanded(
