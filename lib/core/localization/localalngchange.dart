@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constant/theme.dart';
+import 'package:ecommerce_app/core/function/fcmconfig.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,8 @@ class LocalLangChange extends GetxController {
 
   @override
   void onInit() {
+    notificationPermission();
+    fcmConfig();
     String? lang = appServices.sharedPreferences.getString('lang');
 
     if (lang == 'ar') {

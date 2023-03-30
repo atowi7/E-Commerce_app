@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 abstract class BaseOrdersController extends GetxController {
   viewOrders();
+  refreshPage();
   String getDeliveryType(String val);
   String getPaymentMethod(String val);
   String getStatus(String val);
@@ -78,5 +79,10 @@ class OrdersController extends BaseOrdersController {
     } else {
       return 'Archive';
     }
+  }
+  
+  @override
+  refreshPage() {
+    viewOrders();
   }
 }

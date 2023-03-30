@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/service/services.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,18 +23,27 @@ class SettingController extends BaseSettingController {
     {
       'title': 'Address',
       'icon': Icons.location_on_outlined,
-      'onpress': () {
-      },
+      'onpress': () {},
     },
     {
       'title': 'Display notifications',
       'icon': Icons.notifications_paused_outlined,
+      'onpress': () {},
+    },
+    {
+      'title': 'Logout',
+      'icon': Icons.logout_outlined,
       'onpress': () {},
     }
   ];
   AppServices appServices = Get.find();
   @override
   logout() {
+    String userid = appServices.sharedPreferences.getString('userid')!;
+
+    FirebaseMessaging.instance.unsubscribeFromTopic('users');
+    FirebaseMessaging.instance.unsubscribeFromTopic('user$userid');
+
     appServices.sharedPreferences.clear();
     Get.offAllNamed(AppRoute.login);
   }

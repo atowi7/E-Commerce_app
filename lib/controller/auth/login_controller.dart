@@ -3,6 +3,7 @@ import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/auth/login_data.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +32,6 @@ class LoginController extends BaseLoginController {
     email = TextEditingController();
     pass = TextEditingController();
 
-    //FirebaseMessaging.instance.getToken().then((value) => print(value));
     super.onInit();
   }
 
@@ -56,6 +56,10 @@ class LoginController extends BaseLoginController {
             appServices.sharedPreferences
                 .setString('username', response['data']['user_name']);
             appServices.sharedPreferences.setString('page', 'h');
+
+            String userid = appServices.sharedPreferences.getString('userid')!;
+            FirebaseMessaging.instance.subscribeToTopic('users');
+            FirebaseMessaging.instance.subscribeToTopic('user$userid');
 
             Get.offNamed(AppRoute.homePage);
           } else {

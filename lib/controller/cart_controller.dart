@@ -142,7 +142,7 @@ class CartController extends BaseCartController {
 
   @override
   double getTotalPrice() {
-    return totalPrice - (totalPrice * (couponDiscount! / 100));
+    return totalPrice - (totalPrice * (couponDiscount / 100));
   }
 
   @override

@@ -21,7 +21,7 @@ ThemeData englishTheme = ThemeData(
         fontFamily: 'Roboto',
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        //color: AppColor.black,
+        color: AppColor.blue,
       ),
       displayMedium: TextStyle(
         fontFamily: 'Roboto',
@@ -44,7 +44,7 @@ ThemeData arabicTheme = ThemeData(
         fontFamily: 'Cairo',
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        //color: AppColor.black,
+        color: AppColor.blue,
       ),
       displayMedium: TextStyle(
         fontFamily: 'Cairo',

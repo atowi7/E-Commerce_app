@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/view/screen/cart_screen.dart';
+import 'package:ecommerce_app/view/screen/notification_screen.dart';
 import 'package:ecommerce_app/view/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,15 +25,15 @@ class HomeScreenController extends BaseHomeScreenController {
       'icon': Icons.settings_outlined,
     },
     {
-      'title': 'Favorite',
-      'icon': Icons.favorite_border_outlined,
+      'title': 'Notify',
+      'icon': Icons.notifications_active_rounded,
     }
   ];
   List<Widget> pages = [
     const Center(child: Text('p')),
     const CartScreen(),
     const SettingScreen(),
-    const Center(child: Text('f')),
+    const NotificationScreen(),
   ];
 
   @override

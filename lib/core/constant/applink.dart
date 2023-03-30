@@ -47,4 +47,7 @@ class AppLink {
   //Orders
   static const String checkoutOrders = '$server/orders/checkout.php';
   static const String viewOrders = '$server/orders/view.php';
+
+  //Notification
+  static const String notification = '$server/notification.php';
 }

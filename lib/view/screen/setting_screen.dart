@@ -3,6 +3,7 @@ import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -28,18 +29,32 @@ class SettingScreen extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(50),
-          decoration:const  BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColor.blue,
           ),
           child: Lottie.asset(ImageAssets.profile),
         ),
-        ...List.generate(
-            settingController.sections.length,
-            (index) => ListTile(
-              onTap: ()=>Get.toNamed(AppRoute.addressview),
-                  title: Text(settingController.sections[index]['title']),
-                  trailing: Icon(settingController.sections[index]['icon']),
-                ))
+        ListTile(
+          onTap: () {
+            Get.toNamed(AppRoute.addressview);
+          },
+          title: Text('Address'),
+          trailing: const Icon(Icons.location_on_outlined),
+        ),
+        ListTile(
+          onTap: () {
+            FirebaseMessaging.instance.getToken().then((value) => print(value));
+          },
+          title: Text('Notification'),
+          trailing: const Icon(Icons.logout_outlined),
+        ),
+        ListTile(
+          onTap: () {
+            settingController.logout();
+          },
+          title: Text('Logout'),
+          trailing: const Icon(Icons.logout_outlined),
+        )
       ],
     );
   }

@@ -44,12 +44,14 @@ dependencies:
   lottie: ^2.2.0
   flutter_svg: ^2.0.0+1
   firebase_core: ^2.5.0
-  firebase_messaging: ^14.2.2
+  firebase_messaging: ^14.3.0
+  flutter_ringtone_player: ^3.2.0
   cached_network_image: ^3.2.3
   #map
   google_maps_flutter: ^2.2.4
   geolocator: ^9.0.2
   geocoding: ^2.0.5
+  jiffy: ^6.1.0
 
 dev_dependencies:
   flutter_test:
