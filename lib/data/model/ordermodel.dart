@@ -12,6 +12,13 @@ class OrderModel {
   String? ordersDeleted;
   String? ordersAddressid;
   String? ordersUserid;
+  String? addressId;
+  String? addressName;
+  String? addressLat;
+  String? addressLong;
+  String? addressStreet;
+  String? addressCity;
+  String? addressUserid;
 
   OrderModel({
     this.ordersId,
@@ -27,6 +34,13 @@ class OrderModel {
     this.ordersDeleted,
     this.ordersAddressid,
     this.ordersUserid,
+    this.addressId,
+    this.addressName,
+    this.addressLat,
+    this.addressLong,
+    this.addressStreet,
+    this.addressCity,
+    this.addressUserid,
   });
 
   OrderModel.fromJson(Map<String, dynamic> json) {
@@ -43,5 +57,12 @@ class OrderModel {
     ordersDeleted = json['orders_deleted'];
     ordersAddressid = json['orders_addressid'];
     ordersUserid = json['orders_userid'];
+    addressId = json['address_id'];
+    addressName = json['address_name'];
+    addressLat = json['address_lat'];
+    addressLong = json['address_long'];
+    addressStreet = json['address_street'];
+    addressCity = json['address_city'];
+    addressUserid = json['address_userid'];
   }
 }

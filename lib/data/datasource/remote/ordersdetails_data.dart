@@ -1,14 +1,14 @@
 import 'package:ecommerce_app/core/class/crud.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
 
-class OrdersData {
+class OrdersDetailsData {
   Crud crud;
 
-  OrdersData(this.crud);
+  OrdersDetailsData(this.crud);
 
-  getData(String userid) async {
-    var response = await crud.postData(AppLink.viewOrders, {
-      'userid': userid,
+  getData(String orderId) async {
+    var response = await crud.postData(AppLink.ordersDetials, {
+      'orderid': orderId,
     });
     return response.fold((l) => l, (r) => r);
   }

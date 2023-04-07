@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/orders_controller.dart';
+import 'package:ecommerce_app/controller/orders/vieworders_controller.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:get/get.dart';
@@ -23,7 +23,7 @@ fcmConfig() {
     FlutterRingtonePlayer.playNotification();
     if (remoteMessage.data['pagename'] == 'order' &&
         Get.currentRoute == '/orderview') {
-      OrdersController ordersController = Get.find();
+      ViewOrdersController ordersController = Get.find();
       ordersController.refreshPage();
     }
   });

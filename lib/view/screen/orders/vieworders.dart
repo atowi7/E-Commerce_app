@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/orders_controller.dart';
+import 'package:ecommerce_app/controller/orders/vieworders_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/view/widget/order/orderwidget.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +9,12 @@ class ViewOrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(OrdersController());
+    Get.put(ViewOrdersController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Order'),
       ),
-      body: GetBuilder<OrdersController>(builder: (controller) {
+      body: GetBuilder<ViewOrdersController>(builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
           widget: ListView.builder(

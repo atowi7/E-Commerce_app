@@ -30,4 +30,5 @@ class AppRoute {
   //Orders
   static const String ordersCheckout = '/checkout';
   static const String ordersView = '/orderview';
+  static const String ordersDetails = '/ordersdetails';
 }

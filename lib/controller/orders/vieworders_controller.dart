@@ -5,20 +5,20 @@ import 'package:ecommerce_app/data/datasource/remote/orders_data.dart';
 import 'package:ecommerce_app/data/model/ordermodel.dart';
 import 'package:get/get.dart';
 
-abstract class BaseOrdersController extends GetxController {
+abstract class BaseViewOrdersController extends GetxController {
   viewOrders();
   refreshPage();
   String getDeliveryType(String val);
   String getPaymentMethod(String val);
   String getStatus(String val);
+  goToOrderDetails();
 }
 
-class OrdersController extends BaseOrdersController {
+class ViewOrdersController extends BaseViewOrdersController {
   List<OrderModel> dataList = [];
-  OrderModel? couponModel;
   AppServices appServices = Get.find();
 
-  OrderData ordersdata = OrderData(Get.find());
+  OrdersData ordersdata = OrdersData(Get.find());
 
   late StatusRequest statusRequest;
   @override
@@ -80,9 +80,16 @@ class OrdersController extends BaseOrdersController {
       return 'Archive';
     }
   }
-  
+
   @override
   refreshPage() {
     viewOrders();
+  }
+
+  @override
+  goToOrderDetails() {
+    // Get.toNamed(AppRoute.ordersDetails, arguments: {
+    //   'orderModel': dataList,
+    // });
   }
 }

@@ -1,11 +1,12 @@
-import 'package:ecommerce_app/controller/orders_controller.dart';
+import 'package:ecommerce_app/controller/orders/vieworders_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/data/model/ordermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 
-class OrderWedget extends GetView<OrdersController> {
+class OrderWedget extends GetView<ViewOrdersController> {
   final OrderModel orderModel;
   const OrderWedget({super.key, required this.orderModel});
   @override
@@ -38,6 +39,14 @@ class OrderWedget extends GetView<OrdersController> {
               'Order order status : ${controller.getStatus(orderModel.ordersStatus!)}'),
           const Divider(color: AppColor.blue),
           Text('Order total price : ${orderModel.ordersTotalprice}\$'),
+          MaterialButton(
+              onPressed: () {
+                Get.toNamed(AppRoute.ordersDetails, arguments: {
+                  'orderModel': orderModel,
+                });
+              },
+              color: AppColor.blue,
+              child: Text('Details'))
         ],
       ),
     );
