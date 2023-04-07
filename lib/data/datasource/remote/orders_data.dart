@@ -7,8 +7,15 @@ class OrdersData {
   OrdersData(this.crud);
 
   getData(String userid) async {
-    var response = await crud.postData(AppLink.viewOrders, {
+    var response = await crud.postData(AppLink.ordersView, {
       'userid': userid,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
+  deleteOrder(String orderid) async {
+    var response = await crud.postData(AppLink.ordersDelete, {
+      'orderid': orderid,
     });
     return response.fold((l) => l, (r) => r);
   }

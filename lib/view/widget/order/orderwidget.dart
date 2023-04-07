@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/orders/vieworders_controller.dart';
+import 'package:ecommerce_app/controller/orders/orders_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/data/model/ordermodel.dart';
@@ -39,14 +39,27 @@ class OrderWedget extends GetView<ViewOrdersController> {
               'Order order status : ${controller.getStatus(orderModel.ordersStatus!)}'),
           const Divider(color: AppColor.blue),
           Text('Order total price : ${orderModel.ordersTotalprice}\$'),
-          MaterialButton(
-              onPressed: () {
-                Get.toNamed(AppRoute.ordersDetails, arguments: {
-                  'orderModel': orderModel,
-                });
-              },
-              color: AppColor.blue,
-              child: Text('Details'))
+          const Divider(color: AppColor.blue),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              MaterialButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoute.ordersDetails, arguments: {
+                      'orderModel': orderModel,
+                    });
+                  },
+                  color: AppColor.blue,
+                  child: Text('Details')),
+              if (orderModel.ordersStatus == '0')
+                MaterialButton(
+                    onPressed: () {
+                      controller.delteOrders(orderModel.ordersId!);
+                    },
+                    color: AppColor.blue,
+                    child: Text('Delete'))
+            ],
+          ),
         ],
       ),
     );

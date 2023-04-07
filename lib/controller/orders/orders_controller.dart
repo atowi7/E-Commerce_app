@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 abstract class BaseViewOrdersController extends GetxController {
   viewOrders();
+  delteOrders(String orderId);
   refreshPage();
   String getDeliveryType(String val);
   String getPaymentMethod(String val);
@@ -46,6 +47,27 @@ class ViewOrdersController extends BaseViewOrdersController {
       }
     } else {
       //statusRequest = StatusRequest.serverFailure;
+    }
+    update();
+  }
+
+  @override
+  delteOrders(String orderId) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await ordersdata.deleteOrder(orderId);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.sucess == statusRequest) {
+      if (response['status'] == 'sucess') {
+        refreshPage();
+        Get.snackbar('NOTFY', 'delete from order sucess');
+      } else {
+        statusRequest = StatusRequest.noDatafailure;
+      }
+    } else {
+      statusRequest = StatusRequest.serverFailure;
     }
     update();
   }
