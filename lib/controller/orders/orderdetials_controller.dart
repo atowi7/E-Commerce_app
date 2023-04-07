@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
-import 'package:ecommerce_app/data/datasource/remote/ordersdetails_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/orders/ordersdetails_data.dart';
 import 'package:ecommerce_app/data/model/ordermodel.dart';
 import 'package:ecommerce_app/data/model/ordersdetailsmodel.dart';
 import 'package:get/get.dart';

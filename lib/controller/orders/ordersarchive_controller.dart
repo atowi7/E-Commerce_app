@@ -1,13 +1,12 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
-import 'package:ecommerce_app/data/datasource/remote/orders/orders_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/orders/ordersarchive_data.dart';
 import 'package:ecommerce_app/data/model/ordermodel.dart';
 import 'package:get/get.dart';
 
-abstract class BaseOrdersController extends GetxController {
+abstract class BaseOrdersArchiveController extends GetxController {
   viewOrders();
-  deleteOrders(String orderId);
   refreshPage();
   String getDeliveryType(String val);
   String getPaymentMethod(String val);
@@ -15,11 +14,11 @@ abstract class BaseOrdersController extends GetxController {
   goToOrderDetails();
 }
 
-class OrdersController extends BaseOrdersController {
+class OrdersArchiveController extends BaseOrdersArchiveController {
   List<OrderModel> dataList = [];
   AppServices appServices = Get.find();
 
-  OrdersData ordersdata = OrdersData(Get.find());
+  OrdersArchiveData ordersArchiveData = OrdersArchiveData(Get.find());
 
   late StatusRequest statusRequest;
   @override
@@ -32,7 +31,7 @@ class OrdersController extends BaseOrdersController {
   viewOrders() async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await ordersdata
+    var response = await ordersArchiveData
         .getData(appServices.sharedPreferences.getString('userid')!);
 
     statusRequest = handleData(response);
@@ -42,27 +41,6 @@ class OrdersController extends BaseOrdersController {
         List data = response['data'];
         dataList.clear();
         dataList.addAll(data.map((e) => OrderModel.fromJson(e)));
-      } else {
-        statusRequest = StatusRequest.noDatafailure;
-      }
-    } else {
-      statusRequest = StatusRequest.serverFailure;
-    }
-    update();
-  }
-
-  @override
-  deleteOrders(String orderId) async {
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await ordersdata.deleteOrder(orderId);
-
-    statusRequest = handleData(response);
-
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        refreshPage();
-        Get.snackbar('NOTFY', 'delete from order sucess');
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }

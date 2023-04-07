@@ -23,7 +23,7 @@ fcmConfig() {
     FlutterRingtonePlayer.playNotification();
     if (remoteMessage.data['pagename'] == 'order' &&
         Get.currentRoute == '/orderview') {
-      ViewOrdersController ordersController = Get.find();
+      OrdersController ordersController = Get.find();
       ordersController.refreshPage();
     }
   });

@@ -1,26 +1,26 @@
-import 'package:ecommerce_app/controller/orders/orders_controller.dart';
+import 'package:ecommerce_app/controller/orders/ordersarchive_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
-import 'package:ecommerce_app/view/widget/order/orderwidget.dart';
+import 'package:ecommerce_app/view/widget/order/orderArchivewidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ViewOrdersScreen extends StatelessWidget {
-  const ViewOrdersScreen({super.key});
+class OrdersArchiveScreen extends StatelessWidget {
+  const OrdersArchiveScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(OrdersController());
+    Get.put(OrdersArchiveController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Order'),
+        title: const Text('Order Archive'),
       ),
-      body: GetBuilder<OrdersController>(builder: (controller) {
+      body: GetBuilder<OrdersArchiveController>(builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
           widget: ListView.builder(
             itemCount: controller.dataList.length,
             itemBuilder: (context, i) =>
-                OrderWedget(orderModel: controller.dataList[i]),
+                OrderArchiveWedget(orderModel: controller.dataList[i]),
           ),
         );
       }),

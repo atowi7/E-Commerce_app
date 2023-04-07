@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/orders/orders_controller.dart';
+import 'package:ecommerce_app/controller/orders/ordersarchive_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/data/model/ordermodel.dart';
@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 
-class OrderWedget extends GetView<OrdersController> {
+class OrderArchiveWedget extends GetView<OrdersArchiveController> {
   final OrderModel orderModel;
-  const OrderWedget({super.key, required this.orderModel});
+  const OrderArchiveWedget({super.key, required this.orderModel});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -51,13 +51,6 @@ class OrderWedget extends GetView<OrdersController> {
                   },
                   color: AppColor.blue,
                   child: Text('Details')),
-              if (orderModel.ordersStatus == '0')
-                MaterialButton(
-                    onPressed: () {
-                      controller.deleteOrders(orderModel.ordersId!);
-                    },
-                    color: AppColor.blue,
-                    child: Text('Delete'))
             ],
           ),
         ],

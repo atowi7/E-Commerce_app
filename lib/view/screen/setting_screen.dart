@@ -50,6 +50,13 @@ class SettingScreen extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
+            Get.toNamed(AppRoute.ordersArchive);
+          },
+          title: Text('Archive'),
+          trailing: const Icon(Icons.archive_outlined),
+        ),
+        ListTile(
+          onTap: () {
             settingController.logout();
           },
           title: Text('Logout'),
