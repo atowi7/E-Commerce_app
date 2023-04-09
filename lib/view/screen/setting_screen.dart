@@ -36,6 +36,13 @@ class SettingScreen extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
+            FirebaseMessaging.instance.getToken().then((value) => print(value));
+          },
+          title: Text('Notification'),
+          trailing: const Icon(Icons.notification_add_outlined),
+        ),
+        ListTile(
+          onTap: () {
             Get.toNamed(AppRoute.addressview);
           },
           title: Text('Address'),
@@ -43,17 +50,17 @@ class SettingScreen extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
-            FirebaseMessaging.instance.getToken().then((value) => print(value));
-          },
-          title: Text('Notification'),
-          trailing: const Icon(Icons.logout_outlined),
-        ),
-        ListTile(
-          onTap: () {
             Get.toNamed(AppRoute.ordersArchive);
           },
           title: Text('Archive'),
           trailing: const Icon(Icons.archive_outlined),
+        ),
+        ListTile(
+          onTap: () {
+            settingController.contactUs();
+          },
+          title: Text('Contact us'),
+          trailing: const Icon(Icons.contact_mail_outlined),
         ),
         ListTile(
           onTap: () {
