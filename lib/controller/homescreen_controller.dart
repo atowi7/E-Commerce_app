@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/view/screen/cart_screen.dart';
 import 'package:ecommerce_app/view/screen/notification_screen.dart';
+import 'package:ecommerce_app/view/screen/offers_screen.dart';
 import 'package:ecommerce_app/view/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,8 +14,8 @@ class HomeScreenController extends BaseHomeScreenController {
   int currentPage = -1;
   List icons = [
     {
-      'title': 'Profile',
-      'icon': Icons.person_2_outlined,
+      'title': 'Offers',
+      'icon': Icons.discount_outlined,
     },
     {
       'title': 'Cart',
@@ -30,7 +31,7 @@ class HomeScreenController extends BaseHomeScreenController {
     }
   ];
   List<Widget> pages = [
-    const Center(child: Text('p')),
+    const OffersScreen(),
     const CartScreen(),
     const SettingScreen(),
     const NotificationScreen(),

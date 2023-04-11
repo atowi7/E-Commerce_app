@@ -36,30 +36,31 @@ class Home extends StatelessWidget {
         ),
         GetBuilder<HomeController>(builder: (controller) {
           return HandlingDataView(
-              statusRequest: controller.statusRequest,
-              widget: controller.isSearch == false
-                  ? ListView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: const [
-                        CustomCard(title: 'Summer Discount', disc: '20%'),
-                        CategorieSection(),
-                        Custometitle(title: 'Suggestios for products'),
-                        ProductHomeSection(),
-                      ],
-                    )
-                  : Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 50),
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: controller.searchProducts.length,
-                          itemBuilder: (context, i) {
-                            return ProductSearchWedget(
-                                productModel: controller.searchProducts[i]);
-                          }),
-                    ));
+            statusRequest: controller.statusRequest,
+            widget: controller.isSearch == false
+                ? ListView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: const [
+                      CustomCard(title: 'Summer Discount', disc: '20%'),
+                      CategorieSection(),
+                      Custometitle(title: 'Suggestios for products'),
+                      ProductHomeSection(),
+                    ],
+                  )
+                : Container(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 50),
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.searchProducts.length,
+                        itemBuilder: (context, i) {
+                          return ProductSearchWedget(
+                              productModel: controller.searchProducts[i]);
+                        }),
+                  ),
+          );
         }),
       ],
     );
