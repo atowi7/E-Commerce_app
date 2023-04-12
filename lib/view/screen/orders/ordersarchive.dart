@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/controller/orders/ordersarchive_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
-import 'package:ecommerce_app/view/widget/order/orderArchivewidget.dart';
+import 'package:ecommerce_app/view/widget/order/orderarchivewidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

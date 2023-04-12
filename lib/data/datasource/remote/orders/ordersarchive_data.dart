@@ -12,4 +12,13 @@ class OrdersArchiveData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  sendRating(String orderId, String rate, String comment) async {
+    var response = await crud.postData(AppLink.ordersrate, {
+      'orderid': orderId,
+      'rate': rate,
+      'comment': comment,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

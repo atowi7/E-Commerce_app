@@ -5,6 +5,7 @@ import 'package:ecommerce_app/data/model/ordermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 
 class OrderArchiveWedget extends GetView<OrdersArchiveController> {
   final OrderModel orderModel;
@@ -43,6 +44,38 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              if (orderModel.ordersRate == '0')
+                MaterialButton(
+                    onPressed: () {
+                      final dailog = RatingDialog(
+                          initialRating: 1.0,
+                          title: Text(
+                            'Rate your order',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.displayLarge,
+                          ),
+                          message: Text(
+                            'Tap a star to set your rating, add more description here if you want',
+                            textAlign: TextAlign.center,
+                          ),
+                          submitButtonText: 'Send',
+                          submitButtonTextStyle:
+                              const TextStyle(color: AppColor.blue),
+                          onSubmitted: (value) {
+                            if (value.rating == 0.0) {
+                              Get.snackbar('NOTFY', 'Please rate your order');
+                            } else {
+                              controller.sendRatring(orderModel.ordersId!,
+                                  value.rating, value.comment);
+                            }
+                          });
+                      showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (context) => dailog);
+                    },
+                    color: AppColor.blue,
+                    child: Text('Rate')),
               MaterialButton(
                   onPressed: () {
                     Get.toNamed(AppRoute.ordersDetails, arguments: {

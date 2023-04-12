@@ -6,6 +6,8 @@ class OrderModel {
   String? ordersCouponid;
   String? ordersCoupondiscount;
   String? ordersPaymentmethod;
+  String? ordersRate;
+  String? ordersRatenote;
   String? ordersType;
   String? ordersStatus;
   String? ordersCreatedat;
@@ -28,6 +30,8 @@ class OrderModel {
     this.ordersCouponid,
     this.ordersCoupondiscount,
     this.ordersPaymentmethod,
+    this.ordersRate,
+    this.ordersRatenote,
     this.ordersType,
     this.ordersStatus,
     this.ordersCreatedat,
@@ -51,6 +55,8 @@ class OrderModel {
     ordersCouponid = json['orders_couponid'];
     ordersCoupondiscount = json['orders_coupondiscount'];
     ordersPaymentmethod = json['orders_paymentmethod'];
+    ordersRate = json['orders_rate'];
+    ordersRatenote = json['orders_ratenote'];
     ordersType = json['orders_type'];
     ordersStatus = json['orders_status'];
     ordersCreatedat = json['orders_createdat'];

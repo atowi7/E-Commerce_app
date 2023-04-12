@@ -11,6 +11,7 @@ abstract class BaseOrdersArchiveController extends GetxController {
   String getDeliveryType(String val);
   String getPaymentMethod(String val);
   String getStatus(String val);
+  sendRatring(String ordersId, double rate, String comment);
   goToOrderDetails();
 }
 
@@ -93,5 +94,27 @@ class OrdersArchiveController extends BaseOrdersArchiveController {
     // Get.toNamed(AppRoute.ordersDetails, arguments: {
     //   'orderModel': dataList,
     // });
+  }
+
+  @override
+  sendRatring(ordersId, rate, comment) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await ordersArchiveData.sendRating(ordersId, rate.toString(), comment);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.sucess == statusRequest) {
+      if (response['status'] == 'sucess') {
+        Get.snackbar('NOTFY', 'Your rating has been submitted');
+        viewOrders();
+      } else {
+        Get.snackbar('NOTFY', 'ERROR : Your rating has not been submitted');
+      }
+    } else {
+      Get.snackbar(
+          'NOTFY', 'SERRVER ERROR : Your rating has not been submitted');
+    }
+    update();
   }
 }

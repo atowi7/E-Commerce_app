@@ -48,6 +48,7 @@ class AppLink {
   static const String checkoutOrders = '$server/orders/checkout.php';
   static const String ordersView = '$server/orders/view.php';
   static const String ordersArchive = '$server/orders/archive.php';
+   static const String ordersrate = '$server/orders/rate.php';
   static const String ordersDetials = '$server/orders/details.php';
   static const String ordersDelete = '$server/orders/delete.php';
 
