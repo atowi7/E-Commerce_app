@@ -17,11 +17,11 @@ class CustomCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: ListTile(
-        leading: Text(
+        title: Text(
           title,
           style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
-        trailing: Text(
+        subtitle: Text(
           disc,
           style: const TextStyle(fontSize: 30),
         ),

@@ -22,6 +22,7 @@ class HomeController extends BaseHomeController {
   HomeData homeData = HomeData(Get.find());
   AppServices appServices = Get.find();
 
+  List headings = [];
   List categories = [];
   List products = [];
   List topSellingProducts = [];
@@ -45,6 +46,7 @@ class HomeController extends BaseHomeController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
+        headings.addAll(response['headings']);
         categories.addAll(response['categories']);
         products.addAll(response['producttopselling']);
       } else {

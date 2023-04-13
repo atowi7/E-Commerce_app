@@ -41,11 +41,14 @@ class Home extends StatelessWidget {
                 ? ListView(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    children: const [
-                      CustomCard(title: 'Summer Discount', disc: '20%'),
-                      CategorieSection(),
-                      Custometitle(title: 'Top Selling products'),
-                      ProductHomeSection(),
+                    children: [
+                      if (controller.headings.isNotEmpty)
+                        CustomCard(
+                            title: '${controller.headings[0]['heading_title']}',
+                            disc: '${controller.headings[0]['heading_body']}'),
+                      const CategorieSection(),
+                      const Custometitle(title: 'Top Selling products'),
+                      const ProductHomeSection(),
                     ],
                   )
                 : Container(
