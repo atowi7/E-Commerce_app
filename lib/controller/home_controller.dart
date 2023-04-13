@@ -24,6 +24,7 @@ class HomeController extends BaseHomeController {
 
   List categories = [];
   List products = [];
+  List topSellingProducts = [];
 
   @override
   void onInit() {
@@ -45,10 +46,12 @@ class HomeController extends BaseHomeController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         categories.addAll(response['categories']);
-        products.addAll(response['products']);
+        products.addAll(response['producttopselling']);
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
+    } else {
+      statusRequest = StatusRequest.serverFailure;
     }
     update();
   }

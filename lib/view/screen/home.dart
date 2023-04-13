@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
                     children: const [
                       CustomCard(title: 'Summer Discount', disc: '20%'),
                       CategorieSection(),
-                      Custometitle(title: 'Suggestios for products'),
+                      Custometitle(title: 'Top Selling products'),
                       ProductHomeSection(),
                     ],
                   )
