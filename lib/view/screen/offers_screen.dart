@@ -96,24 +96,31 @@ class ProductWedget extends GetView<OffersController> {
                   '${productModel.name}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     const Text('Rating'),
+                //     Row(
+                //         children: List.generate(
+                //             3,
+                //             (index) => IconButton(
+                //                   onPressed: () {},
+                //                   icon: const Icon(Icons.star),
+                //                   iconSize: 10,
+                //                 )))
+                //   ],
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Rating'),
-                    Row(
-                        children: List.generate(
-                            3,
-                            (index) => IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.star),
-                                  iconSize: 10,
-                                )))
+                    Text('${controller.deliveryTime} Minute'),
+                    const Icon(Icons.timer_sharp)
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('${productModel.priceafterdiscount}\$'),
+                    Text('${productModel.priceafterdiscount}\$ Price'),
                     GetBuilder<FavoriteController>(builder: (controller) {
                       return IconButton(
                           onPressed: () {

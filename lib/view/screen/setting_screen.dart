@@ -38,8 +38,8 @@ class SettingScreen extends StatelessWidget {
           onTap: () {
             FirebaseMessaging.instance.getToken().then((value) => print(value));
           },
-          title: Text('Notification'),
-          trailing: const Icon(Icons.notification_add_outlined),
+          title: Text('Display Notification'),
+          trailing: const Switch(value: true, onChanged: null),
         ),
         ListTile(
           onTap: () {

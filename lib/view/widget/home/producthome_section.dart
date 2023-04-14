@@ -25,44 +25,47 @@ class ProductHomeSection extends GetView<HomeController> {
   }
 }
 
-class ProductWidget extends StatelessWidget {
+class ProductWidget extends GetView<HomeController> {
   final ProductModel productModel;
   const ProductWidget({super.key, required this.productModel});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          decoration: BoxDecoration(
-            color: AppColor.blue,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColor.black),
+    return InkWell(
+      onTap: () => controller.goToProductDetial(productModel),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            decoration: BoxDecoration(
+              color: AppColor.blue,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: AppColor.black),
+            ),
+            child: Image.network(
+              '${AppLink.productImage}/${productModel.image}',
+              color: AppColor.white,
+            ),
           ),
-          child: Image.network(
-            '${AppLink.productImage}/${productModel.image}',
-            color: AppColor.white,
+          Positioned(
+            left: 10,
+            child: Text(
+              '${productModel.name}',
+              style: const TextStyle(fontSize: 20),
+            ),
           ),
-        ),
-        Positioned(
-          left: 10,
-          child: Text(
-            '${productModel.name}',
-            style: const TextStyle(fontSize: 20),
-          ),
-        ),
-        if (productModel.discount != '0')
-          const Positioned(
-              top: 10,
-              child: Icon(
-                Icons.discount_rounded,
-                color: AppColor.black,
-              ))
-        // Container(
-        //   color: Colors.black,
-        // ),
-      ],
+          if (productModel.discount != '0')
+            const Positioned(
+                top: 10,
+                child: Icon(
+                  Icons.discount_rounded,
+                  color: AppColor.black,
+                ))
+          // Container(
+          //   color: Colors.black,
+          // ),
+        ],
+      ),
     );
   }
 }

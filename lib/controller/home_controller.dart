@@ -19,6 +19,11 @@ class HomeController extends BaseHomeController {
   String? id;
   String? name;
 
+  String? cardTitle;
+  String? cardDesc;
+
+  String? deliveryTime;
+
   HomeData homeData = HomeData(Get.find());
   AppServices appServices = Get.find();
 
@@ -47,6 +52,12 @@ class HomeController extends BaseHomeController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         headings.addAll(response['headings']);
+        cardTitle = headings[0]['heading_title'];
+        cardDesc = headings[0]['heading_body'];
+
+        deliveryTime = headings[0]['heading_deliverytime'];
+        appServices.sharedPreferences.setString('deliverytime', deliveryTime!);
+
         categories.addAll(response['categories']);
         products.addAll(response['producttopselling']);
       } else {

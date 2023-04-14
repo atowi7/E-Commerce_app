@@ -75,6 +75,13 @@ class ProductWedget extends GetView<ProductController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Text('${controller.deliveryTime} Minute'),
+                    const Icon(Icons.timer_sharp)
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     Text('${productModel.priceafterdiscount}\$'),
                     GetBuilder<FavoriteController>(builder: (controller) {
                       return IconButton(

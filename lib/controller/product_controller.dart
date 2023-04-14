@@ -18,6 +18,7 @@ class ProductController extends BaseProductController {
   List categories = [];
   List products = [];
   String? cid;
+  String? deliveryTime;
 
   ProductData productData = ProductData(Get.find());
   AppServices appServices = Get.find();
@@ -28,6 +29,7 @@ class ProductController extends BaseProductController {
   void onInit() {
     initialData();
     getData(cid!);
+    deliveryTime = appServices.sharedPreferences.getString('deliverytime');
     super.onInit();
   }
 
@@ -48,7 +50,7 @@ class ProductController extends BaseProductController {
   getData(String cid) async {
     statusRequest = StatusRequest.loading;
 
-    var response = await productData.getData(userid!,cid);
+    var response = await productData.getData(userid!, cid);
 
     statusRequest = handleData(response);
 

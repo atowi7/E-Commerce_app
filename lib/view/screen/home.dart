@@ -42,10 +42,9 @@ class Home extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      if (controller.headings.isNotEmpty)
-                        CustomCard(
-                            title: '${controller.headings[0]['heading_title']}',
-                            disc: '${controller.headings[0]['heading_body']}'),
+                      CustomCard(
+                          title: '${controller.cardTitle}',
+                          disc: '${controller.cardDesc}'),
                       const CategorieSection(),
                       const Custometitle(title: 'Top Selling products'),
                       const ProductHomeSection(),
