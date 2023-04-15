@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controller/cart_controller.dart';
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
@@ -6,6 +7,7 @@ import 'package:ecommerce_app/data/datasource/remote/address_data.dart';
 import 'package:ecommerce_app/data/datasource/remote/checkout_data.dart';
 import 'package:ecommerce_app/data/model/Addressmodel.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 
 abstract class BaseCheckoutController extends GetxController {
   choosePyamentMethod(String val);
@@ -26,12 +28,13 @@ class CheckoutController extends BaseCheckoutController {
   late String couponId;
   late String couponDiscount;
 
-  List<AddressModel> dataList = [];
+  List<AddressModel> addressList = [];
 
   AppServices appServices = Get.find();
 
   AddressData addressData = AddressData(Get.find());
   CheckoutData checkoutData = CheckoutData(Get.find());
+  CartController cartController = Get.put(CartController());
 
   StatusRequest statusRequest = StatusRequest.none;
 
@@ -76,8 +79,9 @@ class CheckoutController extends BaseCheckoutController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         List data = response['data'];
-        dataList.clear();
-        dataList.addAll(data.map((e) => AddressModel.fromJson(e)));
+        addressList.clear();
+        addressList.addAll(data.map((e) => AddressModel.fromJson(e)));
+        addressId = addressList[0].addressId;
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
@@ -95,8 +99,8 @@ class CheckoutController extends BaseCheckoutController {
     }
 
     if (deliveryType == '0') {
-      if (addressId == '0') {
-        return Get.snackbar('NOTFY', 'Please choose address');
+      if (addressList.isEmpty) {
+        return Get.snackbar('NOTFY', 'Please Add address');
       }
     }
     statusRequest = StatusRequest.loading;
@@ -117,6 +121,7 @@ class CheckoutController extends BaseCheckoutController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         Get.snackbar('NOTFY', 'add to Order sucess');
+        cartController.deleteCartByUser();
         Get.offNamed(AppRoute.homePage);
       } else {
         Get.snackbar('NOTFY', 'add to Order Fail, please try again');

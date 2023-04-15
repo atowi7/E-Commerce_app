@@ -28,6 +28,13 @@ class CartData {
     return response.fold((l) => l, (r) => r);
   }
 
+  deleteCartByUser(String userid) async {
+    var response = await crud.postData(AppLink.cartDeleteByUser, {
+      'userid': userid,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
   getCount(String userid, String proid) async {
     var response = await crud.postData(AppLink.getcount, {
       'userid': userid,

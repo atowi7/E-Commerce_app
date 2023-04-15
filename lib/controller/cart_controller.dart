@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 abstract class BaseCartController extends GetxController {
   viewCart();
   addCart(String proid);
+  deleteCartByUser();
   deleteCart(String proid);
   applyCoupon();
   double getTotalPrice();
@@ -111,6 +112,27 @@ class CartController extends BaseCartController {
       statusRequest = StatusRequest.serverFailure;
     }
     update();
+  }
+
+  @override
+  deleteCartByUser() async {
+    // statusRequest = StatusRequest.loading;
+    // update();
+    var response = await cartdata
+        .deleteCartByUser(appServices.sharedPreferences.getString('userid')!);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.sucess == statusRequest) {
+      if (response['status'] == 'sucess') {
+        Get.snackbar('NOTFY', 'delete from cart sucess');
+      } else {
+        Get.snackbar('ERRI', 'delete from cart sucess');
+      }
+    } else {
+      // statusRequest = StatusRequest.serverFailure;
+    }
+    // update();
   }
 
   @override

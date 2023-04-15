@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/checkout_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/view/widget/checkout/addressbox.dart';
 import 'package:ecommerce_app/view/widget/checkout/cardbox.dart';
 import 'package:ecommerce_app/view/widget/checkout/cashbox.dart';
@@ -82,26 +83,47 @@ class CheckOutScreen extends StatelessWidget {
             if (controller.deliveryType == '0')
               Column(
                 children: [
-                  Text(
-                    'Choose Shipping Address',
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
+                  controller.addressList.isNotEmpty
+                      ? Text(
+                          'Choose Shipping Address',
+                          style: Theme.of(context).textTheme.displayLarge,
+                        )
+                      : Column(
+                          children: [
+                            Text(
+                              'Pleass add address',
+                              style: Theme.of(context).textTheme.displayMedium,
+                            ),
+                            MaterialButton(
+                              color: AppColor.blue,
+                                onPressed: () {
+                                  Get.toNamed(
+                                    AppRoute.addressadd,
+                                  );
+                                },
+                                child: Text(
+                                  'Click here',
+                                  style:
+                                      Theme.of(context).textTheme.displayMedium,
+                                ))
+                          ],
+                        ),
                   const SizedBox(
                     height: 10,
                   ),
                   ...List.generate(
-                    controller.dataList.length,
+                    controller.addressList.length,
                     (index) => InkWell(
                       onTap: () {
                         controller.chooseShippingAdderss(
-                            '${controller.dataList[index].addressId}');
+                            '${controller.addressList[index].addressId}');
                       },
                       child: AddressBox(
-                        title: '${controller.dataList[index].addressName}',
+                        title: '${controller.addressList[index].addressName}',
                         description:
-                            '${controller.dataList[index].addressCity} / ${controller.dataList[index].addressStreet}',
+                            '${controller.addressList[index].addressCity} / ${controller.addressList[index].addressStreet}',
                         active: controller.addressId ==
-                                controller.dataList[index].addressId
+                                controller.addressList[index].addressId
                             ? true
                             : false,
                       ),

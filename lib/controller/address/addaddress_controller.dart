@@ -25,7 +25,7 @@ class AddAddressController extends BaseAddAddressController {
 
   CameraPosition? kGooglePlex;
 
-  Set<Marker> markers ={};
+  Set<Marker> markers = {};
 
   double? lat;
   double? long;
@@ -58,6 +58,9 @@ class AddAddressController extends BaseAddAddressController {
       target: LatLng(position!.altitude, position!.longitude),
       zoom: 15,
     );
+
+    addMarker(LatLng(position!.altitude, position!.longitude));
+
     statusRequest = StatusRequest.none;
     update();
   }
