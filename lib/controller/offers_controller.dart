@@ -6,7 +6,7 @@ import 'package:ecommerce_app/data/datasource/remote/offers_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class BaseOffersController extends SearchController {
+abstract class BaseOffersController extends MySearchController {
   getData();
 }
 

@@ -51,6 +51,15 @@ class OrderWedget extends GetView<OrdersController> {
                   },
                   color: AppColor.blue,
                   child: Text('Details')),
+              if (orderModel.ordersStatus == '3')
+                MaterialButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoute.ordersTracking, arguments: {
+                        'orderModel': orderModel,
+                      });
+                    },
+                    color: AppColor.blue,
+                    child: Text('Tracking')),
               if (orderModel.ordersStatus == '0')
                 MaterialButton(
                     onPressed: () {

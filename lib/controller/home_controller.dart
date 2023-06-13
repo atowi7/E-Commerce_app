@@ -8,7 +8,7 @@ import 'package:ecommerce_app/data/model/productmodel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-abstract class BaseHomeController extends SearchController {
+abstract class BaseHomeController extends MySearchController {
   getData();
 
   goToItem(List categories, String cid);

@@ -11,7 +11,7 @@ abstract class BaseSearchController extends GetxController {
   getsearchData();
 }
 
-class SearchController extends BaseSearchController {
+class MySearchController extends BaseSearchController {
   List<ProductModel> searchProducts = [];
   TextEditingController? searchTextController;
   bool isSearch = false;

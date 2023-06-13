@@ -10,7 +10,7 @@ class OrderDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    OrderDetialsController controller = Get.put(OrderDetialsController());
+    Get.put(OrderDetialsController());
     return Scaffold(
       appBar: AppBar(
         title: Text('Order Detail'),
