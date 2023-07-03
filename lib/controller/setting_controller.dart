@@ -11,33 +11,33 @@ abstract class BaseSettingController extends GetxController {
 }
 
 class SettingController extends BaseSettingController {
-  List sections = [
-    {
-      'title': 'About us',
-      'icon': Icons.details_outlined,
-      'onpress': () {},
-    },
-    {
-      'title': 'Contact us',
-      'icon': Icons.contact_page_rounded,
-      'onpress': () {},
-    },
-    {
-      'title': 'Address',
-      'icon': Icons.location_on_outlined,
-      'onpress': () {},
-    },
-    {
-      'title': 'Display notifications',
-      'icon': Icons.notifications_paused_outlined,
-      'onpress': () {},
-    },
-    {
-      'title': 'Logout',
-      'icon': Icons.logout_outlined,
-      'onpress': () {},
-    }
-  ];
+  // List sections = [
+  //   {
+  //     'title': '119'.tr,
+  //     'icon': Icons.details_outlined,
+  //     'onpress': () {},
+  //   },
+  //   {
+  //     'title': '120'.tr,
+  //     'icon': Icons.contact_page_rounded,
+  //     'onpress': () {},
+  //   },
+  //   {
+  //     'title': '50'.tr,
+  //     'icon': Icons.location_on_outlined,
+  //     'onpress': () {},
+  //   },
+  //   {
+  //     'title': '121'.tr,
+  //     'icon': Icons.notifications_paused_outlined,
+  //     'onpress': () {},
+  //   },
+  //   {
+  //     'title': '122'.tr,
+  //     'icon': Icons.logout_outlined,
+  //     'onpress': () {},
+  //   }
+  // ];
   AppServices appServices = Get.find();
 
   @override

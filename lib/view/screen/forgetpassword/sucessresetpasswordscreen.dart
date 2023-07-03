@@ -11,7 +11,7 @@ class SucessResetPasswordScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Sucess'),
+        title: Text('28'.tr),
       ),
       body: Center(
         child: Column(
@@ -23,15 +23,15 @@ class SucessResetPasswordScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              'Your are verfied',
-              style: TextStyle(fontSize: 30),
+            Text(
+              '29'.tr,
+              style: const TextStyle(fontSize: 30),
             ),
             const SizedBox(
               height: 20,
             ),
             CustomButton(
-                title: 'Go to Login',
+                title: '30'.tr,
                 onPressed: () {
                   Get.offNamed(AppRoute.login);
                 }),

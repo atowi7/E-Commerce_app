@@ -49,4 +49,13 @@ class CartData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  sendRating(String proId, String rate, String comment) async {
+    var response = await crud.postData(AppLink.productrate, {
+      'proid': proId,
+      'rate': rate,
+      'comment': comment,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

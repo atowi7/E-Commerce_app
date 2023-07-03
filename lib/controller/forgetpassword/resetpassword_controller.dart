@@ -42,6 +42,7 @@ class ResetPasswordController extends BaseResetPasswordController {
       if (password.text == repassword.text) {
         statusRequest = StatusRequest.loading;
         update();
+        
         var response = await resetPasswordData.postData(email!, password.text);
 
         statusRequest = handleData(response);
@@ -49,19 +50,20 @@ class ResetPasswordController extends BaseResetPasswordController {
           if (response['status'] == 'sucess') {
             Get.offNamed(AppRoute.sucessResetPassword);
           } else {
-            Get.defaultDialog(title: 'ERROR', middleText: 'ERROR');
+            Get.defaultDialog(title: '94'.tr, middleText: '94'.tr);
             //statusRequest = StatusRequest.noDatafailure;
           }
         } else {
-          Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+          Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
           statusRequest = StatusRequest.serverFailure;
         }
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'PASSWORDS NOT MATCH');
+        Get.defaultDialog(title: '94'.tr, middleText: '103'.tr);
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'VALIDATION ERROR');
+      Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
     }
+
     update();
   }
 

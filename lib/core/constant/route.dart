@@ -17,6 +17,7 @@ class AppRoute {
   static const String product = '/product';
   static const String productdetail = '/productdetail';
   static const String userfavorite = '/userfavorite';
+  static const String notification = '/notification';
 
   //Cart
   static const String cart = '/cart';

@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/controller/cart_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
-import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_bottomappbar.dart';
 import 'package:ecommerce_app/view/widget/cart/cart_productsection.dart';
@@ -15,18 +14,7 @@ class CartScreen extends StatelessWidget {
     Get.put(CartController());
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Cart'),
-            IconButton(
-                iconSize: 30,
-                onPressed: () {
-                  Get.toNamed(AppRoute.ordersView);
-                },
-                icon: const Icon(Icons.shopping_bag_rounded)),
-          ],
-        ),
+        title: Text('46'.tr),
       ),
       body: GetBuilder<CartController>(builder: (controller) {
         return HandlingDataView(
@@ -34,7 +22,7 @@ class CartScreen extends StatelessWidget {
           widget: ListView(
             children: [
               Text(
-                'You have ${controller.prosAmount} products',
+                '${'47'.tr} ${controller.prosAmount} ${'48'.tr}',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.displayLarge,
               ),

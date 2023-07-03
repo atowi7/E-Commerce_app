@@ -1,21 +1,20 @@
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomAppbar extends StatelessWidget {
   final String searchHint;
   final TextEditingController controller;
   final void Function(String)? onChanged;
   final void Function()? searchonPressed;
-  final void Function()? notifyPressed;
-  final void Function()? favPressed;
 
-  const CustomAppbar(
-      {super.key,
-      required this.searchHint,
-      required this.controller,
-      required this.onChanged,
-      required this.searchonPressed,
-      required this.notifyPressed,
-      required this.favPressed});
+  const CustomAppbar({
+    super.key,
+    required this.searchHint,
+    required this.controller,
+    required this.onChanged,
+    required this.searchonPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,9 @@ class CustomAppbar extends StatelessWidget {
               color: Colors.grey[700], borderRadius: BorderRadius.circular(20)),
           child: IconButton(
               iconSize: 30,
-              onPressed: notifyPressed,
+              onPressed: () {
+                Get.toNamed(AppRoute.notification);
+              },
               icon: const Icon(Icons.notifications_active_outlined)),
         ),
         Container(
@@ -61,8 +62,10 @@ class CustomAppbar extends StatelessWidget {
               color: Colors.grey[700], borderRadius: BorderRadius.circular(20)),
           child: IconButton(
               iconSize: 30,
-              onPressed: favPressed,
-              icon: const Icon(Icons.favorite_border_outlined)),
+              onPressed: () {
+                Get.toNamed(AppRoute.cart);
+              },
+              icon: const Icon(Icons.shopping_basket_outlined)),
         ),
       ],
     );

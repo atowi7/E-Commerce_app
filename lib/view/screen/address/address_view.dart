@@ -13,7 +13,7 @@ class AddressView extends StatelessWidget {
     ViewAddressController controller = Get.put(ViewAddressController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Address Detail'),
+        title: Text('49'.tr),
       ),
       body: GetBuilder<ViewAddressController>(builder: (controller) {
         return HandlingDataView(
@@ -22,9 +22,32 @@ class AddressView extends StatelessWidget {
               itemCount: controller.dataList.length,
               itemBuilder: (context, index) => AddressWidget(
                     addressModel: controller.dataList[index],
+                    onEdit: () {
+                      controller.goToEditAddress(
+                        controller.dataList[index].addressId!,
+                        controller.dataList[index].addressName!,
+                        controller.dataList[index].addressStreet!,
+                        controller.dataList[index].addressCity!,
+                      );
+                    },
                     onDelete: () {
-                      controller
-                          .deleteAddress(controller.dataList[index].addressId!);
+                      Get.defaultDialog(
+                        title: '39'.tr,
+                        titleStyle: Theme.of(context).textTheme.displayMedium,
+                        middleText: '40'.tr,
+                        middleTextStyle:
+                            Theme.of(context).textTheme.displaySmall,
+                        onConfirm: () {
+                          controller.deleteAddress(
+                              controller.dataList[index].addressId!);
+                        },
+                        confirmTextColor: AppColor.blue,
+                        cancelTextColor: AppColor.blue,
+                        buttonColor: AppColor.white,
+                        onCancel: () {
+                          Get.back();
+                        },
+                      );
                     },
                   )),
         );
@@ -41,9 +64,13 @@ class AddressView extends StatelessWidget {
 
 class AddressWidget extends StatelessWidget {
   final AddressModel addressModel;
+  final void Function()? onEdit;
   final void Function()? onDelete;
   const AddressWidget(
-      {super.key, required this.addressModel, required this.onDelete});
+      {super.key,
+      required this.addressModel,
+      required this.onEdit,
+      required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +78,18 @@ class AddressWidget extends StatelessWidget {
       title: Text('${addressModel.addressName}'),
       subtitle:
           Text('${addressModel.addressCity}+/ ${addressModel.addressStreet}'),
-      trailing: IconButton(
-        onPressed: onDelete,
-        icon: const Icon(Icons.delete_forever_rounded),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            onPressed: onEdit,
+            icon: const Icon(Icons.edit_rounded),
+          ),
+          IconButton(
+            onPressed: onDelete,
+            icon: const Icon(Icons.delete_forever_rounded),
+          ),
+        ],
       ),
     );
   }

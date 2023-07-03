@@ -12,15 +12,20 @@ class ViewOrdersScreen extends StatelessWidget {
     Get.put(OrdersController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Order'),
+        title: Text('69'.tr),
       ),
       body: GetBuilder<OrdersController>(builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
-          widget: ListView.builder(
-            itemCount: controller.dataList.length,
-            itemBuilder: (context, i) =>
-                OrderWedget(orderModel: controller.dataList[i]),
+          widget: RefreshIndicator(
+            onRefresh: () async {
+              await controller.viewOrders();
+            },
+            child: ListView.builder(
+              itemCount: controller.dataList.length,
+              itemBuilder: (context, i) =>
+                  OrderWedget(orderModel: controller.dataList[i]),
+            ),
           ),
         );
       }),

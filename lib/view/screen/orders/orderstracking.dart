@@ -12,7 +12,7 @@ class OrderTrackingScreen extends StatelessWidget {
     TrackingController trackingController = Get.put(TrackingController());
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Tracking'),
+        title: Text('93'.tr),
       ),
       body: GetBuilder<TrackingController>(builder: (controller) {
         return HandlingDataView(

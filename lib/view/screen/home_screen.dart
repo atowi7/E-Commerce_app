@@ -24,9 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
         return WillPopScope(
           onWillPop: () async {
             await Get.defaultDialog(
-              title: 'Warrning',
+              title: '39'.tr,
               titleStyle: Theme.of(context).textTheme.displayMedium,
-              middleText: 'Are you sure',
+              middleText: '40'.tr,
               middleTextStyle: Theme.of(context).textTheme.displaySmall,
               onConfirm: () => exit(0),
               confirmTextColor: AppColor.blue,

@@ -13,38 +13,38 @@ class AddressDetailAdd extends StatelessWidget {
     Get.put(AddAddressDetailController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Address Detail'),
+        title:  Text('52'.tr),
       ),
       body: GetBuilder<AddAddressDetailController>(builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
           widget: Column(children: [
             CustomTextForm(
-              labelText: 'name',
-              hintText: 'name',
+              labelText: '53'.tr,
+              hintText: '53'.tr,
               icon: Icons.add_location_alt,
               isNumber: false,
               controller: controller.name,
               validator: null,
             ),
             CustomTextForm(
-              labelText: 'street',
-              hintText: 'street',
+              labelText: '54'.tr,
+              hintText: '54'.tr,
               icon: Icons.streetview_rounded,
               isNumber: false,
               controller: controller.street,
               validator: null,
             ),
             CustomTextForm(
-              labelText: 'City',
-              hintText: 'City',
+              labelText: '55'.tr,
+              hintText: '55'.tr,
               icon: Icons.location_city_rounded,
               isNumber: false,
               controller: controller.city,
               validator: null,
             ),
             CustomButton(
-                title: 'ADD',
+                title: '56'.tr,
                 onPressed: () {
                   controller.addAddress();
                 })

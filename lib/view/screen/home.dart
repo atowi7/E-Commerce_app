@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/controller/home_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
-import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/data/model/productmodel.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
@@ -18,6 +17,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
+    // Get.put(FavoriteController());
     return ListView(
       children: [
         CustomAppbar(
@@ -28,10 +28,6 @@ class Home extends StatelessWidget {
           },
           searchonPressed: () {
             homeController.onSearch();
-          },
-          notifyPressed: () {},
-          favPressed: () {
-            Get.toNamed(AppRoute.userfavorite);
           },
         ),
         GetBuilder<HomeController>(builder: (controller) {
@@ -45,7 +41,13 @@ class Home extends StatelessWidget {
                       CustomCard(
                           title: '${controller.cardTitle}',
                           disc: '${controller.cardDesc}'),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       const CategorieSection(),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       const Custometitle(title: 'Top Selling products'),
                       const ProductHomeSection(),
                     ],

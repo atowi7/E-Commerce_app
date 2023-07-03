@@ -22,10 +22,6 @@ class SettingScreen extends StatelessWidget {
           controller: TextEditingController(),
           onChanged: null,
           searchonPressed: () {},
-          notifyPressed: () {},
-          favPressed: () {
-            Get.toNamed(AppRoute.userfavorite);
-          },
         ),
         Container(
           padding: const EdgeInsets.all(50),
@@ -34,39 +30,42 @@ class SettingScreen extends StatelessWidget {
           ),
           child: Lottie.asset(ImageAssets.profile),
         ),
-        ListTile(
-          onTap: () {
-            FirebaseMessaging.instance.getToken().then((value) => print(value));
-          },
-          title: Text('Display Notification'),
-          trailing: const Switch(value: true, onChanged: null),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('121'.tr),
+            Switch(
+              value: true,
+              onChanged: (value) {},
+            ),
+          ],
         ),
         ListTile(
           onTap: () {
             Get.toNamed(AppRoute.addressview);
           },
-          title: Text('Address'),
+          title: Text('50'.tr),
           trailing: const Icon(Icons.location_on_outlined),
         ),
         ListTile(
           onTap: () {
             Get.toNamed(AppRoute.ordersArchive);
           },
-          title: Text('Archive'),
+          title: Text('128'.tr),
           trailing: const Icon(Icons.archive_outlined),
         ),
         ListTile(
           onTap: () {
             settingController.contactUs();
           },
-          title: Text('Contact us'),
+          title: Text('120'.tr),
           trailing: const Icon(Icons.contact_mail_outlined),
         ),
         ListTile(
           onTap: () {
             settingController.logout();
           },
-          title: Text('Logout'),
+          title: Text('122'.tr),
           trailing: const Icon(Icons.logout_outlined),
         )
       ],

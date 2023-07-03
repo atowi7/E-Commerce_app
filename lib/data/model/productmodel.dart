@@ -4,8 +4,12 @@ class ProductModel {
   String? nameAr;
   String? description;
   String? descriptionAr;
+  String? color;
+  String? colorAr;
   String? image;
   String? price;
+  String? rate;
+  String? ratenote;
   String? discount;
   String? active;
   String? count;
@@ -26,6 +30,8 @@ class ProductModel {
     this.descriptionAr,
     this.image,
     this.price,
+    this.rate,
+    this.ratenote,
     this.discount,
     this.active,
     this.count,
@@ -43,10 +49,14 @@ class ProductModel {
     id = json['pro_id'];
     name = json['pro_name'];
     nameAr = json['pro_name_ar'];
-    description = json['pro_description'];
-    descriptionAr = json['pro_description_ar'];
+    description = json['pro_desc'];
+    descriptionAr = json['pro_desc_ar'];
+    color = json['pro_color'];
+    colorAr = json['pro_color_ar'];
     image = json['pro_image'];
     price = json['pro_price'];
+    rate = json['pro_rate'];
+    ratenote = json['pro_ratenote'];
     discount = json['pro_discount'];
     active = json['pro_active'];
     count = json['pro_count'];

@@ -46,6 +46,7 @@ class OrdersController extends BaseOrdersController {
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
+      Get.snackbar('94'.tr, '96'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
     update();
@@ -62,12 +63,12 @@ class OrdersController extends BaseOrdersController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         refreshPage();
-        Get.snackbar('NOTFY', 'delete from order sucess');
+        Get.snackbar('39'.tr, '138'.tr);
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('94'.tr, '139'.tr);
       }
     } else {
-      statusRequest = StatusRequest.serverFailure;
+      Get.snackbar('94'.tr, '96'.tr);
     }
     update();
   }
@@ -75,33 +76,33 @@ class OrdersController extends BaseOrdersController {
   @override
   String getDeliveryType(String val) {
     if (val == '0') {
-      return 'delivery';
+      return '64'.tr;
     } else {
-      return 'Myself';
+      return '65'.tr;
     }
   }
 
   @override
   String getPaymentMethod(String val) {
     if (val == '0') {
-      return 'cash';
+      return '61'.tr;
     } else {
-      return 'card';
+      return '62'.tr;
     }
   }
 
   @override
   String getStatus(String val) {
     if (val == '0') {
-      return 'waitting for approval';
+      return '124'.tr;
     } else if (val == '1') {
-      return 'preparing';
+      return '125'.tr;
     } else if (val == '2') {
-      return 'On the way';
+      return '126'.tr;
     } else if (val == '3') {
-      return 'Ready to pickup by delivery service';
+      return '127'.tr;
     } else {
-      return 'Archive';
+      return '128'.tr;
     }
   }
 

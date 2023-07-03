@@ -1,22 +1,20 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
-import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/address_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class BaseAddAddressDetailController extends GetxController {
-  addAddress();
+abstract class BaseEditAddressController extends GetxController {
+  editAddress();
 }
 
-class AddAddressDetailController extends BaseAddAddressDetailController {
+class EditAddressController extends BaseEditAddressController {
+  late String addressId;
   late TextEditingController name;
   late TextEditingController street;
   late TextEditingController city;
-
-  double? lat;
-  double? long;
+  String? userid;
 
   AppServices appServices = Get.find();
 
@@ -26,35 +24,35 @@ class AddAddressDetailController extends BaseAddAddressDetailController {
 
   @override
   void onInit() {
+    addressId = Get.arguments['addressid'];
     name = TextEditingController();
     street = TextEditingController();
     city = TextEditingController();
-    lat = Get.arguments['lat'];
-    long = Get.arguments['long'];
+
+    name.text = Get.arguments['name'];
+    street.text = Get.arguments['street'];
+    city.text = Get.arguments['city'];
+
+    userid = appServices.sharedPreferences.getString('userid');
     super.onInit();
   }
 
   @override
-  addAddress() async {
+  editAddress() async {
     statusRequest = StatusRequest.loading;
     update();
 
-    var response = await addressData.addAddress(
-        name.text,
-        lat.toString(),
-        long.toString(),
-        street.text,
-        city.text,
-        appServices.sharedPreferences.getString('userid')!);
+    var response = await addressData.editAddress(
+        addressId, name.text, street.text, city.text, userid!);
 
     statusRequest = handleData(response);
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        Get.snackbar('39'.tr, '140'.tr);
-        Get.offNamed(AppRoute.addressview);
+        Get.snackbar('39'.tr, '142'.tr);
+        // Get.toNamed(AppRoute.addressview);
       } else {
-        Get.snackbar('39'.tr, '141'.tr);
+        Get.snackbar('39'.tr, '143'.tr);
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {

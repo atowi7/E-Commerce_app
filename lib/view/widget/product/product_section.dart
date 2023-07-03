@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/controller/favorite_controller.dart';
 import 'package:ecommerce_app/controller/product_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/data/model/productmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
@@ -13,6 +14,7 @@ class ProductSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FavoriteController favoriteController = Get.put(FavoriteController());
+
     return GetBuilder<ProductController>(builder: (controller) {
       return HandlingDataView(
         statusRequest: controller.statusRequest,
@@ -44,14 +46,21 @@ class ProductWedget extends GetView<ProductController> {
       child: Card(
         child: Stack(
           children: [
+            if (productModel.discount != '0')
+              const Positioned(
+                  top: 20,
+                  child: Icon(
+                    Icons.discount_rounded,
+                    color: AppColor.black,
+                  )),
             Column(
               children: [
                 Hero(
                   tag: '${productModel.id}',
                   child: CachedNetworkImage(
                     imageUrl: '${AppLink.productImage}/${productModel.image}',
-                    height: 70,
-                    width: 70,
+                    height: 60,
+                    width: 60,
                   ),
                 ),
                 Text(
@@ -61,7 +70,7 @@ class ProductWedget extends GetView<ProductController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Rating'),
+                    Text('42'.tr),
                     Row(
                         children: List.generate(
                             3,
@@ -73,37 +82,36 @@ class ProductWedget extends GetView<ProductController> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text('${controller.deliveryTime} Minute'),
+                    Text('${controller.deliveryTime} ${'43'.tr}'),
                     const Icon(Icons.timer_sharp)
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('${productModel.priceafterdiscount}\$'),
-                    GetBuilder<FavoriteController>(builder: (controller) {
-                      return IconButton(
-                          onPressed: () {
-                            if (controller.isFav[productModel.id] == '0') {
-                              controller.setFavorite(productModel.id!, '1');
-                              controller.addFavorite(productModel.id!);
-                            } else {
-                              controller.setFavorite(productModel.id!, '0');
-                              controller.deleteFavorite(productModel.id!);
-                            }
-                          },
-                          icon: controller.isFav[productModel.id] == '0'
-                              ? const Icon(Icons.favorite_outline_rounded)
-                              : const Icon(Icons.favorite));
-                    })
-                  ],
-                ),
+                Text('${productModel.priceafterdiscount} \$'),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+
+                //     GetBuilder<FavoriteController>(builder: (controller) {
+                //       return IconButton(
+                //           onPressed: () {
+                //             if (controller.isFav[productModel.id] == '0') {
+                //               controller.setFavorite(productModel.id!, '1');
+                //               controller.addFavorite(productModel.id!);
+                //             } else {
+                //               controller.setFavorite(productModel.id!, '0');
+                //               controller.deleteFavorite(productModel.id!);
+                //             }
+                //           },
+                //           icon: controller.isFav[productModel.id] == '0'
+                //               ? const Icon(Icons.favorite_outline_rounded)
+                //               : const Icon(Icons.favorite));
+                //     }),
+                //   ],
+                // ),
               ],
             ),
-            if (productModel.discount != '0')
-              const Positioned(top: 20, child: Icon(Icons.discount_rounded))
           ],
         ),
       ),

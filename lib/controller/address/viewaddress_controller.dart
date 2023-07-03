@@ -10,6 +10,7 @@ abstract class BaseViewAddressController extends GetxController {
   viewAddress();
   deleteAddress(String addressid);
   goToAddAddress();
+  goToEditAddress(String addressId, String name, String street, String city);
 }
 
 class ViewAddressController extends BaseViewAddressController {
@@ -51,6 +52,7 @@ class ViewAddressController extends BaseViewAddressController {
   deleteAddress(addressid) async {
     statusRequest = StatusRequest.loading;
     update();
+
     var response = await addressData.deleteAddress(addressid);
 
     statusRequest = handleData(response);
@@ -59,18 +61,31 @@ class ViewAddressController extends BaseViewAddressController {
       if (response['status'] == 'sucess') {
         dataList.removeWhere((element) => element.addressId == addressid);
         update();
-        Get.snackbar('NOTFY', 'delete from Address sucess');
+        Get.snackbar('39'.tr, '144'.tr);
       } else {
+        Get.snackbar('39'.tr, '145'.tr);
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
+      Get.snackbar('94'.tr, '96'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
+
     update();
   }
 
   @override
   goToAddAddress() {
     Get.toNamed(AppRoute.addressadd);
+  }
+
+  @override
+  goToEditAddress(addressId, name, street, city) {
+    Get.toNamed(AppRoute.addressedit, arguments: {
+      'addressid': addressId,
+      'name': name,
+      'street': street,
+      'city': city,
+    });
   }
 }

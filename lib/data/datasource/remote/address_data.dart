@@ -26,9 +26,14 @@ class AddressData {
     return response.fold((l) => l, (r) => r);
   }
 
-  editAddresse(String addressid) async {
+  editAddress(String addressid, String name, String street, String city,
+      String userid) async {
     var response = await crud.postData(AppLink.addressEdit, {
       'adderssid': addressid,
+      'name': name,
+      'street': street,
+      'city': city,
+      'userid': userid,
     });
     return response.fold((l) => l, (r) => r);
   }

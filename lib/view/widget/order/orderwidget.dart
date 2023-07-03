@@ -18,7 +18,7 @@ class OrderWedget extends GetView<OrdersController> {
           Row(
             children: [
               Text(
-                'Order Number : ${orderModel.ordersId}',
+                '${'70'.tr} : ${orderModel.ordersId}',
                 style: Theme.of(context).textTheme.displayMedium,
               ),
               const Spacer(),
@@ -29,16 +29,16 @@ class OrderWedget extends GetView<OrdersController> {
             ],
           ),
           const Divider(color: AppColor.blue),
-          Text('Order price : ${orderModel.ordersPrice}'),
-          Text('Order delivery price : ${orderModel.ordersDeliveryprice}\$'),
+          Text('${'71'.tr} : ${orderModel.ordersPrice}'),
+          Text('${'72'.tr} : ${orderModel.ordersDeliveryprice}\$'),
           Text(
-              'Order payment method : ${controller.getPaymentMethod(orderModel.ordersPaymentmethod!)}'),
+              '${'73'.tr} : ${controller.getPaymentMethod(orderModel.ordersPaymentmethod!)}'),
           Text(
-              'Order delivery type : ${controller.getDeliveryType(orderModel.ordersType!)}'),
+              '${'74'.tr} : ${controller.getDeliveryType(orderModel.ordersType!)}'),
           Text(
-              'Order order status : ${controller.getStatus(orderModel.ordersStatus!)}'),
+              '${'75'.tr} : ${controller.getStatus(orderModel.ordersStatus!)}'),
           const Divider(color: AppColor.blue),
-          Text('Order total price : ${orderModel.ordersTotalprice}\$'),
+          Text('${'76'.tr} : ${orderModel.ordersTotalprice}\$'),
           const Divider(color: AppColor.blue),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -50,7 +50,7 @@ class OrderWedget extends GetView<OrdersController> {
                     });
                   },
                   color: AppColor.blue,
-                  child: Text('Details')),
+                  child: Text('77'.tr)),
               if (orderModel.ordersStatus == '3')
                 MaterialButton(
                     onPressed: () {
@@ -59,14 +59,29 @@ class OrderWedget extends GetView<OrdersController> {
                       });
                     },
                     color: AppColor.blue,
-                    child: Text('Tracking')),
+                    child: Text('78'.tr)),
               if (orderModel.ordersStatus == '0')
                 MaterialButton(
                     onPressed: () {
-                      controller.deleteOrders(orderModel.ordersId!);
+                      Get.defaultDialog(
+                        title: '39'.tr,
+                        titleStyle: Theme.of(context).textTheme.displayMedium,
+                        middleText: '40'.tr,
+                        middleTextStyle:
+                            Theme.of(context).textTheme.displaySmall,
+                        onConfirm: () {
+                          controller.deleteOrders(orderModel.ordersId!);
+                        },
+                        confirmTextColor: AppColor.blue,
+                        cancelTextColor: AppColor.blue,
+                        buttonColor: AppColor.white,
+                        onCancel: () {
+                          Get.back();
+                        },
+                      );
                     },
                     color: AppColor.blue,
-                    child: Text('Delete'))
+                    child: Text('79'.tr))
             ],
           ),
         ],

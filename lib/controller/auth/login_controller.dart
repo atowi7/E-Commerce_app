@@ -68,16 +68,14 @@ class LoginController extends BaseLoginController {
             });
           }
         } else {
-          Get.defaultDialog(
-              title: 'ERROR',
-              middleText: 'THERE IS PROBLEM IN EMAIL OR PASSWORD');
+          Get.defaultDialog(title: '94'.tr, middleText: '95'.tr);
           //statusRequest = StatusRequest.noDatafailure;
         }
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+        Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'VALIDATION ERROR');
+      Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
     }
     update();
   }

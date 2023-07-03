@@ -82,10 +82,10 @@ class CartController extends BaseCartController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        Get.snackbar('NOTFY', 'add to cart sucess');
+        Get.snackbar('39'.tr, '104'.tr);
       } else {
-        Get.snackbar('NOTFY', 'add to cart Fail');
-        statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('39'.tr, '105'.tr);
+        // statusRequest = StatusRequest.noDatafailure;
       }
     } else {
       statusRequest = StatusRequest.serverFailure;
@@ -104,9 +104,11 @@ class CartController extends BaseCartController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        Get.snackbar('NOTFY', 'delete from cart sucess');
+        Get.snackbar('39'.tr, '106'.tr);
+        refreshPage();
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('39'.tr, '107'.tr);
+        // statusRequest = StatusRequest.noDatafailure;
       }
     } else {
       statusRequest = StatusRequest.serverFailure;
@@ -116,23 +118,8 @@ class CartController extends BaseCartController {
 
   @override
   deleteCartByUser() async {
-    // statusRequest = StatusRequest.loading;
-    // update();
-    var response = await cartdata
+    await cartdata
         .deleteCartByUser(appServices.sharedPreferences.getString('userid')!);
-
-    statusRequest = handleData(response);
-
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('NOTFY', 'delete from cart sucess');
-      } else {
-        Get.snackbar('ERRI', 'delete from cart sucess');
-      }
-    } else {
-      // statusRequest = StatusRequest.serverFailure;
-    }
-    // update();
   }
 
   @override
@@ -154,10 +141,10 @@ class CartController extends BaseCartController {
       } else {
         couponName = 'invalid';
         couponDiscount = 0;
-        Get.snackbar('NOTFY', 'Invalid coupon');
+        Get.snackbar('39'.tr, '108'.tr);
       }
     } else {
-      Get.snackbar('NOTFY', 'Server Error');
+      Get.snackbar('94'.tr, '96'.tr);
     }
     update();
   }
@@ -169,7 +156,7 @@ class CartController extends BaseCartController {
 
   @override
   goToCheckout() {
-    if (dataList.isEmpty) return Get.snackbar('Notify', 'Cart is empty');
+    if (dataList.isEmpty) return Get.snackbar('39'.tr, '107'.tr);
     Get.toNamed(AppRoute.ordersCheckout, arguments: {
       'totalPrice': getTotalPrice().toString(),
       'couponId': couponId,
@@ -180,7 +167,6 @@ class CartController extends BaseCartController {
 
   @override
   refreshPage() {
-    dataList.clear();
     totalPrice = 0;
     prosAmount = 0;
     viewCart();

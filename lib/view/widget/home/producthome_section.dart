@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controller/favorite_controller.dart';
 import 'package:ecommerce_app/controller/home_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
@@ -17,10 +18,11 @@ class ProductHomeSection extends GetView<HomeController> {
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => ProductWidget(
-                productModel: ProductModel.fromJson(controller.products[index]),
+                productModel:
+                    ProductModel.fromJson(controller.topSellingProducts[index]),
               ),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
-          itemCount: controller.products.length),
+          itemCount: controller.topSellingProducts.length),
     );
   }
 }
@@ -31,40 +33,48 @@ class ProductWidget extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(FavoriteController());
     return InkWell(
       onTap: () => controller.goToProductDetial(productModel),
-      child: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            decoration: BoxDecoration(
-              color: AppColor.blue,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: AppColor.black),
+      child: Card(
+        child: Stack(
+          children: [
+            if (productModel.discount != '0')
+              const Positioned(
+                  top: 20,
+                  child: Icon(
+                    Icons.discount_rounded,
+                    color: AppColor.black,
+                  )),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              decoration: BoxDecoration(
+                color: AppColor.blue,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: AppColor.black),
+              ),
+              child: Column(
+                children: [
+                  Hero(
+                    tag: '${productModel.id}',
+                    child: Image.network(
+                      '${AppLink.productImage}/${productModel.image}',
+                      color: AppColor.white,
+                    ),
+                  ),
+                  Text(
+                    '${productModel.name}',
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
             ),
-            child: Image.network(
-              '${AppLink.productImage}/${productModel.image}',
-              color: AppColor.white,
-            ),
-          ),
-          Positioned(
-            left: 10,
-            child: Text(
-              '${productModel.name}',
-              style: const TextStyle(fontSize: 20),
-            ),
-          ),
-          if (productModel.discount != '0')
-            const Positioned(
-                top: 10,
-                child: Icon(
-                  Icons.discount_rounded,
-                  color: AppColor.black,
-                ))
-          // Container(
-          //   color: Colors.black,
-          // ),
-        ],
+
+            // Container(
+            //   color: Colors.black,
+            // ),
+          ],
+        ),
       ),
     );
   }

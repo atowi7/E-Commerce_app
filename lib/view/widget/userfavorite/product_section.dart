@@ -11,7 +11,6 @@ class ProductSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(UserFavoriteController());
     return GetBuilder<UserFavoriteController>(builder: (controller) {
       return HandlingDataView(
         statusRequest: controller.statusRequest,
@@ -54,7 +53,7 @@ class ProductWedget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Rating'),
+              Text('42'.tr),
               Row(
                   children: List.generate(
                       3,
@@ -65,19 +64,20 @@ class ProductWedget extends StatelessWidget {
                           )))
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('${userFavoriteModel.proPrice}\$'),
-              GetBuilder<UserFavoriteController>(builder: (controller) {
-                return IconButton(
-                    onPressed: () {
-                      controller.deletData(userFavoriteModel.favId!);
-                    },
-                    icon: const Icon(Icons.favorite_rounded));
-              })
-            ],
-          ),
+          Text('${userFavoriteModel.proPrice}\$'),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+
+          //     GetBuilder<UserFavoriteController>(builder: (controller) {
+          //       return IconButton(
+          //           onPressed: () {
+          //             controller.deletData(userFavoriteModel.favId!);
+          //           },
+          //           icon: const Icon(Icons.favorite_rounded));
+          //     })
+          //   ],
+          // ),
         ],
       ),
     );

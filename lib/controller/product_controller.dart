@@ -49,6 +49,7 @@ class ProductController extends BaseProductController {
 
   getData(String cid) async {
     statusRequest = StatusRequest.loading;
+    update();
 
     var response = await productData.getData(userid!, cid);
 
@@ -61,7 +62,11 @@ class ProductController extends BaseProductController {
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
+    } else {
+      Get.snackbar('94'.tr, '96'.tr);
+      statusRequest = StatusRequest.serverFailure;
     }
+
     update();
   }
 

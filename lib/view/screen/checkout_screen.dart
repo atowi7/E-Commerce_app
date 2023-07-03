@@ -17,42 +17,15 @@ class CheckOutScreen extends StatelessWidget {
     CheckoutController checkoutController = Get.put(CheckoutController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Check out'),
+        title: Text('59'.tr),
       ),
       body: GetBuilder<CheckoutController>(builder: (controller) {
         return Container(
           padding: const EdgeInsets.all(5),
           child: ListView(children: [
+            
             Text(
-              'Choose Payment Method',
-              style: Theme.of(context).textTheme.displayLarge,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              InkWell(
-                onTap: () {
-                  controller.choosePyamentMethod('0');
-                },
-                child: CardBox(
-                    title: 'Card',
-                    active: controller.payment == '0' ? true : false),
-              ),
-              InkWell(
-                onTap: () {
-                  controller.choosePyamentMethod('1');
-                },
-                child: CashBox(
-                    title: 'Cash',
-                    active: controller.payment == '1' ? true : false),
-              )
-            ]),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Choose Delivery Type',
+              '63'.tr,
               style: Theme.of(context).textTheme.displayLarge,
             ),
             const SizedBox(
@@ -66,14 +39,14 @@ class CheckOutScreen extends StatelessWidget {
                       controller.chooseDeliveryType('0');
                     },
                     child: DeliveryBox(
-                        title: 'Delivery',
+                        title: '64'.tr,
                         active: controller.deliveryType == '0' ? true : false)),
                 InkWell(
                     onTap: () {
                       controller.chooseDeliveryType('1');
                     },
                     child: MySelfBox(
-                        title: 'My self',
+                        title: '65'.tr,
                         active: controller.deliveryType == '1' ? true : false)),
               ],
             ),
@@ -85,24 +58,24 @@ class CheckOutScreen extends StatelessWidget {
                 children: [
                   controller.addressList.isNotEmpty
                       ? Text(
-                          'Choose Shipping Address',
+                          '66'.tr,
                           style: Theme.of(context).textTheme.displayLarge,
                         )
                       : Column(
                           children: [
                             Text(
-                              'Pleass add address',
+                              '67'.tr,
                               style: Theme.of(context).textTheme.displayMedium,
                             ),
                             MaterialButton(
-                              color: AppColor.blue,
+                                color: AppColor.blue,
                                 onPressed: () {
                                   Get.toNamed(
                                     AppRoute.addressadd,
                                   );
                                 },
                                 child: Text(
-                                  'Click here',
+                                  '68'.tr,
                                   style:
                                       Theme.of(context).textTheme.displayMedium,
                                 ))
@@ -131,6 +104,34 @@ class CheckOutScreen extends StatelessWidget {
                   )
                 ],
               ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              '60'.tr,
+              style: Theme.of(context).textTheme.displayLarge,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              InkWell(
+                onTap: () {
+                  controller.choosePyamentMethod('0');
+                },
+                child: CardBox(
+                    title: '61'.tr,
+                    active: controller.payment == '0' ? true : false),
+              ),
+              InkWell(
+                onTap: () {
+                  controller.choosePyamentMethod('1');
+                },
+                child: CashBox(
+                    title: '62'.tr,
+                    active: controller.payment == '1' ? true : false),
+              )
+            ]),
           ]),
         );
       }),
@@ -144,7 +145,7 @@ class CheckOutScreen extends StatelessWidget {
           onPressed: () {
             checkoutController.checkout();
           },
-          child: const Text('Check out'),
+          child: Text('12'.tr),
         ),
       ),
     );

@@ -11,8 +11,7 @@ abstract class BaseOrdersArchiveController extends GetxController {
   String getDeliveryType(String val);
   String getPaymentMethod(String val);
   String getStatus(String val);
-  sendRatring(String ordersId, double rate, String comment);
-  goToOrderDetails();
+  // goToOrderDetails();
 }
 
 class OrdersArchiveController extends BaseOrdersArchiveController {
@@ -63,58 +62,29 @@ class OrdersArchiveController extends BaseOrdersArchiveController {
   @override
   String getPaymentMethod(String val) {
     if (val == '0') {
-      return 'cash';
+      return '61'.tr;
     } else {
-      return 'card';
+      return '62'.tr;
     }
   }
 
   @override
   String getStatus(String val) {
     if (val == '0') {
-      return 'waitting for approval';
+      return '124'.tr;
     } else if (val == '1') {
-      return 'preparing';
+      return '125'.tr;
     } else if (val == '2') {
-      return 'On the way';
+      return '126'.tr;
     } else if (val == '3') {
-      return 'Ready to pickup by delivery service';
+      return '127'.tr;
     } else {
-      return 'Archive';
+      return '128'.tr;
     }
   }
 
   @override
   refreshPage() {
     viewOrders();
-  }
-
-  @override
-  goToOrderDetails() {
-    // Get.toNamed(AppRoute.ordersDetails, arguments: {
-    //   'orderModel': dataList,
-    // });
-  }
-
-  @override
-  sendRatring(ordersId, rate, comment) async {
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await ordersArchiveData.sendRating(ordersId, rate.toString(), comment);
-
-    statusRequest = handleData(response);
-
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('NOTFY', 'Your rating has been submitted');
-        viewOrders();
-      } else {
-        Get.snackbar('NOTFY', 'ERROR : Your rating has not been submitted');
-      }
-    } else {
-      Get.snackbar(
-          'NOTFY', 'SERRVER ERROR : Your rating has not been submitted');
-    }
-    update();
   }
 }

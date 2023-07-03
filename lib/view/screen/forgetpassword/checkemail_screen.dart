@@ -18,7 +18,7 @@ class CheckemailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Check Email'),
+        title: Text('31'.tr),
       ),
       body: GetBuilder<CheckEmailController>(builder: (controller) {
         return HandlingDataReqest(
@@ -28,13 +28,11 @@ class CheckemailScreen extends StatelessWidget {
             child: ListView(
               children: [
                 const Logo(),
-                const CustomTextTitle(title: 'Check Email'),
-                const CustomTextBody(
-                    title:
-                        'Please Enter your email to recieve the verfication code'),
+                CustomTextTitle(title: '31'.tr),
+                CustomTextBody(title: '32'.tr),
                 CustomTextForm(
-                  labelText: 'Email',
-                  hintText: 'Email',
+                  labelText: '16'.tr,
+                  hintText: '16'.tr,
                   icon: Icons.email,
                   isNumber: false,
                   controller: controller.email,
@@ -43,7 +41,7 @@ class CheckemailScreen extends StatelessWidget {
                   },
                 ),
                 CustomButton(
-                  title: 'Check',
+                  title: '33'.tr,
                   onPressed: () {
                     controller.openVerfication();
                   },

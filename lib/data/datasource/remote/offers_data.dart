@@ -6,8 +6,10 @@ class OffersData {
 
   OffersData(this.crud);
 
-  getData() async {
-    var response = await crud.postData(AppLink.offers, {});
+  getData(String userid) async {
+    var response = await crud.postData(AppLink.offers, {
+      'userid': userid,
+    });
     return response.fold((l) => l, (r) => r);
   }
 }

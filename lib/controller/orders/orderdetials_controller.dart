@@ -54,6 +54,7 @@ class OrderDetialsController extends BaseOrderDetialsController {
   viewOrderDetails() async {
     statusRequest = StatusRequest.loading;
     update();
+
     var response = await ordersDetailsData.getData(orderModel.ordersId!);
 
     statusRequest = handleData(response);
@@ -67,8 +68,10 @@ class OrderDetialsController extends BaseOrderDetialsController {
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      // statusRequest = StatusRequest.serverFailure;
+      Get.snackbar('94'.tr, '96'.tr);
+      statusRequest = StatusRequest.serverFailure;
     }
+
     update();
   }
 }

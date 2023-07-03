@@ -12,7 +12,7 @@ class OrdersArchiveScreen extends StatelessWidget {
     Get.put(OrdersArchiveController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Order Archive'),
+        title: Text('80'.tr),
       ),
       body: GetBuilder<OrdersArchiveController>(builder: (controller) {
         return HandlingDataView(

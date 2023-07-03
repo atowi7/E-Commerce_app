@@ -19,7 +19,7 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
           Row(
             children: [
               Text(
-                'Order Number : ${orderModel.ordersId}',
+                '${'70'.tr} : ${orderModel.ordersId}',
                 style: Theme.of(context).textTheme.displayMedium,
               ),
               const Spacer(),
@@ -30,52 +30,52 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
             ],
           ),
           const Divider(color: AppColor.blue),
-          Text('Order price : ${orderModel.ordersPrice}'),
-          Text('Order delivery price : ${orderModel.ordersDeliveryprice}\$'),
+          Text('${'71'.tr} : ${orderModel.ordersPrice}'),
+          Text('${'72'.tr} : ${orderModel.ordersDeliveryprice}\$'),
           Text(
-              'Order payment method : ${controller.getPaymentMethod(orderModel.ordersPaymentmethod!)}'),
+              '${'73'.tr} : ${controller.getPaymentMethod(orderModel.ordersPaymentmethod!)}'),
           Text(
-              'Order delivery type : ${controller.getDeliveryType(orderModel.ordersType!)}'),
+              '${'74'.tr} : ${controller.getDeliveryType(orderModel.ordersType!)}'),
           Text(
-              'Order order status : ${controller.getStatus(orderModel.ordersStatus!)}'),
+              '${'75'.tr} : ${controller.getStatus(orderModel.ordersStatus!)}'),
           const Divider(color: AppColor.blue),
-          Text('Order total price : ${orderModel.ordersTotalprice}\$'),
+          Text('${'76'.tr} : ${orderModel.ordersTotalprice}\$'),
           const Divider(color: AppColor.blue),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              if (orderModel.ordersRate == '0')
-                MaterialButton(
-                    onPressed: () {
-                      final dailog = RatingDialog(
-                          initialRating: 1.0,
-                          title: Text(
-                            'Rate your order',
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.displayLarge,
-                          ),
-                          message: Text(
-                            'Tap a star to set your rating, add more description here if you want',
-                            textAlign: TextAlign.center,
-                          ),
-                          submitButtonText: 'Send',
-                          submitButtonTextStyle:
-                              const TextStyle(color: AppColor.blue),
-                          onSubmitted: (value) {
-                            if (value.rating == 0.0) {
-                              Get.snackbar('NOTFY', 'Please rate your order');
-                            } else {
-                              controller.sendRatring(orderModel.ordersId!,
-                                  value.rating, value.comment);
-                            }
-                          });
-                      showDialog(
-                          context: context,
-                          barrierDismissible: true,
-                          builder: (context) => dailog);
-                    },
-                    color: AppColor.blue,
-                    child: Text('Rate')),
+              // if (orderModel.ordersRate == '0')
+              //   MaterialButton(
+              //       onPressed: () {
+              //         final dailog = RatingDialog(
+              //             initialRating: 1.0,
+              //             title: Text(
+              //               '81'.tr,
+              //               textAlign: TextAlign.center,
+              //               style: Theme.of(context).textTheme.displayLarge,
+              //             ),
+              //             message: Text(
+              //               '82'.tr,
+              //               textAlign: TextAlign.center,
+              //             ),
+              //             submitButtonText: '83'.tr,
+              //             submitButtonTextStyle:
+              //                 const TextStyle(color: AppColor.blue),
+              //             onSubmitted: (value) {
+              //               if (value.rating == 0.0) {
+              //                 Get.snackbar('84'.tr, '85'.tr);
+              //               } else {
+              //                 controller.sendRatring(orderModel.ordersId!,
+              //                     value.rating, value.comment);
+              //               }
+              //             });
+              //         showDialog(
+              //             context: context,
+              //             barrierDismissible: true,
+              //             builder: (context) => dailog);
+              //       },
+              //       color: AppColor.blue,
+              //       child: Text('86'.tr)),
               MaterialButton(
                   onPressed: () {
                     Get.toNamed(AppRoute.ordersDetails, arguments: {
@@ -83,7 +83,7 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
                     });
                   },
                   color: AppColor.blue,
-                  child: Text('Details')),
+                  child: Text('77'.tr)),
             ],
           ),
         ],

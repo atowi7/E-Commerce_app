@@ -13,6 +13,7 @@ abstract class BaseProductDetailController extends GetxController {
   addCount();
   deleteCount();
   getCount(String proid);
+  sendRatring(String proId, double rate, String comment);
 }
 
 class ProductDetailController extends BaseProductDetailController {
@@ -25,11 +26,11 @@ class ProductDetailController extends BaseProductDetailController {
 
   late StatusRequest statusRequest;
 
-  List itemf = [
-    {'name': 'red', 'active': 0},
-    {'name': 'blue', 'active': 1},
-    {'name': 'green', 'active': 0},
-  ];
+  // List itemf = [
+  //   {'name': 'red', 'active': 0},
+  //   {'name': 'blue', 'active': 1},
+  //   {'name': 'green', 'active': 0},
+  // ];
 
   @override
   void onInit() {
@@ -41,6 +42,7 @@ class ProductDetailController extends BaseProductDetailController {
   initialData() async {
     statusRequest = StatusRequest.loading;
     productModel = Get.arguments['productmodel'];
+    print('productModel $productModel');
     count = await getCount(productModel.id!);
     statusRequest = StatusRequest.none;
     update();
@@ -64,6 +66,7 @@ class ProductDetailController extends BaseProductDetailController {
   addCart(proid) async {
     statusRequest = StatusRequest.loading;
     update();
+
     var response = await cartdata.addCart(
         appServices.sharedPreferences.getString('userid')!, proid);
 
@@ -71,13 +74,18 @@ class ProductDetailController extends BaseProductDetailController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        Get.snackbar('NOTFY', 'add to cart sucess');
+        Get.snackbar('39'.tr, '104'.tr);
         update();
       } else {
-        Get.snackbar('NOTFY', 'add to cart Fail');
+        Get.snackbar('39'.tr, '105'.tr);
         statusRequest = StatusRequest.noDatafailure;
       }
+    } else {
+      Get.snackbar('94'.tr, '96'.tr);
+      statusRequest = StatusRequest.serverFailure;
     }
+
+    update();
   }
 
   @override
@@ -91,12 +99,14 @@ class ProductDetailController extends BaseProductDetailController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        Get.snackbar('NOTFY', 'delete from cart sucess');
+        Get.snackbar('39'.tr, '106'.tr);
         update();
       } else {
+        Get.snackbar('94'.tr, '107'.tr);
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
+      Get.snackbar('94'.tr, '96'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
   }
@@ -112,5 +122,26 @@ class ProductDetailController extends BaseProductDetailController {
       int count = int.parse(response['data']);
       return count;
     }
+  }
+
+  @override
+  sendRatring(proId, rate, comment) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response =
+        await cartdata.sendRating(proId, rate.toString(), comment);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.sucess == statusRequest) {
+      if (response['status'] == 'sucess') {
+        Get.snackbar('39'.tr, '129'.tr);
+      } else {
+        Get.snackbar('94'.tr, '130'.tr);
+      }
+    } else {
+      Get.snackbar('94'.tr, '96'.tr);
+    }
+    update();
   }
 }

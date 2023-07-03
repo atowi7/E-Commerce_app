@@ -32,11 +32,11 @@ class SignupVerficationController extends BaseSignupVerficationController {
       if (response['status'] == 'sucess') {
         Get.offNamed(AppRoute.successSignup);
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'VCODE ERROR');
+        Get.defaultDialog(title: '94'.tr, middleText: '99'.tr);
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+      Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
     update();
@@ -48,13 +48,13 @@ class SignupVerficationController extends BaseSignupVerficationController {
     statusRequest = handleData(response);
     if (statusRequest == StatusRequest.sucess) {
       if (response['status'] == 'sucess') {
-        Get.defaultDialog(title: 'Warring', middleText: 'VCODE is send');
+        Get.defaultDialog(title: '39'.tr, middleText: '100'.tr);
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'VCODE is not send');
+        Get.defaultDialog(title: '94'.tr, middleText: '101'.tr);
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+      Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
     update();

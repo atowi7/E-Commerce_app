@@ -17,42 +17,69 @@ ThemeData englishTheme = ThemeData(
   floatingActionButtonTheme:
       const FloatingActionButtonThemeData(backgroundColor: AppColor.blue),
   textTheme: const TextTheme(
-      displayLarge: TextStyle(
-        fontFamily: 'Roboto',
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: AppColor.blue,
-      ),
-      displayMedium: TextStyle(
-        fontFamily: 'Roboto',
-        fontSize: 18,
-      ),
-       displaySmall: TextStyle(
-        fontFamily: 'Roboto',
-        fontSize: 16,
-      ),
-      labelLarge: TextStyle(
-          fontFamily: 'Roboto',
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: AppColor.white)),
+    displayLarge: TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 28,
+      fontWeight: FontWeight.bold,
+      color: AppColor.blue,
+    ),
+    displayMedium: TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 25,
+      fontWeight: FontWeight.bold,
+    ),
+    displaySmall: TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    ),
+    labelLarge: TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 28,
+      color: AppColor.blue,
+    ),
+    labelMedium: TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 25,
+    ),
+    labelSmall: TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 20,
+    ),
+  ),
 );
 
 ThemeData arabicTheme = ThemeData(
   textTheme: const TextTheme(
-      displayLarge: TextStyle(
-        fontFamily: 'Cairo',
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: AppColor.blue,
-      ),
-      displayMedium: TextStyle(
-        fontFamily: 'Cairo',
-        fontSize: 18,
-      ),
-      labelLarge: TextStyle(
-          fontFamily: 'Cairo',
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: AppColor.white)),
+    displayLarge: TextStyle(
+      fontFamily: 'Cairo',
+      fontSize: 28,
+      fontWeight: FontWeight.bold,
+      color: AppColor.blue,
+    ),
+    displayMedium: TextStyle(
+      fontFamily: 'Cairo',
+      fontSize: 25,
+      fontWeight: FontWeight.bold,
+    ),
+    displaySmall: TextStyle(
+      fontFamily: 'Cairo',
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: AppColor.white,
+    ),
+    labelLarge: TextStyle(
+      fontFamily: 'Cairo',
+      fontSize: 28,
+      color: AppColor.blue,
+    ),
+    labelMedium: TextStyle(
+      fontFamily: 'Cairo',
+      fontSize: 25,
+    ),
+    labelSmall: TextStyle(
+      fontFamily: 'Cairo',
+      fontSize: 20,
+    ),
+  ),
 );

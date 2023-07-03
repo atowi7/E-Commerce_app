@@ -29,7 +29,7 @@ class HomeController extends BaseHomeController {
 
   List headings = [];
   List categories = [];
-  List products = [];
+  //List products = [];
   List topSellingProducts = [];
 
   @override
@@ -59,7 +59,9 @@ class HomeController extends BaseHomeController {
         appServices.sharedPreferences.setString('deliverytime', deliveryTime!);
 
         categories.addAll(response['categories']);
-        products.addAll(response['producttopselling']);
+        if (response['producttopselling'] != 0) {
+          topSellingProducts.addAll(response['producttopselling']);
+        }
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }

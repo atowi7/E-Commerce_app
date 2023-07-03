@@ -13,7 +13,7 @@ class OrderDetailsScreen extends StatelessWidget {
     Get.put(OrderDetialsController());
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Detail'),
+        title: Text('87'.tr),
       ),
       body: GetBuilder<OrderDetialsController>(builder: (controller) {
         return HandlingDataView(
@@ -26,27 +26,27 @@ class OrderDetailsScreen extends StatelessWidget {
                 child: Card(
                   child: Table(
                     children: [
-                      const TableRow(children: [
+                      TableRow(children: [
                         Text(
-                          'Product',
+                          '88'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppColor.blue,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          'Quantity',
+                          '89'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppColor.blue,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          'Price',
+                          '90'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppColor.blue,
                             fontWeight: FontWeight.bold,
                           ),
@@ -78,7 +78,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Card(
                     child: Text(
-                      'Total Price ${controller.orderModel.ordersTotalprice}\$',
+                      '${'91'.tr} ${controller.orderModel.ordersTotalprice}\$',
                       style: const TextStyle(
                         color: AppColor.blue,
                         fontWeight: FontWeight.bold,
@@ -93,9 +93,9 @@ class OrderDetailsScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Card(
                     child: ListTile(
-                      title: const Text(
-                        'Shipping Address',
-                        style: TextStyle(
+                      title: Text(
+                        '92'.tr,
+                        style: const TextStyle(
                           color: AppColor.blue,
                           fontWeight: FontWeight.bold,
                         ),

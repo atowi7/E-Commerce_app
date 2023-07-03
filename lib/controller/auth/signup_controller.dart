@@ -57,16 +57,15 @@ class SignupController extends BaseSignupController {
           Get.offNamed(AppRoute.signupVerfication,
               arguments: {'email': email.text});
         } else {
-          Get.defaultDialog(
-              title: 'ERROR', middleText: 'EMAIL OR PHONE EXISTS');
+          Get.defaultDialog(title: '94'.tr, middleText: '98'.tr);
           statusRequest = StatusRequest.noDatafailure;
         }
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+        Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
         statusRequest = StatusRequest.serverFailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'Validation ERROR');
+      Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
     }
     update();
   }

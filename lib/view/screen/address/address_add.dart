@@ -15,7 +15,7 @@ class AddressAdd extends StatelessWidget {
     Get.put(AddAddressController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Address'),
+        title: Text('50'.tr),
       ),
       body: GetBuilder<AddAddressController>(builder: (controller) {
         return HandlingDataView(
@@ -27,7 +27,7 @@ class AddressAdd extends StatelessWidget {
                     Lottie.asset(
                       ImageAssets.loading,
                     ),
-                    const Text('Wait for map'),
+                    Text('51'.tr),
                   ],
                 )
               : Stack(

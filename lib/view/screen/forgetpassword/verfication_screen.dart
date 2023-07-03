@@ -16,7 +16,7 @@ class VerficationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Emial Verfication'),
+        title:  Text('24'.tr),
       ),
       body: GetBuilder<VerifycodeController>(builder: (controller) {
         return HandlingDataReqest(
@@ -24,8 +24,8 @@ class VerficationScreen extends StatelessWidget {
           widget: ListView(
             children: [
               const Logo(),
-              CustomTextTitle(title: 'Check Your Email :${controller.email}'),
-              const CustomTextBody(title: 'Please Enter the verfication code'),
+              CustomTextTitle(title: '${'25'.tr} :${controller.email}'),
+               CustomTextBody(title: '34'.tr),
               OtpTextField(
                 numberOfFields: 6,
                 showFieldAsBox: true,

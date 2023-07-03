@@ -11,12 +11,12 @@ class SucessSignupScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Sucess'),
+        title: Text('28'.tr),
       ),
       body: Center(
         child: Column(
           children: [
-             Icon(
+            Icon(
               Icons.check_circle,
               color: Theme.of(context).primaryColor,
               size: 350,
@@ -24,15 +24,15 @@ class SucessSignupScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              'Your are verfied',
+            Text(
+              '29'.tr,
               style: TextStyle(fontSize: 30),
             ),
             const SizedBox(
               height: 20,
             ),
             CustomButton(
-                title: 'Go to Login',
+                title: '30'.tr,
                 onPressed: () {
                   Get.offNamed(AppRoute.login);
                 }),

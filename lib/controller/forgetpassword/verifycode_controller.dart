@@ -26,6 +26,7 @@ class VerifycodeController extends BaseVerifycodeController {
   openResetPassword(verifycode) async {
     statusRequest = StatusRequest.loading;
     update();
+    
     var response = await verifyCodeData.postData(email!, verifycode);
 
     statusRequest = handleData(response);
@@ -33,11 +34,11 @@ class VerifycodeController extends BaseVerifycodeController {
       if (response['status'] == 'sucess') {
         Get.offNamed(AppRoute.resetPassword, arguments: {'email': email});
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'VERIFY CODE ERROR');
+        Get.defaultDialog(title: '94'.tr, middleText: '99'.tr);
         //statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+      Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
 

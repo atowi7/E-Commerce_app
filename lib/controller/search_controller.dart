@@ -18,7 +18,7 @@ class MySearchController extends BaseSearchController {
 
   SearchData searchData = SearchData(Get.find());
 
-  late StatusRequest statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
 
   @override
   onSearch() {

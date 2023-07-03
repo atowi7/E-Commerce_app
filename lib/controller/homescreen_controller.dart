@@ -1,7 +1,7 @@
-import 'package:ecommerce_app/view/screen/cart_screen.dart';
-import 'package:ecommerce_app/view/screen/notification_screen.dart';
 import 'package:ecommerce_app/view/screen/offers_screen.dart';
+import 'package:ecommerce_app/view/screen/orders/vieworders.dart';
 import 'package:ecommerce_app/view/screen/setting_screen.dart';
+import 'package:ecommerce_app/view/screen/userfavorite_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,27 +14,27 @@ class HomeScreenController extends BaseHomeScreenController {
   int currentPage = -1;
   List icons = [
     {
-      'title': 'Offers',
+      'title': '134'.tr,
       'icon': Icons.discount_outlined,
     },
     {
-      'title': 'Cart',
-      'icon': Icons.shopping_basket_rounded,
+      'title': '147'.tr,
+      'icon': Icons.shopping_bag_outlined,
     },
     {
-      'title': 'Setting',
+      'title': '136'.tr,
       'icon': Icons.settings_outlined,
     },
     {
-      'title': 'Notify',
-      'icon': Icons.notifications_active_rounded,
+      'title': '146'.tr,
+      'icon': Icons.favorite_outline_rounded,
     }
   ];
   List<Widget> pages = [
     const OffersScreen(),
-    const CartScreen(),
+    const ViewOrdersScreen(),
     const SettingScreen(),
-    const NotificationScreen(),
+    const UserFavoriteScreen(),
   ];
 
   @override

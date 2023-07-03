@@ -23,6 +23,7 @@ class AppLink {
   //product
   static const String productView = '$server/product/view.php';
   static const String productSearch = '$server/product/search.php';
+  static const String productrate = '$server/product/rate.php';
 
   //favorite
   static const String userfavorite = '$server/favorite/view.php';
@@ -49,12 +50,12 @@ class AppLink {
   static const String checkoutOrders = '$server/orders/checkout.php';
   static const String ordersView = '$server/orders/view.php';
   static const String ordersArchive = '$server/orders/archive.php';
-   static const String ordersrate = '$server/orders/rate.php';
   static const String ordersDetials = '$server/orders/details.php';
   static const String ordersDelete = '$server/orders/delete.php';
 
   //Notification
-  static const String notification = '$server/notification.php';
+  static const String notificationView = '$server/notification/view.php';
+  static const String notificationDelete = '$server/notification/delete.php';
 
   //Offers
   static const String offers = '$server/offers.php';

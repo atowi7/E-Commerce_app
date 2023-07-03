@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/controller/product_controller.dart';
+import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:ecommerce_app/view/widget/product/categories_section.dart';
 import 'package:ecommerce_app/view/widget/product/product_section.dart';
@@ -15,12 +16,10 @@ class ProductScreen extends StatelessWidget {
       body: ListView(
         children: [
           CustomAppbar(
-            searchHint: 'Find Product',
+            searchHint: '41'.tr,
             controller: TextEditingController(),
             onChanged: null,
             searchonPressed: () {},
-            notifyPressed: () {},
-            favPressed: () {},
           ),
           const CategoriesSection(),
           const ProductSection(),

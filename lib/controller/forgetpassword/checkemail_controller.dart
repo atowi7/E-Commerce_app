@@ -30,6 +30,7 @@ class CheckEmailController extends BaseCheckEmailController {
     if (formKey.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
+
       var response = await checkEmailData.postData(email.text);
 
       statusRequest = handleData(response);
@@ -37,16 +38,17 @@ class CheckEmailController extends BaseCheckEmailController {
         if (response['status'] == 'sucess') {
           Get.offNamed(AppRoute.verfication, arguments: {'email': email.text});
         } else {
-          Get.defaultDialog(title: 'ERROR', middleText: 'EMAIL DOES NOT EXIST');
+          Get.defaultDialog(title: '94'.tr, middleText: '102'.tr);
           //statusRequest = StatusRequest.noDatafailure;
         }
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+        Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
         statusRequest = StatusRequest.serverFailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'VALIDATION ERROR');
+      Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
     }
+    
     update();
   }
 

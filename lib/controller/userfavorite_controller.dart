@@ -27,6 +27,7 @@ class UserFavoriteController extends BaseUserFavoriteController {
   @override
   getData() async {
     statusRequest = StatusRequest.loading;
+    update();
 
     var response = await userfavoritedata
         .getData(appServices.sharedPreferences.getString('userid')!);
@@ -36,11 +37,15 @@ class UserFavoriteController extends BaseUserFavoriteController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         List data = response['data'];
+        datalist.clear();
         datalist.addAll(data.map((e) => UserFavoriteModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
+    } else {
+      Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
     }
+
     update();
   }
 
@@ -48,7 +53,8 @@ class UserFavoriteController extends BaseUserFavoriteController {
   deletData(favid) {
     userfavoritedata.deleteData(favid);
     datalist.removeWhere((element) => element.favId == favid);
-    Get.snackbar('WARRNING', 'YOUR FAVORITE PRODUCT IS DELETED');
+    Get.snackbar('39'.tr, '123'.tr);
+
     update();
   }
 }

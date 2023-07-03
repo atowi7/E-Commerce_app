@@ -39,7 +39,7 @@ class AmountAndPriceSection extends StatelessWidget {
           ],
         ),
         Text(
-          price,
+          '$price\$',
           style: Theme.of(context).textTheme.displayMedium,
         ),
       ],

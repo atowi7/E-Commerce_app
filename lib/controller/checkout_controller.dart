@@ -7,7 +7,6 @@ import 'package:ecommerce_app/data/datasource/remote/address_data.dart';
 import 'package:ecommerce_app/data/datasource/remote/checkout_data.dart';
 import 'package:ecommerce_app/data/model/Addressmodel.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 abstract class BaseCheckoutController extends GetxController {
   choosePyamentMethod(String val);
@@ -92,15 +91,15 @@ class CheckoutController extends BaseCheckoutController {
   @override
   checkout() async {
     if (payment == null) {
-      return Get.snackbar('NOTFY', 'Please choose payment method');
+      return Get.snackbar('39'.tr, '114'.tr);
     }
     if (deliveryType == null) {
-      return Get.snackbar('NOTFY', 'Please choose delivery type');
+      return Get.snackbar('39'.tr, '115'.tr);
     }
 
     if (deliveryType == '0') {
       if (addressList.isEmpty) {
-        return Get.snackbar('NOTFY', 'Please Add address');
+        return Get.snackbar('39'.tr, '116'.tr);
       }
     }
     statusRequest = StatusRequest.loading;
@@ -120,14 +119,14 @@ class CheckoutController extends BaseCheckoutController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        Get.snackbar('NOTFY', 'add to Order sucess');
+        Get.snackbar('39'.tr, '117'.tr);
         cartController.deleteCartByUser();
         Get.offNamed(AppRoute.homePage);
       } else {
-        Get.snackbar('NOTFY', 'add to Order Fail, please try again');
+        Get.snackbar('39'.tr, '118'.tr);
       }
     } else {
-      Get.snackbar('NOTFY', 'Server Error');
+      Get.snackbar('39'.tr, '96'.tr);
     }
     update();
   }

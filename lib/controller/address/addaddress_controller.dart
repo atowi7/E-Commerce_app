@@ -40,18 +40,18 @@ class AddAddressController extends BaseAddAddressController {
   getCurrentPos() async {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (serviceEnabled == false) {
-      Get.snackbar('NOTFY', 'Please enable the location');
+      Get.snackbar('39'.tr, '131'.tr);
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        Get.snackbar('NOTFY', 'Please enable the location to use the map');
+        Get.snackbar('39'.tr, '132'.tr);
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      Get.snackbar('NOTFY', 'You can not use the map without your location');
+      Get.snackbar('39'.tr, '133'.tr);
     }
     position = await Geolocator.getCurrentPosition();
     kGooglePlex = CameraPosition(
@@ -77,7 +77,7 @@ class AddAddressController extends BaseAddAddressController {
 
   @override
   goToAddDetail() {
-    Get.toNamed(AppRoute.addressadddetail, arguments: {
+    Get.offNamed(AppRoute.addressadddetail, arguments: {
       'lat': lat,
       'long': long,
     });
