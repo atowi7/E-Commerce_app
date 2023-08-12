@@ -26,9 +26,9 @@ class CartBottomAppBar extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColor.blue, width: 2),
+        border: Border.all(color: AppColor.primaryColor, width: 2),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -40,28 +40,32 @@ class CartBottomAppBar extends GetView<CartController> {
                       flex: 2,
                       child: TextFormField(
                         controller: textController,
-                        decoration: const InputDecoration(hintText: 'Coupon'),
+                        decoration: InputDecoration(hintText: '154'.tr),
                       ),
                     ),
                     Expanded(
                         flex: 1,
                         child: MaterialButton(
-                          color: AppColor.blue,
+                          color: AppColor.primaryColor,
                           onPressed: onApply,
-                          child: const Text('Apply'),
+                          splashColor: AppColor.secondaryColor,
+                          child: Text(
+                            '155'.tr,
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
                         )),
                   ],
                 )
               : Text(
-                  'Coupon ${controller.couponName}',
-                  style: const TextStyle(color: AppColor.blue),
+                  '${'154'.tr} ${controller.couponName}',
+                  style: Theme.of(context).textTheme.displaySmall,
                 ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Price',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Text(
+                '90'.tr,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               Text('$price\$'),
             ],
@@ -69,9 +73,9 @@ class CartBottomAppBar extends GetView<CartController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Discount',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Text(
+                '153'.tr,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               Text(discount),
             ],
@@ -79,22 +83,22 @@ class CartBottomAppBar extends GetView<CartController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Shipping',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Text(
+                '152'.tr,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               Text('$shipping\$'),
             ],
           ),
           const Divider(
-            color: AppColor.black,
+            color: AppColor.secondaryColor,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Total price',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Text(
+                '91'.tr,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               Text('$total\$'),
             ],
@@ -103,16 +107,18 @@ class CartBottomAppBar extends GetView<CartController> {
             height: 10,
           ),
           Container(
-            width: double.infinity,
+            width: Get.size.width * 0.7,
+            margin: const EdgeInsets.symmetric(vertical: 8),
             decoration: BoxDecoration(
-              color: AppColor.blue,
-              borderRadius: BorderRadius.circular(15),
+              color: AppColor.primaryColor,
+              borderRadius: BorderRadius.circular(10),
             ),
             child: MaterialButton(
               onPressed: goToCheckout,
-              child: const Text(
-                'Order',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              splashColor: AppColor.secondaryColor,
+              child: Text(
+                '69'.tr,
+                style: Theme.of(context).textTheme.labelMedium,
               ),
             ),
           )

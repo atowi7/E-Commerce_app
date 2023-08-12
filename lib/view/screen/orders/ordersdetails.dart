@@ -22,7 +22,7 @@ class OrderDetailsScreen extends StatelessWidget {
             children: [
               Container(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                 child: Card(
                   child: Table(
                     children: [
@@ -30,26 +30,26 @@ class OrderDetailsScreen extends StatelessWidget {
                         Text(
                           '88'.tr,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: AppColor.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(color: AppColor.primaryColor),
                         ),
                         Text(
                           '89'.tr,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: AppColor.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(color: AppColor.primaryColor),
                         ),
                         Text(
                           '90'.tr,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: AppColor.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(color: AppColor.primaryColor),
                         ),
                       ]),
                       ...List.generate(
@@ -58,14 +58,17 @@ class OrderDetailsScreen extends StatelessWidget {
                           Text(
                             '${controller.dataList[index].proName}',
                             textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                           Text(
                             '${controller.dataList[index].prosCount}',
                             textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                           Text(
                             '${controller.dataList[index].prosPrice}',
                             textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                         ]),
                       ),
@@ -75,14 +78,15 @@ class OrderDetailsScreen extends StatelessWidget {
               ),
               Center(
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   child: Card(
                     child: Text(
-                      '${'91'.tr} ${controller.orderModel.ordersTotalprice}\$',
-                      style: const TextStyle(
-                        color: AppColor.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      '${'91'.tr} : ${controller.orderModel.ordersTotalprice}\$',
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayLarge!
+                          .copyWith(color: AppColor.primaryColor),
                     ),
                   ),
                 ),
@@ -90,18 +94,20 @@ class OrderDetailsScreen extends StatelessWidget {
               if (controller.orderModel.ordersType == '0')
                 Container(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   child: Card(
                     child: ListTile(
                       title: Text(
                         '92'.tr,
-                        style: const TextStyle(
-                          color: AppColor.blue,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(color: AppColor.primaryColor),
                       ),
                       subtitle: Text(
-                          '${controller.orderModel.addressCity} ${controller.orderModel.addressStreet}'),
+                        '${controller.orderModel.addressCity} ${controller.orderModel.addressStreet}',
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
                     ),
                   ),
                 ),
@@ -110,7 +116,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   height: 250,
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(
-                    vertical: 10,
+                    vertical: 8,
                   ),
                   child: Card(
                     child: GoogleMap(

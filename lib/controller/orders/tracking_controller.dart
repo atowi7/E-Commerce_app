@@ -39,11 +39,13 @@ class TrackingController extends BaseTrackingController {
 
   @override
   void onInit() {
-    statusRequest = StatusRequest.sucess;
+    statusRequest = StatusRequest.success;
     orderModel = Get.arguments['orderModel'];
 
     currentLat = double.parse(orderModel.addressLat!);
     currentLong = double.parse(orderModel.addressLong!);
+
+     print('dest $currentLat , $currentLong');
 
     kGooglePlex = CameraPosition(
       target: LatLng(currentLat!, currentLong!),
@@ -61,18 +63,18 @@ class TrackingController extends BaseTrackingController {
   getCurrentPosition() async {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (serviceEnabled == false) {
-      Get.snackbar('39'.tr, '131'.tr);
+      Get.snackbar('39'.tr, '131'.tr,duration:const Duration(seconds: 2));
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        Get.snackbar('39'.tr, '132'.tr);
+        Get.snackbar('39'.tr, '132'.tr,duration:const Duration(seconds: 2));
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      Get.snackbar('39'.tr, '133'.tr);
+      Get.snackbar('39'.tr, '133'.tr,duration:const Duration(seconds: 2));
     }
 
     mapcontroller.animateCamera(
@@ -95,6 +97,7 @@ class TrackingController extends BaseTrackingController {
       if (event.exists) {
         destLat = event['lat'];
         destLong = event['long'];
+        print('dest $destLat , $destLong');
       }
 
       updateMarker(destLat!, destLong!);

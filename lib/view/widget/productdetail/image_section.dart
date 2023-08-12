@@ -13,14 +13,14 @@ class ImageSection extends GetView<ProductDetailController> {
     return Container(
       height: 200,
       decoration: const BoxDecoration(
-          color: AppColor.blue,
+          color: AppColor.primaryColor,
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(25))),
       child: Hero(
         tag: '${controller.productModel.id}',
         child: CachedNetworkImage(
           imageUrl: '${AppLink.productImage}/${controller.productModel.image}',
-          height: Get.height / 4,
-          width: Get.width / 4,
+          height: Get.height / 7,
+          width: Get.width / 7,
         ),
       ),
     );

@@ -3,12 +3,23 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-exitAppAlert() {
+exitAppAlert(BuildContext context) {
   return Get.defaultDialog(
-      title: 'Warning',
-      middleText: 'are you sure?',
+      title: '39'.tr,
+      middleText: '40'.tr,
+      titleStyle: Theme.of(context).textTheme.displayMedium,
       actions: [
-        ElevatedButton(onPressed: () => exit(0), child: const Text('Yes')),
-        ElevatedButton(onPressed: () => Get.back(), child: const Text('No')),
+        ElevatedButton(
+            onPressed: () => exit(0),
+            child: Text(
+              '156'.tr,
+              style: Theme.of(context).textTheme.labelMedium,
+            )),
+        ElevatedButton(
+            onPressed: () => Get.back(),
+            child: Text(
+              '157'.tr,
+              style: Theme.of(context).textTheme.labelMedium,
+            )),
       ]);
 }

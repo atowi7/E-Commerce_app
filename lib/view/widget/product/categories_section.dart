@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/product_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/data/model/categoriemodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,9 +11,8 @@ class CategoriesSection extends GetView<ProductController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      width: double.infinity,
-      margin: const EdgeInsets.only(left: 10, right: 10),
+      height: 40,
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => CategoriesWidget(
@@ -27,24 +27,26 @@ class CategoriesSection extends GetView<ProductController> {
 
 class CategoriesWidget extends GetView<ProductController> {
   final CategorieModel categorieModel;
-  const CategoriesWidget(
-      {super.key, required this.categorieModel});
+  const CategoriesWidget({super.key, required this.categorieModel});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => controller.getselcat(categorieModel.id!),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           GetBuilder<ProductController>(builder: (controller) {
             return Container(
               decoration: controller.cid == categorieModel.id
                   ? const BoxDecoration(
                       border: Border(
-                          bottom: BorderSide(width: 5, color: AppColor.black)))
+                          bottom: BorderSide(
+                              width: 5, color: AppColor.secondaryColor)))
                   : null,
               child: Text(
-                '${categorieModel.name}',
+                langTranslateDataBase(
+                    categorieModel.nameAr!, categorieModel.name!),
                 style: const TextStyle(fontSize: 20),
               ),
             );

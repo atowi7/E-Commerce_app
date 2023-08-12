@@ -1,12 +1,12 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
-import 'package:ecommerce_app/data/datasource/remote/foregetpassword/resetpassword_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/forgetpassword/resetpassword_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseResetPasswordController extends GetxController {
-  openSucess();
+  opensuccess();
 }
 
 class ResetPasswordController extends BaseResetPasswordController {
@@ -37,7 +37,7 @@ class ResetPasswordController extends BaseResetPasswordController {
   }
 
   @override
-  openSucess() async {
+  opensuccess() async {
     if (formKey.currentState!.validate()) {
       if (password.text == repassword.text) {
         statusRequest = StatusRequest.loading;
@@ -46,12 +46,12 @@ class ResetPasswordController extends BaseResetPasswordController {
         var response = await resetPasswordData.postData(email!, password.text);
 
         statusRequest = handleData(response);
-        if (statusRequest == StatusRequest.sucess) {
-          if (response['status'] == 'sucess') {
-            Get.offNamed(AppRoute.sucessResetPassword);
+        if (statusRequest == StatusRequest.success) {
+          if (response['status'] == 'success') {
+            Get.offNamed(AppRoute.successResetPassword);
           } else {
             Get.defaultDialog(title: '94'.tr, middleText: '94'.tr);
-            //statusRequest = StatusRequest.noDatafailure;
+            //statusRequest = StatusRequest.noDataFailure;
           }
         } else {
           Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
@@ -61,7 +61,7 @@ class ResetPasswordController extends BaseResetPasswordController {
         Get.defaultDialog(title: '94'.tr, middleText: '103'.tr);
       }
     } else {
-      Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
+      // Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
     }
 
     update();

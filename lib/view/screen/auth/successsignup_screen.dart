@@ -1,10 +1,11 @@
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/view/widget/auth/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SucessSignupScreen extends StatelessWidget {
-  const SucessSignupScreen({super.key});
+class SuccessSignupScreen extends StatelessWidget {
+  const SuccessSignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +17,20 @@ class SucessSignupScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Icon(
+            const Icon(
               Icons.check_circle,
-              color: Theme.of(context).primaryColor,
+              color: AppColor.primaryColor,
               size: 350,
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
             Text(
               '29'.tr,
-              style: TextStyle(fontSize: 30),
+              style: Theme.of(context).textTheme.displayLarge,
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
             CustomButton(
                 title: '30'.tr,

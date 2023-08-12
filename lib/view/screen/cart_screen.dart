@@ -11,7 +11,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartController());
+    //Get.put(CartController());
     return Scaffold(
       appBar: AppBar(
         title: Text('46'.tr),
@@ -21,10 +21,13 @@ class CartScreen extends StatelessWidget {
           statusRequest: controller.statusRequest,
           widget: ListView(
             children: [
-              Text(
-                '${'47'.tr} ${controller.prosAmount} ${'48'.tr}',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.displayLarge,
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                child: Text(
+                  '${'47'.tr} ${controller.prosAmount} ${'48'.tr}',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -38,12 +41,13 @@ class CartScreen extends StatelessWidget {
                         price: '${controller.dataList[index].proPrice}',
                         image: '${controller.dataList[index].proImage}',
                         amount: '${controller.dataList[index].prosCount}',
-                        onPressedAdd: () {
-                          controller.addCart(controller.dataList[index].proId!);
+                        onPressedAdd: () async {
+                          await controller
+                              .addCart(controller.dataList[index].proId!);
                           controller.refreshPage();
                         },
-                        onPressedDelete: () {
-                          controller
+                        onPressedDelete: () async {
+                          await controller
                               .deleteCart(controller.dataList[index].proId!);
                           controller.refreshPage();
                         },

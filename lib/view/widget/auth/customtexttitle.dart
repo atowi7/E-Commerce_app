@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextTitle extends StatelessWidget {
@@ -8,7 +9,10 @@ class CustomTextTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.displayLarge,
+      style: Theme.of(context)
+          .textTheme
+          .displayLarge!
+          .copyWith(fontWeight: FontWeight.bold, color: AppColor.primaryColor),
       textAlign: TextAlign.center,
     );
   }

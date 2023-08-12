@@ -28,7 +28,7 @@ class OrderWedget extends GetView<OrdersController> {
               ),
             ],
           ),
-          const Divider(color: AppColor.blue),
+          const Divider(color: AppColor.primaryColor),
           Text('${'71'.tr} : ${orderModel.ordersPrice}'),
           Text('${'72'.tr} : ${orderModel.ordersDeliveryprice}\$'),
           Text(
@@ -37,9 +37,9 @@ class OrderWedget extends GetView<OrdersController> {
               '${'74'.tr} : ${controller.getDeliveryType(orderModel.ordersType!)}'),
           Text(
               '${'75'.tr} : ${controller.getStatus(orderModel.ordersStatus!)}'),
-          const Divider(color: AppColor.blue),
+          const Divider(color: AppColor.primaryColor),
           Text('${'76'.tr} : ${orderModel.ordersTotalprice}\$'),
-          const Divider(color: AppColor.blue),
+          const Divider(color: AppColor.primaryColor),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -49,7 +49,8 @@ class OrderWedget extends GetView<OrdersController> {
                       'orderModel': orderModel,
                     });
                   },
-                  color: AppColor.blue,
+                  color: AppColor.primaryColor,
+                  splashColor: AppColor.secondaryColor,
                   child: Text('77'.tr)),
               if (orderModel.ordersStatus == '3')
                 MaterialButton(
@@ -58,7 +59,8 @@ class OrderWedget extends GetView<OrdersController> {
                         'orderModel': orderModel,
                       });
                     },
-                    color: AppColor.blue,
+                    color: AppColor.primaryColor,
+                    splashColor: AppColor.secondaryColor,
                     child: Text('78'.tr)),
               if (orderModel.ordersStatus == '0')
                 MaterialButton(
@@ -72,15 +74,16 @@ class OrderWedget extends GetView<OrdersController> {
                         onConfirm: () {
                           controller.deleteOrders(orderModel.ordersId!);
                         },
-                        confirmTextColor: AppColor.blue,
-                        cancelTextColor: AppColor.blue,
-                        buttonColor: AppColor.white,
+                        confirmTextColor: AppColor.primaryColor,
+                        cancelTextColor: AppColor.primaryColor,
+                        buttonColor: AppColor.secondaryColor,
                         onCancel: () {
-                          Get.back();
+                          Navigator.pop(context);
                         },
                       );
                     },
-                    color: AppColor.blue,
+                    color: AppColor.primaryColor,
+                    splashColor: AppColor.secondaryColor,
                     child: Text('79'.tr))
             ],
           ),

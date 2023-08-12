@@ -14,17 +14,17 @@ class CustomeSlider extends GetView<OnboardingController> {
       onPageChanged: (index) {
         controller.changePage(index);
       },
-      itemCount: onBoardinglist.length,
+      itemCount: onBoardingList.length,
       itemBuilder: (context, i) => Column(
         children: [
-          Text(onBoardinglist[i].title,
+          Text(onBoardingList[i].title,
               style: Theme.of(context).textTheme.displayLarge),
           Expanded(
             child: Lottie.asset(
-              onBoardinglist[i].image,
+              onBoardingList[i].image,
             ),
           ),
-          Text(onBoardinglist[i].content,
+          Text(onBoardingList[i].content,
               style: Theme.of(context).textTheme.displayMedium),
         ],
       ),

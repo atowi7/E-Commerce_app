@@ -9,10 +9,10 @@ import 'package:ecommerce_app/view/screen/forgetpassword/checkemail_screen.dart'
 import 'package:ecommerce_app/view/screen/auth/login_screen.dart';
 import 'package:ecommerce_app/view/screen/forgetpassword/resetpassword_screen.dart';
 import 'package:ecommerce_app/view/screen/auth/signup_screen.dart';
-import 'package:ecommerce_app/view/screen/auth/signup_verfication_screen.dart';
-import 'package:ecommerce_app/view/screen/forgetpassword/sucessresetpasswordscreen.dart';
-import 'package:ecommerce_app/view/screen/auth/sucesssignupscreen.dart';
-import 'package:ecommerce_app/view/screen/forgetpassword/verfication_screen.dart';
+import 'package:ecommerce_app/view/screen/auth/signupverification_screen.dart';
+import 'package:ecommerce_app/view/screen/forgetpassword/successresetpasswordscreen.dart';
+import 'package:ecommerce_app/view/screen/auth/successsignup_screen.dart';
+import 'package:ecommerce_app/view/screen/forgetpassword/verification_screen.dart';
 import 'package:ecommerce_app/view/screen/home_screen.dart';
 import 'package:ecommerce_app/view/screen/language_screen.dart';
 import 'package:ecommerce_app/view/screen/notification_screen.dart';
@@ -49,27 +49,27 @@ List<GetPage<dynamic>>? routes = [
   ),
   GetPage(
     name: AppRoute.signupVerfication,
-    page: () => const SignupVerficationScreen(),
+    page: () => const SignupVerificationScreen(),
   ),
   GetPage(
     name: AppRoute.successSignup,
-    page: () => const SucessSignupScreen(),
+    page: () => const SuccessSignupScreen(),
   ),
   GetPage(
     name: AppRoute.checkemail,
-    page: () => const CheckemailScreen(),
+    page: () => const CheckEmailScreen(),
   ),
   GetPage(
     name: AppRoute.verfication,
-    page: () => const VerficationScreen(),
+    page: () => const VerificationScreen(),
   ),
   GetPage(
     name: AppRoute.resetPassword,
     page: () => const ResetPasswordScreen(),
   ),
   GetPage(
-    name: AppRoute.sucessResetPassword,
-    page: () => const SucessResetPasswordScreen(),
+    name: AppRoute.successResetPassword,
+    page: () => const SuccessResetPasswordScreen(),
   ),
   GetPage(
     name: AppRoute.homePage,

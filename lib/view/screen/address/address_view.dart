@@ -18,42 +18,48 @@ class AddressView extends StatelessWidget {
       body: GetBuilder<ViewAddressController>(builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
-          widget: ListView.builder(
-              itemCount: controller.dataList.length,
-              itemBuilder: (context, index) => AddressWidget(
-                    addressModel: controller.dataList[index],
-                    onEdit: () {
-                      controller.goToEditAddress(
-                        controller.dataList[index].addressId!,
-                        controller.dataList[index].addressName!,
-                        controller.dataList[index].addressStreet!,
-                        controller.dataList[index].addressCity!,
-                      );
-                    },
-                    onDelete: () {
-                      Get.defaultDialog(
-                        title: '39'.tr,
-                        titleStyle: Theme.of(context).textTheme.displayMedium,
-                        middleText: '40'.tr,
-                        middleTextStyle:
-                            Theme.of(context).textTheme.displaySmall,
-                        onConfirm: () {
-                          controller.deleteAddress(
-                              controller.dataList[index].addressId!);
-                        },
-                        confirmTextColor: AppColor.blue,
-                        cancelTextColor: AppColor.blue,
-                        buttonColor: AppColor.white,
-                        onCancel: () {
-                          Get.back();
-                        },
-                      );
-                    },
-                  )),
+          widget: RefreshIndicator(
+            onRefresh: () async {
+              controller.viewAddress();
+            },
+            child: ListView.builder(
+                itemCount: controller.dataList.length,
+                itemBuilder: (context, index) => AddressWidget(
+                      addressModel: controller.dataList[index],
+                      onEdit: () {
+                        controller.goToEditAddress(
+                          controller.dataList[index].addressId!,
+                          controller.dataList[index].addressName!,
+                          controller.dataList[index].addressStreet!,
+                          controller.dataList[index].addressCity!,
+                        );
+                      },
+                      onDelete: () {
+                        Get.defaultDialog(
+                          title: '39'.tr,
+                          titleStyle: Theme.of(context).textTheme.displayMedium,
+                          middleText: '40'.tr,
+                          middleTextStyle:
+                              Theme.of(context).textTheme.displaySmall,
+                          onConfirm: () {
+                            controller.deleteAddress(
+                                controller.dataList[index].addressId!);
+                            Navigator.pop(context);
+                          },
+                          confirmTextColor: AppColor.primaryColor,
+                          // cancelTextColor: AppColor.primaryColor,
+                          buttonColor: AppColor.secondaryColor,
+                          onCancel: () {
+                            Navigator.pop(context);
+                          },
+                        );
+                      },
+                    )),
+          ),
         );
       }),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColor.blue,
+          backgroundColor: AppColor.primaryColor,
           onPressed: () {
             controller.goToAddAddress();
           },
@@ -77,7 +83,7 @@ class AddressWidget extends StatelessWidget {
     return ListTile(
       title: Text('${addressModel.addressName}'),
       subtitle:
-          Text('${addressModel.addressCity}+/ ${addressModel.addressStreet}'),
+          Text('${addressModel.addressCity} / ${addressModel.addressStreet}'),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

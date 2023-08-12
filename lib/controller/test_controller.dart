@@ -17,11 +17,11 @@ class TestConroller extends GetxController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         data.addAll(response['data']);
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     }
     update();

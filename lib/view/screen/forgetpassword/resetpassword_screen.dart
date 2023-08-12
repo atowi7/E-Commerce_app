@@ -1,10 +1,10 @@
 import 'package:ecommerce_app/controller/forgetpassword/resetpassword_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/function/input_validation.dart';
 import 'package:ecommerce_app/view/widget/auth/custombutton.dart';
 import 'package:ecommerce_app/view/widget/auth/customtextform.dart';
 import 'package:ecommerce_app/view/widget/auth/customtexttitle.dart';
-import 'package:ecommerce_app/view/widget/auth/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +26,15 @@ class ResetPasswordScreen extends StatelessWidget {
             key: controller.formKey,
             child: ListView(
               children: [
-                const Logo(),
+                // const Logo(
+                //   isLottie: true,
+                //   image: ImageAssets.profile,
+                // ),
+                const Icon(
+                  Icons.lock_reset_outlined,
+                  size: 50,
+                  color: AppColor.primaryColor,
+                ),
                 CustomTextTitle(title: '36'.tr),
                 // const CustomTextBody(
                 //     title:
@@ -43,6 +51,9 @@ class ResetPasswordScreen extends StatelessWidget {
                   },
                   onTapIcon: controller.showPassword(),
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
                 CustomTextForm(
                   labelText: '37'.tr,
                   hintText: '37'.tr,
@@ -55,11 +66,10 @@ class ResetPasswordScreen extends StatelessWidget {
                   },
                   onTapIcon: controller.showPassword(),
                 ),
-
                 CustomButton(
                   title: '38'.tr,
                   onPressed: () {
-                    controller.openSucess();
+                    controller.opensuccess();
                   },
                 ),
               ],

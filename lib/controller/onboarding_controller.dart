@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 abstract class BaseOnboardingController extends GetxController {
-  changePage(index);
+  changePage(int index);
   next();
 }
 
@@ -30,12 +30,12 @@ class OnboardingController extends BaseOnboardingController {
   @override
   next() {
     pageIndex++;
-    if (pageIndex == onBoardinglist.length) {
+    if (pageIndex == onBoardingList.length) {
       appServices.sharedPreferences.setString('page', 'l');
       Get.offAllNamed(AppRoute.login);
     } else {
       pageController.animateToPage(pageIndex,
-          duration: const Duration(seconds: 1), curve: Curves.easeIn);
+          duration: const Duration(seconds: 2), curve: Curves.easeIn);
     }
   }
 }

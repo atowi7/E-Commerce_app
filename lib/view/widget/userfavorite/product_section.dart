@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/userfavorite_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/data/model/userfavoritemodel.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
@@ -16,7 +17,7 @@ class ProductSection extends StatelessWidget {
         statusRequest: controller.statusRequest,
         widget: GridView.builder(
             itemCount: controller.datalist.length,
-            physics: const NeverScrollableScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2),
@@ -53,18 +54,31 @@ class ProductWedget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('42'.tr),
+              Text(
+                '42'.tr,
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
               Row(
                   children: List.generate(
-                      3,
-                      (index) => IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.star),
-                            iconSize: 10,
-                          )))
+                      5,
+                      (index) => SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.star,
+                                color: AppColor.primaryColor,
+                              ),
+                              iconSize: 15,
+                            ),
+                          ))),
             ],
           ),
-          Text('${userFavoriteModel.proPrice}\$'),
+          Text(
+            '${userFavoriteModel.proPrice}\$',
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //   children: [

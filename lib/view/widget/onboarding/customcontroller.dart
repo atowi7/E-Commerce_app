@@ -13,14 +13,14 @@ class CustomeController extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(
-          onBoardinglist.length,
+          onBoardingList.length,
           (index) => AnimatedContainer(
-            width: index == controller.pageIndex ? 16 : 8,
-            height: 10,
-            margin: const EdgeInsets.symmetric(horizontal: 5),
+            width: index == controller.pageIndex ? 18 : 12,
+            height: 12,
+            margin: const EdgeInsets.symmetric(horizontal: 8),
             duration: const Duration(milliseconds: 500),
             decoration: BoxDecoration(
-              color: AppColor.blue,
+              color: AppColor.primaryColor,
               borderRadius: BorderRadius.circular(20),
             ),
           ),

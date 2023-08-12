@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseCartController extends GetxController {
+  initialData();
   viewCart();
   addCart(String proid);
   deleteCartByUser();
@@ -40,9 +43,14 @@ class CartController extends BaseCartController {
 
   @override
   void onInit() {
-    viewCart();
-    couponController = TextEditingController();
+    initialData();
     super.onInit();
+  }
+
+  @override
+  initialData() async {
+    refreshPage();
+    couponController = TextEditingController();
   }
 
   @override
@@ -54,8 +62,8 @@ class CartController extends BaseCartController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         List data = response['data'];
         dataList.clear();
         dataList.addAll(data.map((e) => CartModel.fromJson(e)));
@@ -63,7 +71,7 @@ class CartController extends BaseCartController {
         prosAmount = int.parse(amountAndprice['amount']);
         totalPrice = double.parse(amountAndprice['totalprice']);
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
       //statusRequest = StatusRequest.serverFailure;
@@ -80,17 +88,17 @@ class CartController extends BaseCartController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('39'.tr, '104'.tr);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        Get.snackbar('39'.tr, '104'.tr, duration: const Duration(seconds: 2));
+        refreshPage();
       } else {
-        Get.snackbar('39'.tr, '105'.tr);
-        // statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('39'.tr, '105'.tr, duration: const Duration(seconds: 2));
+        // statusRequest = StatusRequest.noDataFailure;
       }
     } else {
       statusRequest = StatusRequest.serverFailure;
     }
-    update();
   }
 
   @override
@@ -102,18 +110,17 @@ class CartController extends BaseCartController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('39'.tr, '106'.tr);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        Get.snackbar('39'.tr, '106'.tr, duration: const Duration(seconds: 2));
         refreshPage();
       } else {
-        Get.snackbar('39'.tr, '107'.tr);
-        // statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('39'.tr, '107'.tr, duration: const Duration(seconds: 2));
+        // statusRequest = StatusRequest.noDataFailure;
       }
     } else {
       statusRequest = StatusRequest.serverFailure;
     }
-    update();
   }
 
   @override
@@ -130,8 +137,8 @@ class CartController extends BaseCartController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         Map<String, dynamic> data = response['data'];
         couponModel = CouponModel.fromJson(data);
         couponId = couponModel!.couponId;
@@ -141,17 +148,18 @@ class CartController extends BaseCartController {
       } else {
         couponName = 'invalid';
         couponDiscount = 0;
-        Get.snackbar('39'.tr, '108'.tr);
+        Get.snackbar('39'.tr, '108'.tr, duration: const Duration(seconds: 2));
       }
     } else {
-      Get.snackbar('94'.tr, '96'.tr);
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
     }
     update();
   }
 
   @override
   double getTotalPrice() {
-    return totalPrice - (totalPrice * (couponDiscount / 100));
+    return totalPrice -
+        double.parse((totalPrice * (couponDiscount / 100)).toStringAsFixed(3));
   }
 
   @override
@@ -169,6 +177,7 @@ class CartController extends BaseCartController {
   refreshPage() {
     totalPrice = 0;
     prosAmount = 0;
+    dataList.clear();
     viewCart();
   }
 }

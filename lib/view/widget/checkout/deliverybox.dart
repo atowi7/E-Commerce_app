@@ -6,8 +6,9 @@ import 'package:lottie/lottie.dart';
 
 class DeliveryBox extends StatelessWidget {
   final String title;
+  final String image;
   final bool active;
-  const DeliveryBox({super.key, required this.title, required this.active});
+  const DeliveryBox({super.key, required this.title, required this.image, required this.active});
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +17,19 @@ class DeliveryBox extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: active ? AppColor.blue : AppColor.white,
+        color: active ? AppColor.primaryColor : AppColor.secondaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Lottie.asset(
-            ImageAssets.onBoardingDriverImg,
+            image,
           ),
           Text(
             title,
             style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                  color: active ? AppColor.white : AppColor.black,
+                  color: AppColor.thirdColor,
                 ),
           ),
         ],

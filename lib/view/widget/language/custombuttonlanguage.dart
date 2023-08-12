@@ -14,10 +14,10 @@ class CustomButtonLang extends StatelessWidget {
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 50),
-            backgroundColor: AppColor.blue,
+            backgroundColor: AppColor.primaryColor,
           ),
           onPressed: onPressed,
-          child: Text(text)),
+          child: Text(text,style: Theme.of(context).textTheme.labelLarge,)),
     );
   }
 }

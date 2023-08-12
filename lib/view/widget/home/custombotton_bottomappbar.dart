@@ -20,14 +20,15 @@ class CustomBottonBottomAppBar extends StatelessWidget {
       children: [
         MaterialButton(
           onPressed: onPressed,
+          splashColor: AppColor.secondaryColor,
           child: Icon(
             icon,
-            color: active ? AppColor.blue : AppColor.black,
+            color: active ? AppColor.primaryColor : AppColor.secondaryColor,
           ),
         ),
         Text(
           title,
-          style: TextStyle(color: active ? AppColor.blue : AppColor.black),
+          style: TextStyle(color: active ? AppColor.primaryColor : AppColor.secondaryColor),
         ),
       ],
     );

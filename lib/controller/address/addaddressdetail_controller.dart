@@ -11,6 +11,8 @@ abstract class BaseAddAddressDetailController extends GetxController {
 }
 
 class AddAddressDetailController extends BaseAddAddressDetailController {
+  final formKey = GlobalKey<FormState>();
+
   late TextEditingController name;
   late TextEditingController street;
   late TextEditingController city;
@@ -31,35 +33,38 @@ class AddAddressDetailController extends BaseAddAddressDetailController {
     city = TextEditingController();
     lat = Get.arguments['lat'];
     long = Get.arguments['long'];
+
     super.onInit();
   }
 
   @override
   addAddress() async {
-    statusRequest = StatusRequest.loading;
-    update();
+    if (formKey.currentState!.validate()) {
+      statusRequest = StatusRequest.loading;
+      update();
 
-    var response = await addressData.addAddress(
-        name.text,
-        lat.toString(),
-        long.toString(),
-        street.text,
-        city.text,
-        appServices.sharedPreferences.getString('userid')!);
+      var response = await addressData.addAddress(
+          name.text,
+          lat.toString(),
+          long.toString(),
+          street.text,
+          city.text,
+          appServices.sharedPreferences.getString('userid')!);
 
-    statusRequest = handleData(response);
+      statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('39'.tr, '140'.tr);
-        Get.offNamed(AppRoute.addressview);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == 'success') {
+          Get.snackbar('39'.tr, '140'.tr, duration: const Duration(seconds: 2));
+          Get.offNamed(AppRoute.addressview);
+        } else {
+          Get.snackbar('39'.tr, '141'.tr, duration: const Duration(seconds: 2));
+          statusRequest = StatusRequest.noDataFailure;
+        }
       } else {
-        Get.snackbar('39'.tr, '141'.tr);
-        statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
+        statusRequest = StatusRequest.serverFailure;
       }
-    } else {
-      Get.snackbar('94'.tr, '96'.tr);
-      statusRequest = StatusRequest.serverFailure;
     }
 
     update();

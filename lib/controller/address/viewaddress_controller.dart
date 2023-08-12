@@ -36,13 +36,13 @@ class ViewAddressController extends BaseViewAddressController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         List data = response['data'];
         dataList.clear();
         dataList.addAll(data.map((e) => AddressModel.fromJson(e)));
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     }
     update();
@@ -57,26 +57,25 @@ class ViewAddressController extends BaseViewAddressController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         dataList.removeWhere((element) => element.addressId == addressid);
-        update();
-        Get.snackbar('39'.tr, '144'.tr);
+        viewAddress();
+        Get.snackbar('39'.tr, '144'.tr, duration: const Duration(seconds: 2));
       } else {
-        Get.snackbar('39'.tr, '145'.tr);
-        statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('39'.tr, '145'.tr, duration: const Duration(seconds: 2));
+       // statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '96'.tr);
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
       statusRequest = StatusRequest.serverFailure;
     }
 
-    update();
   }
 
   @override
   goToAddAddress() {
-    Get.toNamed(AppRoute.addressadd);
+    Get.offNamed(AppRoute.addressadd);
   }
 
   @override

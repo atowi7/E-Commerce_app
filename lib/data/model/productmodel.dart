@@ -5,7 +5,6 @@ class ProductModel {
   String? description;
   String? descriptionAr;
   String? color;
-  String? colorAr;
   String? image;
   String? price;
   String? rate;
@@ -52,7 +51,6 @@ class ProductModel {
     description = json['pro_desc'];
     descriptionAr = json['pro_desc_ar'];
     color = json['pro_color'];
-    colorAr = json['pro_color_ar'];
     image = json['pro_image'];
     price = json['pro_price'];
     rate = json['pro_rate'];

@@ -47,16 +47,16 @@ class EditAddressController extends BaseEditAddressController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('39'.tr, '142'.tr);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        Get.snackbar('39'.tr, '142'.tr,duration:const Duration(seconds: 2));
         // Get.toNamed(AppRoute.addressview);
       } else {
-        Get.snackbar('39'.tr, '143'.tr);
-        statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('39'.tr, '143'.tr,duration:const Duration(seconds: 2));
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '96'.tr);
+      Get.snackbar('94'.tr, '96'.tr,duration:const Duration(seconds: 2));
       statusRequest = StatusRequest.serverFailure;
     }
 

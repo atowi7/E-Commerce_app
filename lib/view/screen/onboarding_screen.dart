@@ -11,16 +11,17 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(OnboardingController());
-    return const Scaffold(
-      body: SafeArea(
-        child: Column(
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.all(30),
+        child: const Column(
           children: [
             Expanded(flex: 5, child: CustomeSlider()),
-            Expanded(flex: 3, child: CustomeController()),
+            Expanded(flex: 2, child: CustomeController()),
             SizedBox(
               height: 10,
             ),
-            Expanded(flex: 2, child: CustomeButton()),
+            Expanded(flex: 1, child: CustomeButton()),
           ],
         ),
       ),

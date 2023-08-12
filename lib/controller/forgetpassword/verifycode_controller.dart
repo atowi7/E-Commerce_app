@@ -1,15 +1,15 @@
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
-import 'package:ecommerce_app/data/datasource/remote/foregetpassword/verifycode_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/forgetpassword/verifycode_data.dart';
 import 'package:get/get.dart';
 
-abstract class BaseVerifycodeController extends GetxController {
+abstract class BaseVerifyCodeController extends GetxController {
   // check();
   openResetPassword(String verifycode);
 }
 
-class VerifycodeController extends BaseVerifycodeController {
+class VerifycodeController extends BaseVerifyCodeController {
   String? email;
 
   VerifyCodeData verifyCodeData = VerifyCodeData(Get.find());
@@ -30,12 +30,12 @@ class VerifycodeController extends BaseVerifycodeController {
     var response = await verifyCodeData.postData(email!, verifycode);
 
     statusRequest = handleData(response);
-    if (statusRequest == StatusRequest.sucess) {
-      if (response['status'] == 'sucess') {
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == 'success') {
         Get.offNamed(AppRoute.resetPassword, arguments: {'email': email});
       } else {
         Get.defaultDialog(title: '94'.tr, middleText: '99'.tr);
-        //statusRequest = StatusRequest.noDatafailure;
+        //statusRequest = StatusRequest.noDataFailure;
       }
     } else {
       Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);

@@ -40,26 +40,26 @@ class AddAddressController extends BaseAddAddressController {
   getCurrentPos() async {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (serviceEnabled == false) {
-      Get.snackbar('39'.tr, '131'.tr);
+      Get.snackbar('39'.tr, '131'.tr, duration: const Duration(seconds: 2));
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        Get.snackbar('39'.tr, '132'.tr);
+        Get.snackbar('39'.tr, '132'.tr, duration: const Duration(seconds: 2));
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      Get.snackbar('39'.tr, '133'.tr);
+      Get.snackbar('39'.tr, '133'.tr, duration: const Duration(seconds: 2));
     }
     position = await Geolocator.getCurrentPosition();
     kGooglePlex = CameraPosition(
-      target: LatLng(position!.altitude, position!.longitude),
+      target: LatLng(position!.latitude, position!.longitude),
       zoom: 15,
     );
 
-    addMarker(LatLng(position!.altitude, position!.longitude));
+    addMarker(LatLng(position!.latitude, position!.longitude));
 
     statusRequest = StatusRequest.none;
     update();
@@ -77,6 +77,7 @@ class AddAddressController extends BaseAddAddressController {
 
   @override
   goToAddDetail() {
+    print('$lat // $long');
     Get.offNamed(AppRoute.addressadddetail, arguments: {
       'lat': lat,
       'long': long,

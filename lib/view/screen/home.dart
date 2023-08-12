@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/home_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/data/model/productmodel.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
@@ -16,57 +17,65 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController homeController = Get.put(HomeController());
-    // Get.put(FavoriteController());
-    return ListView(
-      children: [
-        CustomAppbar(
-          searchHint: 'Find products',
-          controller: homeController.searchTextController!,
-          onChanged: (val) {
-            homeController.onChangeSearch(val);
-          },
-          searchonPressed: () {
-            homeController.onSearch();
-          },
-        ),
-        GetBuilder<HomeController>(builder: (controller) {
-          return HandlingDataView(
-            statusRequest: controller.statusRequest,
-            widget: controller.isSearch == false
-                ? ListView(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      CustomCard(
-                          title: '${controller.cardTitle}',
-                          disc: '${controller.cardDesc}'),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const CategorieSection(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Custometitle(title: 'Top Selling products'),
-                      const ProductHomeSection(),
-                    ],
-                  )
-                : Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 50),
-                    child: ListView.builder(
+    HomeController homeController = Get.find();
+    //  Get.put(FavoriteController());
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          children: [
+            CustomAppbar(
+              context: context,
+              searchHint: '41'.tr,
+              controller: homeController.searchTextController!,
+              onChanged: (val) {
+                homeController.onChangeSearch(val);
+              },
+              searchonPressed: () {
+                homeController.onSearch();
+              },
+            ),
+            GetBuilder<HomeController>(builder: (controller) {
+              return HandlingDataView(
+                statusRequest: controller.statusRequest,
+                widget: controller.isSearch == false
+                    ? ListView(
                         shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: controller.searchProducts.length,
-                        itemBuilder: (context, i) {
-                          return ProductSearchWedget(
-                              productModel: controller.searchProducts[i]);
-                        }),
-                  ),
-          );
-        }),
-      ],
+                        physics: const BouncingScrollPhysics(),
+                        children: [
+                          CustomCard(
+                              title: '${controller.cardTitle}',
+                              disc: '${controller.cardDesc}'),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
+                          ),
+                          const CategorieSection(),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
+                          ),
+                          const Custometitle(title: 'Top Selling products'),
+                          const ProductHomeSection(false),
+                          const Custometitle(title: 'All products'),
+                          const ProductHomeSection(true),
+                        ],
+                      )
+                    : Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 40),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: controller.searchProducts.length,
+                            itemBuilder: (context, i) {
+                              return ProductSearchWedget(
+                                  productModel: controller.searchProducts[i]);
+                            }),
+                      ),
+              );
+            }),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -91,7 +100,7 @@ class ProductSearchWedget extends GetView<HomeController> {
             ),
             Text(
               '${productModel.name}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.displayMedium,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,15 +108,25 @@ class ProductSearchWedget extends GetView<HomeController> {
                 const Text('Rating'),
                 Row(
                     children: List.generate(
-                        3,
-                        (index) => IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.star),
-                              iconSize: 10,
-                            )))
+                        5,
+                        (index) => SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.star,
+                                  color: AppColor.primaryColor,
+                                ),
+                                iconSize: 15,
+                              ),
+                            ))),
               ],
             ),
-            Text('${productModel.price}\$'),
+            Text(
+              '${productModel.price}\$',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
           ],
         ),
       ),

@@ -29,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
               middleText: '40'.tr,
               middleTextStyle: Theme.of(context).textTheme.displaySmall,
               onConfirm: () => exit(0),
-              confirmTextColor: AppColor.blue,
-              cancelTextColor: AppColor.blue,
-              buttonColor: AppColor.white,
+              confirmTextColor: AppColor.primaryColor,
+              cancelTextColor: AppColor.primaryColor,
+              buttonColor: AppColor.secondaryColor,
               onCancel: () {},
             );
             return false;
@@ -46,14 +46,13 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton:
           GetBuilder<HomeScreenController>(builder: (controller) {
         return FloatingActionButton(
-            backgroundColor: AppColor.white,
             onPressed: () {
               controller.openHome();
             },
             child: Icon(
-              Icons.home_outlined,
+              Icons.home_rounded,
               color:
-                  controller.currentPage == -1 ? AppColor.blue : AppColor.black,
+                  controller.currentPage == -1 ? AppColor.primaryColor : AppColor.secondaryColor,
             ));
       }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

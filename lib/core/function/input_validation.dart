@@ -22,6 +22,6 @@ inputValidation(type, String val, min, max) {
   }
 
   if (val.length > max) {
-    return 'Use less than $min characters';
+    return 'Use less than $max characters';
   }
 }

@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 abstract class BaseSignupController extends GetxController {
   openLogin();
   openSignupVerfication();
+  // signInWithGoogle();
 }
 
 class SignupController extends BaseSignupController {
@@ -52,20 +53,20 @@ class SignupController extends BaseSignupController {
           userName.text, email.text, password.text, phone.text);
       statusRequest = handleData(response);
 
-      if (statusRequest == StatusRequest.sucess) {
-        if (response['status'] == 'sucess') {
+      if (statusRequest == StatusRequest.success) {
+        if (response['status'] == 'success') {
           Get.offNamed(AppRoute.signupVerfication,
               arguments: {'email': email.text});
         } else {
           Get.defaultDialog(title: '94'.tr, middleText: '98'.tr);
-          statusRequest = StatusRequest.noDatafailure;
+          statusRequest = StatusRequest.noDataFailure;
         }
       } else {
         Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
         statusRequest = StatusRequest.serverFailure;
       }
     } else {
-      Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
+     // Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
     }
     update();
   }

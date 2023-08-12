@@ -2,6 +2,7 @@ import 'package:ecommerce_app/controller/favorite_controller.dart';
 import 'package:ecommerce_app/controller/product_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/data/model/productmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
@@ -13,7 +14,7 @@ class ProductSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FavoriteController favoriteController = Get.put(FavoriteController());
+    FavoriteController favoriteController = Get.find();
 
     return GetBuilder<ProductController>(builder: (controller) {
       return HandlingDataView(
@@ -43,76 +44,100 @@ class ProductWedget extends GetView<ProductController> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => controller.goToProductDetial(productModel),
-      child: Card(
-        child: Stack(
-          children: [
-            if (productModel.discount != '0')
-              const Positioned(
-                  top: 20,
-                  child: Icon(
-                    Icons.discount_rounded,
-                    color: AppColor.black,
-                  )),
-            Column(
-              children: [
-                Hero(
-                  tag: '${productModel.id}',
-                  child: CachedNetworkImage(
-                    imageUrl: '${AppLink.productImage}/${productModel.image}',
-                    height: 60,
-                    width: 60,
+      child: Container(
+        padding: const EdgeInsets.all(2),
+        child: Card(
+          color: AppColor.secondaryColor,
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  Hero(
+                    tag: '${productModel.id}',
+                    child: CachedNetworkImage(
+                      imageUrl: '${AppLink.productImage}/${productModel.image}',
+                      height: 60,
+                      width: 60,
+                    ),
                   ),
-                ),
-                Text(
-                  '${productModel.name}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('42'.tr),
-                    Row(
-                        children: List.generate(
-                            3,
-                            (index) => IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.star),
-                                  iconSize: 10,
-                                )))
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text('${controller.deliveryTime} ${'43'.tr}'),
-                    const Icon(Icons.timer_sharp)
-                  ],
-                ),
-                Text('${productModel.priceafterdiscount} \$'),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //   children: [
+                  Text(
+                    langTranslateDataBase(
+                        productModel.nameAr!, productModel.name!),
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '42'.tr,
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                      Row(
+                          children: List.generate(
+                              5,
+                              (index) => SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.star,
+                                        color: AppColor.primaryColor,
+                                      ),
+                                      iconSize: 15,
+                                    ),
+                                  ))),
+                    ],
+                  ),
+                  // Container(
+                  //   margin: const EdgeInsets.symmetric(vertical: 8),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //     children: [
+                  //       Text(
+                  //         '${controller.deliveryTime} ${'43'.tr}',
+                  //         style: Theme.of(context).textTheme.displaySmall,
+                  //       ),
+                  //       const Icon(Icons.timer_sharp)
+                  //     ],
+                  //   ),
+                  // ),
+                  Text(
+                    '${productModel.priceafterdiscount} \$',
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   children: [
 
-                //     GetBuilder<FavoriteController>(builder: (controller) {
-                //       return IconButton(
-                //           onPressed: () {
-                //             if (controller.isFav[productModel.id] == '0') {
-                //               controller.setFavorite(productModel.id!, '1');
-                //               controller.addFavorite(productModel.id!);
-                //             } else {
-                //               controller.setFavorite(productModel.id!, '0');
-                //               controller.deleteFavorite(productModel.id!);
-                //             }
-                //           },
-                //           icon: controller.isFav[productModel.id] == '0'
-                //               ? const Icon(Icons.favorite_outline_rounded)
-                //               : const Icon(Icons.favorite));
-                //     }),
-                //   ],
-                // ),
-              ],
-            ),
-          ],
+                  //     GetBuilder<FavoriteController>(builder: (controller) {
+                  //       return IconButton(
+                  //           onPressed: () {
+                  //             if (controller.isFav[productModel.id] == '0') {
+                  //               controller.setFavorite(productModel.id!, '1');
+                  //               controller.addFavorite(productModel.id!);
+                  //             } else {
+                  //               controller.setFavorite(productModel.id!, '0');
+                  //               controller.deleteFavorite(productModel.id!);
+                  //             }
+                  //           },
+                  //           icon: controller.isFav[productModel.id] == '0'
+                  //               ? const Icon(Icons.favorite_outline_rounded)
+                  //               : const Icon(Icons.favorite));
+                  //     }),
+                  //   ],
+                  // ),
+                ],
+              ),
+              if (productModel.discount != '0')
+                const Positioned(
+                    // top: 20,
+                    child: Icon(
+                  Icons.discount_rounded,
+                  color: AppColor.primaryColor,
+                )),
+            ],
+          ),
         ),
       ),
     );

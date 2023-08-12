@@ -13,20 +13,20 @@ class AddressBox extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: active ? AppColor.blue : AppColor.white,
+        color: active ? AppColor.primaryColor : AppColor.secondaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: ListTile(
         title: Text(
           title,
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
-              color: active ? AppColor.white : AppColor.black,
+              color: AppColor.thirdColor,
             ),
         ),
         subtitle: Text(
           description,
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
-              color: active ? AppColor.white : AppColor.black,
+              color: AppColor.thirdColor,
             ),
         ),
       ),

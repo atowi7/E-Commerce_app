@@ -25,7 +25,7 @@ class AmountAndPriceSection extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               decoration:
-                  BoxDecoration(border: Border.all(color: AppColor.blue)),
+                  BoxDecoration(border: Border.all(color: AppColor.primaryColor)),
               child: Text(
                 '$count',
                 style: Theme.of(context)

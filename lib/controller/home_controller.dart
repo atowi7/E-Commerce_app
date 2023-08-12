@@ -29,7 +29,8 @@ class HomeController extends BaseHomeController {
 
   List headings = [];
   List categories = [];
-  //List products = [];
+  // get categoriess => categories;
+  List allProducts = [];
   List topSellingProducts = [];
 
   @override
@@ -49,8 +50,8 @@ class HomeController extends BaseHomeController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         headings.addAll(response['headings']);
         cardTitle = headings[0]['heading_title'];
         cardDesc = headings[0]['heading_body'];
@@ -58,12 +59,13 @@ class HomeController extends BaseHomeController {
         deliveryTime = headings[0]['heading_deliverytime'];
         appServices.sharedPreferences.setString('deliverytime', deliveryTime!);
 
+        allProducts.addAll(response['products']);
         categories.addAll(response['categories']);
         if (response['producttopselling'] != 0) {
           topSellingProducts.addAll(response['producttopselling']);
         }
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
       statusRequest = StatusRequest.serverFailure;

@@ -9,21 +9,20 @@ class CustomeButton extends GetView<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 100),
-      width: 200,
+      padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.blue,
-        ),
+            backgroundColor: AppColor.primaryColor,
+           ),
         onPressed: () {
           controller.next();
         },
         child: Text(
           '12'.tr,
-          style: Theme.of(context).textTheme.labelLarge,
+          style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
     );

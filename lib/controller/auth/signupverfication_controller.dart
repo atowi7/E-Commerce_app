@@ -5,7 +5,7 @@ import 'package:ecommerce_app/data/datasource/remote/auth/signupverification_dat
 import 'package:get/get.dart';
 
 abstract class BaseSignupVerficationController extends GetxController {
-  openSucess(String verifyCode);
+  opensuccess(String verifyCode);
   resend();
 }
 
@@ -23,17 +23,17 @@ class SignupVerficationController extends BaseSignupVerficationController {
   }
 
   @override
-  openSucess(verifyCode) async {
+  opensuccess(verifyCode) async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await signupVerificationData.postData(email!, verifyCode);
     statusRequest = handleData(response);
-    if (statusRequest == StatusRequest.sucess) {
-      if (response['status'] == 'sucess') {
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == 'success') {
         Get.offNamed(AppRoute.successSignup);
       } else {
         Get.defaultDialog(title: '94'.tr, middleText: '99'.tr);
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
       Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);
@@ -46,12 +46,12 @@ class SignupVerficationController extends BaseSignupVerficationController {
   resend() async {
     var response = await signupVerificationData.resend(email!);
     statusRequest = handleData(response);
-    if (statusRequest == StatusRequest.sucess) {
-      if (response['status'] == 'sucess') {
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == 'success') {
         Get.defaultDialog(title: '39'.tr, middleText: '100'.tr);
       } else {
         Get.defaultDialog(title: '94'.tr, middleText: '101'.tr);
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
       Get.defaultDialog(title: '94'.tr, middleText: '96'.tr);

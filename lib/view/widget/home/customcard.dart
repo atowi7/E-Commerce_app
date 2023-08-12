@@ -11,9 +11,9 @@ class CustomCard extends StatelessWidget {
     return Container(
       height: 100,
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       decoration: BoxDecoration(
-        color: AppColor.blue,
+        color: AppColor.primaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: ListTile(

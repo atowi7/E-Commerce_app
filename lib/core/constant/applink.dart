@@ -4,12 +4,13 @@ class AppLink {
 
   //image
   static const String image = '$server/upload';
+  static const String userImage = '$image/categorie';
   static const String categrieImage = '$image/categorie';
-  static const String productImage = '$image/item';
+  static const String productImage = '$image/product';
 
   //Auth
   static const String signup = '$server/auth/signup.php';
-  static const String sifnupVerifyCode = '$server/auth/verifycode.php';
+  static const String signupVerifyCode = '$server/auth/verifycode.php';
   static const String resendVerifyCode = '$server/auth/resendverifycode.php';
   static const String login = '$server/auth/login.php';
   static const String checkemail = '$server/forget_password/checkemail.php';

@@ -36,16 +36,16 @@ class NotificationController extends BaseNotificationController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         List data = response['data'];
         dataList.clear();
         dataList.addAll(data.map((e) => NotificationModel.fromJson(e)));
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '96'.tr);
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
       statusRequest = StatusRequest.serverFailure;
     }
 
@@ -54,19 +54,22 @@ class NotificationController extends BaseNotificationController {
 
   @override
   deleteData(id) async {
+    statusRequest = StatusRequest.loading;
+    update();
+
     var response = await notificationData.deleteData(id, userid);
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('39'.tr, '148'.tr);
-        update();
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        Get.snackbar('39'.tr, '148'.tr, duration: const Duration(seconds: 2));
+        getData();
       } else {
-        Get.snackbar('39'.tr, '149'.tr);
+        Get.snackbar('39'.tr, '149'.tr, duration: const Duration(seconds: 2));
       }
     } else {
-      Get.snackbar('94'.tr, '97'.tr);
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
     }
   }
 }

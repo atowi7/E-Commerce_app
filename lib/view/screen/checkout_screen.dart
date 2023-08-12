@@ -1,11 +1,11 @@
 import 'package:ecommerce_app/controller/checkout_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/view/widget/checkout/addressbox.dart';
 import 'package:ecommerce_app/view/widget/checkout/cardbox.dart';
 import 'package:ecommerce_app/view/widget/checkout/cashbox.dart';
 import 'package:ecommerce_app/view/widget/checkout/deliverybox.dart';
-import 'package:ecommerce_app/view/widget/checkout/myselfbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +23,6 @@ class CheckOutScreen extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(5),
           child: ListView(children: [
-            
             Text(
               '63'.tr,
               style: Theme.of(context).textTheme.displayLarge,
@@ -40,13 +39,15 @@ class CheckOutScreen extends StatelessWidget {
                     },
                     child: DeliveryBox(
                         title: '64'.tr,
+                        image: ImageAssets.onBoardingDriverImg,
                         active: controller.deliveryType == '0' ? true : false)),
                 InkWell(
                     onTap: () {
                       controller.chooseDeliveryType('1');
                     },
-                    child: MySelfBox(
+                    child: DeliveryBox(
                         title: '65'.tr,
+                        image: ImageAssets.onBoardingMyselfImg,
                         active: controller.deliveryType == '1' ? true : false)),
               ],
             ),
@@ -68,7 +69,8 @@ class CheckOutScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.displayMedium,
                             ),
                             MaterialButton(
-                                color: AppColor.blue,
+                                color: AppColor.primaryColor,
+                                splashColor: AppColor.secondaryColor,
                                 onPressed: () {
                                   Get.toNamed(
                                     AppRoute.addressadd,
@@ -77,7 +79,7 @@ class CheckOutScreen extends StatelessWidget {
                                 child: Text(
                                   '68'.tr,
                                   style:
-                                      Theme.of(context).textTheme.displayMedium,
+                                      Theme.of(context).textTheme.labelMedium,
                                 ))
                           ],
                         ),
@@ -121,31 +123,41 @@ class CheckOutScreen extends StatelessWidget {
                 },
                 child: CardBox(
                     title: '61'.tr,
-                    active: controller.payment == '0' ? true : false),
+                    active:
+                        controller.payment == '0' || controller.payment == '2'
+                            ? true
+                            : false),
               ),
               InkWell(
                 onTap: () {
-                  controller.choosePyamentMethod('1');
+                  controller.payByCard(context);
                 },
                 child: CashBox(
                     title: '62'.tr,
-                    active: controller.payment == '1' ? true : false),
+                    active:
+                        controller.payment == '1' || controller.payment == '2'
+                            ? true
+                            : false),
               )
             ]),
           ]),
         );
       }),
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
         decoration: BoxDecoration(
-          color: AppColor.blue,
+          color: AppColor.primaryColor,
           borderRadius: BorderRadius.circular(20),
         ),
         child: MaterialButton(
           onPressed: () {
             checkoutController.checkout();
           },
-          child: Text('12'.tr),
+          splashColor: AppColor.secondaryColor,
+          child: Text(
+            '12'.tr,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
         ),
       ),
     );

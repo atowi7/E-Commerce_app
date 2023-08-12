@@ -34,13 +34,13 @@ class UserFavoriteController extends BaseUserFavoriteController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         List data = response['data'];
         datalist.clear();
         datalist.addAll(data.map((e) => UserFavoriteModel.fromJson(e)));
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
       Get.defaultDialog(title: '94'.tr, middleText: '97'.tr);
@@ -53,7 +53,7 @@ class UserFavoriteController extends BaseUserFavoriteController {
   deletData(favid) {
     userfavoritedata.deleteData(favid);
     datalist.removeWhere((element) => element.favId == favid);
-    Get.snackbar('39'.tr, '123'.tr);
+    Get.snackbar('39'.tr, '123'.tr,duration:const Duration(seconds: 2));
 
     update();
   }

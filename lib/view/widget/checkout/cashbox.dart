@@ -13,13 +13,13 @@ class CashBox extends StatelessWidget {
       width: Get.width / 4,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: active ? AppColor.blue : AppColor.white,
+        color: active ? AppColor.primaryColor : AppColor.secondaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         title,
         style: Theme.of(context).textTheme.displayMedium!.copyWith(
-              color: active ? AppColor.white : AppColor.black,
+              color: AppColor.thirdColor,
             ),
       ),
     );

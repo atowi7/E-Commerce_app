@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextAuth extends StatelessWidget {
@@ -16,10 +17,12 @@ class CustomTextAuth extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(t1),
+        Text(t1, style: Theme.of(context).textTheme.displaySmall),
         InkWell(
           onTap: onTap,
-          child: Text(t2),
+          child: Text(t2,
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                  fontWeight: FontWeight.bold, color: AppColor.primaryColor)),
         )
       ],
     );

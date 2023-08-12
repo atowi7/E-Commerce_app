@@ -1,10 +1,11 @@
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/view/widget/auth/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SucessResetPasswordScreen extends StatelessWidget {
-  const SucessResetPasswordScreen({super.key});
+class SuccessResetPasswordScreen extends StatelessWidget {
+  const SuccessResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +18,19 @@ class SucessResetPasswordScreen extends StatelessWidget {
         child: Column(
           children: [
             const Icon(
-              Icons.check_circle,
+              Icons.check_circle_outline,
               size: 350,
+              color: AppColor.primaryColor,
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
             Text(
               '29'.tr,
-              style: const TextStyle(fontSize: 30),
+              style: Theme.of(context).textTheme.displayLarge,
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
             CustomButton(
                 title: '30'.tr,

@@ -55,15 +55,15 @@ class ProductController extends BaseProductController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         products.clear();
         products.addAll(response['data']);
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '96'.tr);
+      Get.snackbar('94'.tr, '96'.tr,duration:const Duration(seconds: 2));
       statusRequest = StatusRequest.serverFailure;
     }
 

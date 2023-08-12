@@ -44,14 +44,14 @@ class MySearchController extends BaseSearchController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         List data = response['data'];
 
         searchProducts.addAll(data.map((e) => ProductModel.fromJson(e)));
         update();
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     }
     update();

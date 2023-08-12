@@ -11,7 +11,6 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(NotificationController());
     return Scaffold(
       appBar: AppBar(title: Text('137'.tr)),
       body: GetBuilder<NotificationController>(builder: (controller) {
@@ -33,13 +32,10 @@ class NotificationScreen extends StatelessWidget {
                           onConfirm: () {
                             controller.deleteData(
                                 controller.dataList[index].notificationId!);
+                                Navigator.of(context).pop();
                           },
-                          confirmTextColor: AppColor.blue,
-                          cancelTextColor: AppColor.blue,
-                          buttonColor: AppColor.white,
-                          onCancel: () {
-                            Get.back();
-                          },
+                          confirmTextColor: AppColor.primaryColor,
+                          buttonColor: AppColor.secondaryColor,
                         );
                       })),
             ],
@@ -59,9 +55,9 @@ class NotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: ListTile(
-          title: Text(
+          leading: Text(
             '${notificationModel.notificationTitle}',
             style: Theme.of(context).textTheme.displayMedium,
           ),
@@ -79,7 +75,11 @@ class NotificationWidget extends StatelessWidget {
           ),
           trailing: IconButton(
               onPressed: onDelete,
-              icon: const Icon(Icons.delete_forever_rounded))),
+              icon: const Icon(
+                Icons.delete_forever_rounded,
+                color: AppColor.primaryColor,
+                size: 30,
+              ))),
     );
   }
 }

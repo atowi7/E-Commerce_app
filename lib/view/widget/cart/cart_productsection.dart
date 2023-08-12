@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/core/constant/applink.dart';
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 class CartProductSection extends StatelessWidget {
@@ -34,6 +35,7 @@ class CartProductSection extends StatelessWidget {
           Expanded(
             flex: 2,
             child: IconButton(
+              color: AppColor.primaryColor,
               onPressed: onPressedAdd,
               icon: const Icon(Icons.add),
               iconSize: 15,
@@ -52,6 +54,7 @@ class CartProductSection extends StatelessWidget {
           Expanded(
               flex: 1,
               child: IconButton(
+                color: AppColor.primaryColor,
                 onPressed: onPressedDelete,
                 icon: const Icon(Icons.remove),
                 iconSize: 15,

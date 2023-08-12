@@ -29,7 +29,7 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
               ),
             ],
           ),
-          const Divider(color: AppColor.blue),
+          const Divider(color: AppColor.primaryColor),
           Text('${'71'.tr} : ${orderModel.ordersPrice}'),
           Text('${'72'.tr} : ${orderModel.ordersDeliveryprice}\$'),
           Text(
@@ -38,9 +38,9 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
               '${'74'.tr} : ${controller.getDeliveryType(orderModel.ordersType!)}'),
           Text(
               '${'75'.tr} : ${controller.getStatus(orderModel.ordersStatus!)}'),
-          const Divider(color: AppColor.blue),
+          const Divider(color: AppColor.primaryColor),
           Text('${'76'.tr} : ${orderModel.ordersTotalprice}\$'),
-          const Divider(color: AppColor.blue),
+          const Divider(color: AppColor.primaryColor),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -60,7 +60,7 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
               //             ),
               //             submitButtonText: '83'.tr,
               //             submitButtonTextStyle:
-              //                 const TextStyle(color: AppColor.blue),
+              //                 const TextStyle(color: AppColor.primaryColor),
               //             onSubmitted: (value) {
               //               if (value.rating == 0.0) {
               //                 Get.snackbar('84'.tr, '85'.tr);
@@ -74,7 +74,7 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
               //             barrierDismissible: true,
               //             builder: (context) => dailog);
               //       },
-              //       color: AppColor.blue,
+              //       color: AppColor.primaryColor,
               //       child: Text('86'.tr)),
               MaterialButton(
                   onPressed: () {
@@ -82,7 +82,8 @@ class OrderArchiveWedget extends GetView<OrdersArchiveController> {
                       'orderModel': orderModel,
                     });
                   },
-                  color: AppColor.blue,
+                  color: AppColor.primaryColor,
+                  splashColor: AppColor.thirdColor,
                   child: Text('77'.tr)),
             ],
           ),

@@ -39,7 +39,7 @@ class AddressAdd extends StatelessWidget {
                         controller.mapcontroller.complete(mapcontroller);
                       },
                       markers: controller.markers,
-                      onTap: (latlang) {
+                      onLongPress: (latlang) {
                         controller.addMarker(latlang);
                       },
                     ),
@@ -48,7 +48,7 @@ class AddressAdd extends StatelessWidget {
                       right: Get.width / 2 - 10,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: AppColor.blue,
+                          color: AppColor.primaryColor,
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: IconButton(

@@ -12,18 +12,18 @@ class CategorieSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.put(HomeController());
+    HomeController controller = Get.find();
     return Container(
-      height: 100,
+      height: 70,
       width: double.infinity,
-      margin: const EdgeInsets.only(left: 10, right: 10),
+      margin: const EdgeInsets.only(left: 8, right: 8),
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => CategorieWidget(
                 categorieModel:
                     CategorieModel.fromJson(controller.categories[index]),
               ),
-          separatorBuilder: (context, index) => const SizedBox(width: 10),
+          separatorBuilder: (context, index) => const SizedBox(width: 8),
           itemCount: controller.categories.length),
     );
   }
@@ -40,25 +40,23 @@ class CategorieWidget extends GetView<HomeController> {
         controller.goToItem(controller.categories, categorieModel.id!);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         decoration: BoxDecoration(
-          color: AppColor.blue,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppColor.black),
+          color: AppColor.primaryColor,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColor.secondaryColor),
         ),
         child: Column(
           children: [
             SvgPicture.network(
               '${AppLink.categrieImage}/${categorieModel.image}',
-              colorFilter:
-                  const ColorFilter.mode(AppColor.white, BlendMode.srcIn),
-              height: 50,
-              width: 50,
+              height: 30,
+              width: 30,
             ),
             Text(
               langTranslateDataBase(
                   categorieModel.nameAr!, categorieModel.name!),
-              style: const TextStyle(fontSize: 16),
+              style: Theme.of(context).textTheme.displaySmall,
             )
           ],
         ),

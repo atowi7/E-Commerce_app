@@ -2,15 +2,20 @@ import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseSettingController extends GetxController {
+  displayNotification(bool val);
   contactUs();
   logout();
 }
 
 class SettingController extends BaseSettingController {
+  late String userid;
+  late String userName;
+  late String userImage;
+
+  bool value = false;
   // List sections = [
   //   {
   //     'title': '119'.tr,
@@ -41,6 +46,27 @@ class SettingController extends BaseSettingController {
   AppServices appServices = Get.find();
 
   @override
+  void onInit() {
+    userid = appServices.sharedPreferences.getString('userid')!;
+    userName = appServices.sharedPreferences.getString('username')!;
+    userImage = 'default';
+    super.onInit();
+  }
+
+  @override
+  displayNotification(val) {
+    value = val;
+    print(value);
+    if (value ==true) {
+        //FirebaseMessaging.instance.subscribeToTopic('user$userid');
+    } else {
+       // FirebaseMessaging.instance.unsubscribeFromTopic('user$userid');
+    }
+
+    update();
+  }
+
+  @override
   contactUs() {
     String? encodeQueryParameters(Map<String, String> params) {
       return params.entries
@@ -63,8 +89,6 @@ class SettingController extends BaseSettingController {
 
   @override
   logout() {
-    String userid = appServices.sharedPreferences.getString('userid')!;
-
     FirebaseMessaging.instance.unsubscribeFromTopic('users');
     FirebaseMessaging.instance.unsubscribeFromTopic('user$userid');
 

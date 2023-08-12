@@ -33,16 +33,16 @@ class FavoriteController extends BaseFavoriteController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('39'.tr, '110'.tr);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        Get.snackbar('39'.tr, '110'.tr,duration:const Duration(seconds: 2));
         update();
       } else {
-        Get.snackbar('39'.tr, '111'.tr);
-        // statusRequest = StatusRequest.noDatafailure;
+        Get.snackbar('39'.tr, '111'.tr,duration:const Duration(seconds: 2));
+        // statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '97'.tr);
+      Get.snackbar('94'.tr, '97'.tr,duration:const Duration(seconds: 2));
     }
   }
 
@@ -53,15 +53,15 @@ class FavoriteController extends BaseFavoriteController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('39'.tr, '112'.tr);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        Get.snackbar('39'.tr, '112'.tr,duration:const Duration(seconds: 2));
         update();
       } else {
-        Get.snackbar('39'.tr, '113'.tr);
+        Get.snackbar('39'.tr, '113'.tr,duration:const Duration(seconds: 2));
       }
     } else {
-      Get.snackbar('94'.tr, '97'.tr);
+      Get.snackbar('94'.tr, '97'.tr,duration:const Duration(seconds: 2));
     }
   }
 

@@ -31,6 +31,7 @@ class OrderDetialsController extends BaseOrderDetialsController {
 
   double? lat;
   double? long;
+
   @override
   void onInit() {
     orderModel = Get.arguments['orderModel'];
@@ -59,16 +60,16 @@ class OrderDetialsController extends BaseOrderDetialsController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         List data = response['data'];
         dataList.clear();
         dataList.addAll(data.map((e) => OrdersDetailsModel.fromJson(e)));
       } else {
-        statusRequest = StatusRequest.noDatafailure;
+        statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '96'.tr);
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
       statusRequest = StatusRequest.serverFailure;
     }
 
