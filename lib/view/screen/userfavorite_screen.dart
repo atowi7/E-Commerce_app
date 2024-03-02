@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/controller/cart_controller.dart';
 import 'package:ecommerce_app/controller/userfavorite_controller.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:ecommerce_app/view/widget/userfavorite/product_section.dart';
@@ -9,8 +8,7 @@ class UserFavoriteScreen extends StatelessWidget {
   const UserFavoriteScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    UserFavoriteController userFavoriteController =
-        Get.put(UserFavoriteController());
+    UserFavoriteController userFavoriteController = Get.put(UserFavoriteController());
     return RefreshIndicator(
       onRefresh: () async {
         await userFavoriteController.getData();

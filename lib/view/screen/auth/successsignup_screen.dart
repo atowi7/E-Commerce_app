@@ -23,14 +23,14 @@ class SuccessSignupScreen extends StatelessWidget {
               size: 350,
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: Get.height * 0.2,
             ),
             Text(
               '29'.tr,
               style: Theme.of(context).textTheme.displayLarge,
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: Get.height * 0.2,
             ),
             CustomButton(
                 title: '30'.tr,

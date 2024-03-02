@@ -5,20 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartBottomAppBar extends GetView<CartController> {
-  final TextEditingController textController;
-  final void Function()? onApply;
+  // final TextEditingController textController;
+  // final void Function()? onApply;
   final String price;
   final String discount;
   final String shipping;
+  final String deliveryPrice;
   final String total;
   final void Function()? goToCheckout;
   const CartBottomAppBar({
     super.key,
-    required this.textController,
-    required this.onApply,
+    // required this.textController,
+    // required this.onApply,
     required this.price,
     required this.discount,
     required this.shipping,
+    required this.deliveryPrice,
     required this.total,
     required this.goToCheckout,
   });
@@ -26,48 +28,24 @@ class CartBottomAppBar extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       decoration: BoxDecoration(
         border: Border.all(color: AppColor.primaryColor, width: 2),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          controller.couponName == 'invalid' || controller.couponName == null
-              ? Row(
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: TextFormField(
-                        controller: textController,
-                        decoration: InputDecoration(hintText: '154'.tr),
-                      ),
-                    ),
-                    Expanded(
-                        flex: 1,
-                        child: MaterialButton(
-                          color: AppColor.primaryColor,
-                          onPressed: onApply,
-                          splashColor: AppColor.secondaryColor,
-                          child: Text(
-                            '155'.tr,
-                            style: Theme.of(context).textTheme.labelSmall,
-                          ),
-                        )),
-                  ],
-                )
-              : Text(
-                  '${'154'.tr} ${controller.couponName}',
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 '90'.tr,
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              Text(
+                '$price\$',
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              Text('$price\$'),
             ],
           ),
           Row(
@@ -75,9 +53,12 @@ class CartBottomAppBar extends GetView<CartController> {
             children: [
               Text(
                 '153'.tr,
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              Text(
+                discount,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              Text(discount),
             ],
           ),
           Row(
@@ -85,43 +66,59 @@ class CartBottomAppBar extends GetView<CartController> {
             children: [
               Text(
                 '152'.tr,
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              Text(
+                '$shipping\$',
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              Text('$shipping\$'),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '164'.tr,
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              Text(
+                '$deliveryPrice\$',
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
             ],
           ),
           const Divider(
             color: AppColor.secondaryColor,
+            thickness: 2,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 '91'.tr,
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              Text(
+                '$total\$',
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              Text('$total\$'),
             ],
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: Get.height * 0.02,
           ),
-          Container(
-            width: Get.size.width * 0.7,
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            decoration: BoxDecoration(
-              color: AppColor.primaryColor,
-              borderRadius: BorderRadius.circular(10),
+          MaterialButton(
+            minWidth: 200,
+            onPressed: goToCheckout,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+            color: AppColor.primaryColor,
+            splashColor: AppColor.secondaryColor,
+            child: Text(
+              '69'.tr,
+              style: Theme.of(context).textTheme.labelMedium,
             ),
-            child: MaterialButton(
-              onPressed: goToCheckout,
-              splashColor: AppColor.secondaryColor,
-              child: Text(
-                '69'.tr,
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
-            ),
-          )
+          ),
         ],
       ),
     );

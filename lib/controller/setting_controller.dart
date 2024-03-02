@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 
@@ -57,10 +58,10 @@ class SettingController extends BaseSettingController {
   displayNotification(val) {
     value = val;
     print(value);
-    if (value ==true) {
-        //FirebaseMessaging.instance.subscribeToTopic('user$userid');
+    if (value == true) {
+      //FirebaseMessaging.instance.subscribeToTopic('user$userid');
     } else {
-       // FirebaseMessaging.instance.unsubscribeFromTopic('user$userid');
+      // FirebaseMessaging.instance.unsubscribeFromTopic('user$userid');
     }
 
     update();
@@ -91,6 +92,9 @@ class SettingController extends BaseSettingController {
   logout() {
     FirebaseMessaging.instance.unsubscribeFromTopic('users');
     FirebaseMessaging.instance.unsubscribeFromTopic('user$userid');
+
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    googleSignIn.disconnect();
 
     appServices.sharedPreferences.clear();
     Get.offAllNamed(AppRoute.login);

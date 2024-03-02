@@ -29,36 +29,26 @@ class CartProductSection extends StatelessWidget {
       ),
       title: Text(title),
       subtitle: Text('Price $price\$'),
-      trailing: Column(
+      trailing: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            flex: 2,
-            child: IconButton(
-              color: AppColor.primaryColor,
-              onPressed: onPressedAdd,
-              icon: const Icon(Icons.add),
-              iconSize: 15,
-            ),
+          IconButton(
+            color: AppColor.primaryColor,
+            onPressed: onPressedAdd,
+            icon: const Icon(Icons.add),
+            iconSize: 20,
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              margin: const EdgeInsets.only(top: 3),
-              child: Text(
-                amount,
-                style: const TextStyle(height: 1,),
-              ),
-            ),
+          Text(
+            amount,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
-          Expanded(
-              flex: 1,
-              child: IconButton(
-                color: AppColor.primaryColor,
-                onPressed: onPressedDelete,
-                icon: const Icon(Icons.remove),
-                iconSize: 15,
-              ))
+          IconButton(
+            color: AppColor.primaryColor,
+            onPressed: onPressedDelete,
+            icon: const Icon(Icons.remove),
+            iconSize: 20,
+          )
         ],
       ),
     );

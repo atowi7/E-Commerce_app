@@ -5,13 +5,19 @@ class UserFavoriteModel {
   String? proNameAr;
   String? proDescription;
   String? proDescriptionAr;
+  String? proColor;
+  String? proColorAr;
   String? proImage;
   String? proPrice;
+  String? proRate;
+  String? proRateNote;
   String? proDiscount;
+  String? proPayment;
   String? proActive;
   String? proCount;
   String? proCreatedat;
   String? catId;
+  String? priceAfterDiscount;
   String? favId;
   String? favUserid;
   String? favProid;
@@ -23,13 +29,19 @@ class UserFavoriteModel {
       proNameAr,
       proDescription,
       proDescriptionAr,
+      proColor,
+      proColorAr,
       proImage,
       proPrice,
+      proRate,
+      proRateNote,
       proDiscount,
+      proPayment,
       proActive,
       proCount,
       proCreatedat,
       catId,
+      priceAfterDiscount,
       favId,
       favUserid,
       favProid});
@@ -41,13 +53,19 @@ class UserFavoriteModel {
     proNameAr = json['pro_name_ar'];
     proDescription = json['pro_description'];
     proDescriptionAr = json['pro_description_ar'];
+    proColor = json['pro_color'];
+    proColorAr = json['pro_color_ar'];
     proImage = json['pro_image'];
     proPrice = json['pro_price'];
+    proRate = json['pro_rate'];
+    proRateNote = json['pro_ratenote'];
     proDiscount = json['pro_discount'];
+    proPayment = json['pro_payment'];
     proActive = json['pro_active'];
     proCount = json['pro_count'];
     proCreatedat = json['pro_createdat'];
     catId = json['cat_id'];
+    priceAfterDiscount = json['priceafterdiscount'];
     favId = json['fav_id'];
     favUserid = json['fav_userid'];
     favProid = json['fav_proid'];

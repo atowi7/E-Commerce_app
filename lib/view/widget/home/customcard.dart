@@ -9,9 +9,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       decoration: BoxDecoration(
         color: AppColor.primaryColor,
         borderRadius: BorderRadius.circular(20),
@@ -19,11 +17,13 @@ class CustomCard extends StatelessWidget {
       child: ListTile(
         title: Text(
           title,
-          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.displayLarge,
+          textAlign: TextAlign.center,
         ),
         subtitle: Text(
           disc,
-          style: const TextStyle(fontSize: 30),
+          style: Theme.of(context).textTheme.displayMedium,
+          textAlign: TextAlign.center,
         ),
       ),
     );

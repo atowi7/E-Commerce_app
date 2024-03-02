@@ -11,16 +11,17 @@ class ImageSection extends GetView<ProductDetailController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: Get.height * 0.5,
+      margin: const EdgeInsets.all(4),
       decoration: const BoxDecoration(
           color: AppColor.primaryColor,
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(25))),
       child: Hero(
-        tag: '${controller.productModel.id}',
+        tag: '${controller.heroTag}_${controller.productModel.id}',
         child: CachedNetworkImage(
           imageUrl: '${AppLink.productImage}/${controller.productModel.image}',
-          height: Get.height / 7,
-          width: Get.width / 7,
+          height: Get.height * 0.35,
+          width: Get.width * 0.35,
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:ecommerce_app/view/screen/address/addressdetail_add.dart';
 import 'package:ecommerce_app/view/screen/address/address_edit.dart';
 import 'package:ecommerce_app/view/screen/address/address_add.dart';
 import 'package:ecommerce_app/view/screen/cart_screen.dart';
+import 'package:ecommerce_app/view/screen/chat_screen.dart';
 import 'package:ecommerce_app/view/screen/checkout_screen.dart';
 import 'package:ecommerce_app/view/screen/forgetpassword/checkemail_screen.dart';
 import 'package:ecommerce_app/view/screen/auth/login_screen.dart';
@@ -130,5 +131,9 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.ordersTracking,
     page: () => const OrderTrackingScreen(),
+  ),
+  GetPage(
+    name: AppRoute.chatView,
+    page: () => const ChatScreen(),
   ),
 ];

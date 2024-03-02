@@ -4,7 +4,9 @@ import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/cart_data.dart';
+import 'package:ecommerce_app/data/datasource/remote/product_data.dart';
 import 'package:ecommerce_app/data/model/productmodel.dart';
+import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
@@ -15,15 +17,30 @@ abstract class BaseProductDetailController extends GetxController {
   // getCount(String proid);
   // addCount();
   // deleteCount();
-  sendRatring(String proId, double rate, String comment);
+  goToChat(String adminId);
+  ratingPermission();
+  sendRatring(String proId, double value, String comment);
   // goToCart();
 }
 
 class ProductDetailController extends BaseProductDetailController {
+  late String userId;
   late ProductModel productModel;
-  int count = 0;
+
+  bool enableRating = false;
+
+  // double shipping
+
+  late String heroTag;
+  // int count = 0;
+
+  var formKey = GlobalKey<FormState>();
+
+  TextEditingController msgController = TextEditingController();
 
   AppServices appServices = Get.find();
+
+  ProductData productData = ProductData(Get.find());
 
   CartController cartController = Get.find();
 
@@ -39,6 +56,7 @@ class ProductDetailController extends BaseProductDetailController {
 
   @override
   void onInit() {
+    userId = appServices.sharedPreferences.getString('userid')!;
     initialData();
     super.onInit();
   }
@@ -47,7 +65,8 @@ class ProductDetailController extends BaseProductDetailController {
   initialData() async {
     statusRequest = StatusRequest.loading;
     productModel = Get.arguments['productmodel'];
-    print('productModel $productModel');
+    heroTag = Get.arguments['herotag'];
+    // print(productModel.id);
     // count = await getCount(productModel.id!);
     statusRequest = StatusRequest.none;
     update();
@@ -131,10 +150,35 @@ class ProductDetailController extends BaseProductDetailController {
   // }
 
   @override
-  sendRatring(proId, rate, comment) async {
+  goToChat(adminId) async {
+    Get.toNamed(AppRoute.chatView,
+        arguments: {'adminid': productModel.adminId});
+  }
+
+  @override
+  ratingPermission() async {
+    var response = await productData.ratingPermission(userId, productModel.id!);
+
+    statusRequest = handleData(response);
+
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        enableRating = true;
+      } else {
+        enableRating = false;
+      }
+    } else {
+      enableRating = false;
+    }
+    update();
+  }
+
+  @override
+  sendRatring(proId, value, comment) async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await cartdata.sendRating(proId, rate.toString(), comment);
+    var response =
+        await productData.sendRating(value.toString(), comment, proId, userId);
 
     statusRequest = handleData(response);
 

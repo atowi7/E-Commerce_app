@@ -14,7 +14,7 @@ class CategorieSection extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeController controller = Get.find();
     return Container(
-      height: 70,
+      height: Get.height * 0.12,
       width: double.infinity,
       margin: const EdgeInsets.only(left: 8, right: 8),
       child: ListView.separated(
@@ -50,8 +50,8 @@ class CategorieWidget extends GetView<HomeController> {
           children: [
             SvgPicture.network(
               '${AppLink.categrieImage}/${categorieModel.image}',
-              height: 30,
-              width: 30,
+              height: Get.height * 0.05,
+              width: Get.width * 0.05,
             ),
             Text(
               langTranslateDataBase(

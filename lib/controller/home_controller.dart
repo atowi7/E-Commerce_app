@@ -12,7 +12,7 @@ abstract class BaseHomeController extends MySearchController {
   getData();
 
   goToItem(List categories, String cid);
-  goToProductDetial(ProductModel productModel);
+  goToProductDetial(ProductModel productModel, String heroTag);
 }
 
 class HomeController extends BaseHomeController {
@@ -31,6 +31,7 @@ class HomeController extends BaseHomeController {
   List categories = [];
   // get categoriess => categories;
   List allProducts = [];
+  // List userfavorite = [];
   List topSellingProducts = [];
 
   @override
@@ -61,6 +62,7 @@ class HomeController extends BaseHomeController {
 
         allProducts.addAll(response['products']);
         categories.addAll(response['categories']);
+        // userfavorite.addAll(response['user_favoriate']);
         if (response['producttopselling'] != 0) {
           topSellingProducts.addAll(response['producttopselling']);
         }
@@ -82,9 +84,10 @@ class HomeController extends BaseHomeController {
   }
 
   @override
-  goToProductDetial(ProductModel productModel) {
+  goToProductDetial(ProductModel productModel, heroTag) {
     Get.toNamed(AppRoute.productdetail, arguments: {
       'productmodel': productModel,
+      'herotag': heroTag,
     });
   }
 }

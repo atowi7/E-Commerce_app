@@ -18,6 +18,7 @@ class CustomeSlider extends GetView<OnboardingController> {
       itemBuilder: (context, i) => Column(
         children: [
           Text(onBoardingList[i].title,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayLarge),
           Expanded(
             child: Lottie.asset(
@@ -25,6 +26,7 @@ class CustomeSlider extends GetView<OnboardingController> {
             ),
           ),
           Text(onBoardingList[i].content,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium),
         ],
       ),

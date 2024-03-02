@@ -14,24 +14,30 @@ class ProductSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FavoriteController favoriteController = Get.find();
+    FavoriteController favoriteController = Get.put(FavoriteController());
 
     return GetBuilder<ProductController>(builder: (controller) {
       return HandlingDataView(
         statusRequest: controller.statusRequest,
-        widget: GridView.builder(
-            itemCount: controller.products.length,
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              favoriteController.isFav[controller.products[index]['pro_id']] =
-                  controller.products[index]['favorite'];
-              return ProductWedget(
-                productModel: ProductModel.fromJson(controller.products[index]),
-              );
-            }),
+        widget: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8),
+          child: GridView.builder(
+              itemCount: controller.products.length,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 4,
+              ),
+              itemBuilder: (context, index) {
+                favoriteController.isFav[controller.products[index]['pro_id']] =
+                    controller.products[index]['favorite'];
+                return ProductWedget(
+                  productModel:
+                      ProductModel.fromJson(controller.products[index]),
+                );
+              }),
+        ),
       );
     });
   }
@@ -42,103 +48,109 @@ class ProductWedget extends GetView<ProductController> {
   const ProductWedget({super.key, required this.productModel});
   @override
   Widget build(BuildContext context) {
+    //  UserFavoriteController userFavoriteController = Get.find();
     return InkWell(
-      onTap: () => controller.goToProductDetial(productModel),
-      child: Container(
-        padding: const EdgeInsets.all(2),
-        child: Card(
-          color: AppColor.secondaryColor,
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Hero(
-                    tag: '${productModel.id}',
-                    child: CachedNetworkImage(
-                      imageUrl: '${AppLink.productImage}/${productModel.image}',
-                      height: 60,
-                      width: 60,
-                    ),
+      onTap: () => controller.goToProductDetial(productModel, 'tag_p'),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+            decoration: BoxDecoration(
+              color: AppColor.secondaryColor,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: AppColor.secondaryColor),
+            ),
+            child: Column(
+              children: [
+                Hero(
+                  tag: 'tag_p_${productModel.id}',
+                  child: CachedNetworkImage(
+                    imageUrl: '${AppLink.productImage}/${productModel.image}',
+                    height: 60,
+                    width: 60,
                   ),
-                  Text(
-                    langTranslateDataBase(
-                        productModel.nameAr!, productModel.name!),
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '42'.tr,
-                        style: Theme.of(context).textTheme.displaySmall,
-                      ),
-                      Row(
-                          children: List.generate(
-                              5,
-                              (index) => SizedBox(
-                                    height: 25,
-                                    width: 25,
-                                    child: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.star,
-                                        color: AppColor.primaryColor,
-                                      ),
-                                      iconSize: 15,
-                                    ),
-                                  ))),
-                    ],
-                  ),
-                  // Container(
-                  //   margin: const EdgeInsets.symmetric(vertical: 8),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //     children: [
-                  //       Text(
-                  //         '${controller.deliveryTime} ${'43'.tr}',
-                  //         style: Theme.of(context).textTheme.displaySmall,
-                  //       ),
-                  //       const Icon(Icons.timer_sharp)
-                  //     ],
-                  //   ),
-                  // ),
-                  Text(
-                    '${productModel.priceafterdiscount} \$',
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
+                ),
 
-                  //     GetBuilder<FavoriteController>(builder: (controller) {
-                  //       return IconButton(
-                  //           onPressed: () {
-                  //             if (controller.isFav[productModel.id] == '0') {
-                  //               controller.setFavorite(productModel.id!, '1');
-                  //               controller.addFavorite(productModel.id!);
-                  //             } else {
-                  //               controller.setFavorite(productModel.id!, '0');
-                  //               controller.deleteFavorite(productModel.id!);
-                  //             }
-                  //           },
-                  //           icon: controller.isFav[productModel.id] == '0'
-                  //               ? const Icon(Icons.favorite_outline_rounded)
-                  //               : const Icon(Icons.favorite));
-                  //     }),
-                  //   ],
-                  // ),
-                ],
-              ),
-              if (productModel.discount != '0')
-                const Positioned(
-                    // top: 20,
-                    child: Icon(
+                Text(
+                  langTranslateDataBase(
+                      productModel.nameAr!, productModel.name!),
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '42'.tr,
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                            5,
+                            (index) => SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.star,
+                                      color: AppColor.primaryColor,
+                                    ),
+                                    iconSize: 15,
+                                  ),
+                                ))),
+                  ],
+                ),
+                // Container(
+                //   margin: const EdgeInsets.symmetric(vertical: 8),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //     children: [
+                //       Text(
+                //         '${controller.deliveryTime} ${'43'.tr}',
+                //         style: Theme.of(context).textTheme.displaySmall,
+                //       ),
+                //       const Icon(Icons.timer_sharp)
+                //     ],
+                //   ),
+                // ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      '${productModel.priceafterdiscount} \$',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
+                    GetBuilder<FavoriteController>(builder: (controller) {
+                      return IconButton(
+                          onPressed: () {
+                            if (controller.isFav[productModel.id] == '0') {
+                              controller.setFavorite(productModel.id!, '1');
+                              controller.addFavorite(productModel.id!);
+                            } else {
+                              controller.setFavorite(productModel.id!, '0');
+                              controller.deleteFavorite(productModel.id!);
+                            }
+                          },
+                          icon: controller.isFav[productModel.id] == '0'
+                              ? const Icon(Icons.favorite_outline_rounded)
+                              : const Icon(Icons.favorite));
+                    }),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          if (productModel.discount != '0')
+            const Positioned(
+                top: 2,
+                left: 4,
+                child: Icon(
                   Icons.discount_rounded,
                   color: AppColor.primaryColor,
                 )),
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }

@@ -44,52 +44,54 @@ class ProductWidget extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    FavoriteController favoriteController = Get.find();
     return InkWell(
-      onTap: () => controller.goToProductDetial(productModel),
-      child: Card(
-        child: Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-              decoration: BoxDecoration(
-                color: AppColor.secondaryColor,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColor.secondaryColor),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Hero(
-                    tag: '${productModel.id}',
-                    child: Image.network(
-                      '${AppLink.productImage}/${productModel.image}',
-                      height: 50,
-                      width: 50,
-                    ),
-                  ),
-                  Text(
-                    langTranslateDataBase(
-                        productModel.nameAr!, productModel.name!),
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                ],
-              ),
+      onTap: () => controller.goToProductDetial(productModel, 'tag_hp'),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+            decoration: BoxDecoration(
+              color: AppColor.secondaryColor,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: AppColor.primaryColor),
             ),
-            if (productModel.discount != '0')
-              const Positioned(
-                  top: 4,
-                  left: 4,
-                  child: Icon(
-                    Icons.discount_outlined,
-                    color: AppColor.primaryColor,
-                    size: 25,
-                  )),
-            // Container(
-            //   color: Colors.black,
-            // ),
-          ],
-        ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Hero(
+                //   tag: 'tag_hp_${productModel.id}',
+                //   child: Image.network(
+                //     '${AppLink.productImage}/${productModel.image}',
+                //     height: 50,
+                //     width: 50,
+                //   ),
+                // ),
+                Image.network(
+                    '${AppLink.productImage}/${productModel.image}',
+                    height: 50,
+                    width: 50,
+                  ),
+                Text(
+                  langTranslateDataBase(
+                      productModel.nameAr!, productModel.name!),
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              ],
+            ),
+          ),
+          if (productModel.discount != '0')
+            const Positioned(
+                top: 2,
+                left: 4,
+                child: Icon(
+                  Icons.discount_rounded,
+                  color: AppColor.primaryColor,
+                  size: 25,
+                )),
+          // Container(
+          //   color: Colors.black,
+          // ),
+        ],
       ),
     );
   }

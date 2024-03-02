@@ -17,12 +17,12 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController homeController = Get.find();
+    HomeController homeController = Get.put(HomeController());
     //  Get.put(FavoriteController());
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(8),
-        child: Column(
+        child: ListView(
           children: [
             CustomAppbar(
               context: context,
@@ -47,15 +47,24 @@ class Home extends StatelessWidget {
                               title: '${controller.cardTitle}',
                               disc: '${controller.cardDesc}'),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
+                            height: Get.height * 0.02,
                           ),
                           const CategorieSection(),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
+                            height: Get.height * 0.02,
                           ),
-                          const Custometitle(title: 'Top Selling products'),
-                          const ProductHomeSection(false),
+                          if (controller.topSellingProducts.isNotEmpty)
+                            const Custometitle(title: 'Top Selling products'),
+                          if (controller.topSellingProducts.isNotEmpty)
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          if (controller.topSellingProducts.isNotEmpty)
+                            const ProductHomeSection(false),
                           const Custometitle(title: 'All products'),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           const ProductHomeSection(true),
                         ],
                       )
@@ -86,12 +95,18 @@ class ProductSearchWedget extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => controller.goToProductDetial(productModel),
-      child: Card(
+      onTap: () => controller.goToProductDetial(productModel, 'tag_hps'),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+        decoration: BoxDecoration(
+          color: AppColor.secondaryColor,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColor.primaryColor),
+        ),
         child: Column(
           children: [
             Hero(
-              tag: '${productModel.id}',
+              tag: 'tag_hps_${productModel.id}',
               child: CachedNetworkImage(
                 imageUrl: '${AppLink.productImage}/${productModel.image}',
                 height: 70,

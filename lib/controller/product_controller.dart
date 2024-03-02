@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 abstract class BaseProductController extends GetxController {
   initialData();
   getselcat(String catid);
-  goToProductDetial(ProductModel productModel);
+  goToProductDetial(ProductModel productModel, String heroTag);
 }
 
 class ProductController extends BaseProductController {
@@ -63,7 +63,7 @@ class ProductController extends BaseProductController {
         statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '96'.tr,duration:const Duration(seconds: 2));
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
       statusRequest = StatusRequest.serverFailure;
     }
 
@@ -71,9 +71,10 @@ class ProductController extends BaseProductController {
   }
 
   @override
-  goToProductDetial(ProductModel productModel) {
+  goToProductDetial(ProductModel productModel, heroTag) {
     Get.toNamed(AppRoute.productdetail, arguments: {
       'productmodel': productModel,
+      'herotag': heroTag,
     });
   }
 }

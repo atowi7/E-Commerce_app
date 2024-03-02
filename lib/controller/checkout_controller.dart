@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:ecommerce_app/controller/cart_controller.dart';
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/key.dart';
@@ -39,7 +40,7 @@ class CheckoutController extends BaseCheckoutController {
 
   AddressData addressData = AddressData(Get.find());
   CheckoutData checkoutData = CheckoutData(Get.find());
-  //CartController cartController = Get.put(CartController());
+  CartController cartController = Get.put(CartController());
 
   StatusRequest statusRequest = StatusRequest.none;
 
@@ -47,7 +48,7 @@ class CheckoutController extends BaseCheckoutController {
   void onInit() {
     userId = appServices.sharedPreferences.getString('userid');
     totalPrice = Get.arguments['totalPrice'];
-    deliveryPrice = '10';
+    deliveryPrice = Get.arguments['deliveryPrice'];
     couponId = Get.arguments['couponId'] ?? '0';
     couponDiscount = Get.arguments['couponDiscount'] ?? '0';
     addressId = '0';
@@ -161,16 +162,15 @@ class CheckoutController extends BaseCheckoutController {
           ).show();
         },
         onError: (error) {
-          Navigator.pop(context);
           return AwesomeDialog(
             context: context,
             dialogType: DialogType.error,
-            title: '39'.tr,
+            title: '96'.tr,
             desc: '162'.tr,
             btnCancelIcon: Icons.close_outlined,
             btnCancelColor: AppColor.primaryColor,
             btnCancelOnPress: () {
-              Navigator.of(context).pop();
+              Get.back();
             },
           ).show();
         },
@@ -183,7 +183,7 @@ class CheckoutController extends BaseCheckoutController {
             btnCancelIcon: Icons.close_outlined,
             btnCancelColor: AppColor.primaryColor,
             btnCancelOnPress: () {
-              Navigator.of(context).pop();
+              Get.back();
             },
           ).show();
         },
@@ -232,7 +232,7 @@ class CheckoutController extends BaseCheckoutController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
         Get.snackbar('39'.tr, '117'.tr, duration: const Duration(seconds: 2));
-        //cartController.deleteCartByUser();
+        cartController.refreshPage();
         Get.offNamed(AppRoute.homePage);
       } else {
         Get.snackbar('39'.tr, '118'.tr, duration: const Duration(seconds: 2));

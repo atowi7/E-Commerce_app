@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/controller/favorite_controller.dart';
 import 'package:ecommerce_app/controller/offers_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/function/langtranslate_database.dart';
 import 'package:ecommerce_app/view/widget/customappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/data/model/productmodel.dart';
@@ -14,8 +14,8 @@ class OffersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    OffersController offersController = Get.find();
-    FavoriteController favoriteController = Get.find();
+    OffersController offersController = Get.put(OffersController());
+    // FavoriteController favoriteController = Get.find();
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -47,11 +47,13 @@ class OffersScreen extends StatelessWidget {
                           shrinkWrap: true,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2),
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 4,
+                          ),
                           itemBuilder: (context, index) {
-                            favoriteController.isFav[controller.products[index]
-                                    ['pro_id']] =
-                                controller.products[index]['favorite'];
+                            // favoriteController.isFav[controller.products[index]
+                            //         ['pro_id']] =
+                            //     controller.products[index]['favorite'];
                             return ProductWedget(
                               productModel: ProductModel.fromJson(
                                   controller.products[index]),
@@ -86,27 +88,35 @@ class ProductWedget extends GetView<OffersController> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.goToProductDetial(productModel);
+        controller.goToProductDetial(productModel, 'tag_op');
       },
-      child: Card(
-        child: Stack(
-          children: [
-            Column(
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+            decoration: BoxDecoration(
+              color: AppColor.secondaryColor,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: AppColor.secondaryColor),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Hero(
-                  tag: '${productModel.id}',
+                  tag: 'tag_op_${productModel.id}',
                   child: CachedNetworkImage(
                     imageUrl: '${AppLink.productImage}/${productModel.image}',
-                    height: 60,
-                    width: 60,
+                    height: 70,
+                    width: 70,
                   ),
                 ),
                 Text(
-                  '${productModel.name}',
-                  style: Theme.of(context).textTheme.displayMedium,
+                  langTranslateDataBase(
+                      productModel.nameAr!, productModel.name!),
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '42'.tr,
@@ -116,8 +126,8 @@ class ProductWedget extends GetView<OffersController> {
                         children: List.generate(
                             5,
                             (index) => SizedBox(
-                                  height: 25,
-                                  width: 25,
+                                  height: 20,
+                                  width: 20,
                                   child: IconButton(
                                     onPressed: () {},
                                     icon: const Icon(
@@ -129,21 +139,24 @@ class ProductWedget extends GetView<OffersController> {
                                 ))),
                   ],
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        '${controller.deliveryTime} Minute',
-                        style: Theme.of(context).textTheme.displaySmall,
-                      ),
-                      const Icon(
-                        Icons.timer_sharp,
-                        color: AppColor.primaryColor,
-                      )
-                    ],
-                  ),
+                // Container(
+                //   margin: const EdgeInsets.symmetric(vertical: 8),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //     children: [
+                //       Text(
+                //         '${controller.deliveryTime} Minute',
+                //         style: Theme.of(context).textTheme.displaySmall,
+                //       ),
+                //       const Icon(
+                //         Icons.timer_sharp,
+                //         color: AppColor.primaryColor,
+                //       )
+                //     ],
+                //   ),
+                // ),
+                SizedBox(
+                  height: Get.size.height * 0.02,
                 ),
                 Text(
                   '${productModel.priceafterdiscount}\$',
@@ -151,15 +164,15 @@ class ProductWedget extends GetView<OffersController> {
                 ),
               ],
             ),
-            if (productModel.discount != '0')
-              const Positioned(
-                  top: 20,
-                  child: Icon(
-                    Icons.discount_rounded,
-                    color: AppColor.primaryColor,
-                  ))
-          ],
-        ),
+          ),
+          if (productModel.discount != '0')
+            const Positioned(
+                top: 8,
+                child: Icon(
+                  Icons.discount_rounded,
+                  color: AppColor.primaryColor,
+                ))
+        ],
       ),
     );
   }
@@ -171,12 +184,20 @@ class ProductSearchWedget extends GetView<OffersController> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
-      child: Card(
+      onTap: () {
+        controller.goToProductDetial(productModel, 'tag_ops');
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+        decoration: BoxDecoration(
+          color: AppColor.secondaryColor,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColor.primaryColor),
+        ),
         child: Column(
           children: [
             Hero(
-              tag: '${productModel.id}',
+              tag: 'tag_ops_${productModel.id}',
               child: CachedNetworkImage(
                 imageUrl: '${AppLink.productImage}/${productModel.image}',
                 height: 70,

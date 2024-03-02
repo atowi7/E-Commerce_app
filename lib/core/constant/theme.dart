@@ -26,18 +26,19 @@ ThemeData englishTheme = ThemeData(
     displayMedium: TextStyle(
       fontFamily: 'Roboto',
       fontSize: 20,
-      fontWeight: FontWeight.bold,
+      // fontWeight: FontWeight.bold,
       color: AppColor.thirdColor,
     ),
     displaySmall: TextStyle(
       fontFamily: 'Roboto',
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      // fontWeight: FontWeight.bold,
       color: AppColor.thirdColor,
     ),
     labelLarge: TextStyle(
       fontFamily: 'Roboto',
       fontSize: 24,
+      fontWeight: FontWeight.bold,
       color: AppColor.forthColor,
     ),
     labelMedium: TextStyle(

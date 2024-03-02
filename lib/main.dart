@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: controller.appTheme,
       locale: controller.localeLangauge,
       translations: AppTranslations(),
-      initialRoute: AppRoute.language,
+      initialRoute: AppRoute.chatView,
       initialBinding: Binding(),
       // home: const LanguageScreen(),
       // routes: routes,

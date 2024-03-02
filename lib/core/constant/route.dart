@@ -34,4 +34,7 @@ class AppRoute {
   static const String ordersArchive = '/orderarchive';
   static const String ordersDetails = '/ordersdetails';
   static const String ordersTracking = '/orderstracking';
+
+  //Chat
+  static const String chatView = '/chatview';
 }

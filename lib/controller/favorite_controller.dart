@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controller/userfavorite_controller.dart';
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
 import 'package:ecommerce_app/core/service/services.dart';
@@ -19,6 +20,8 @@ class FavoriteController extends BaseFavoriteController {
 
   FavoriteData favoritedata = FavoriteData(Get.find());
 
+  UserFavoriteController userFavoriteController = Get.find();
+
   StatusRequest statusRequest = StatusRequest.none;
 
   @override
@@ -35,14 +38,17 @@ class FavoriteController extends BaseFavoriteController {
 
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
-        Get.snackbar('39'.tr, '110'.tr,duration:const Duration(seconds: 2));
+        Get.snackbar('39'.tr, '110'.tr, duration: const Duration(seconds: 2));
+
+        userFavoriteController.getData();
+
         update();
       } else {
-        Get.snackbar('39'.tr, '111'.tr,duration:const Duration(seconds: 2));
+        Get.snackbar('39'.tr, '111'.tr, duration: const Duration(seconds: 2));
         // statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '97'.tr,duration:const Duration(seconds: 2));
+      Get.snackbar('94'.tr, '97'.tr, duration: const Duration(seconds: 2));
     }
   }
 
@@ -55,13 +61,16 @@ class FavoriteController extends BaseFavoriteController {
 
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
-        Get.snackbar('39'.tr, '112'.tr,duration:const Duration(seconds: 2));
+        Get.snackbar('39'.tr, '112'.tr, duration: const Duration(seconds: 2));
+
+        userFavoriteController.getData();
+
         update();
       } else {
-        Get.snackbar('39'.tr, '113'.tr,duration:const Duration(seconds: 2));
+        Get.snackbar('39'.tr, '113'.tr, duration: const Duration(seconds: 2));
       }
     } else {
-      Get.snackbar('94'.tr, '97'.tr,duration:const Duration(seconds: 2));
+      Get.snackbar('94'.tr, '97'.tr, duration: const Duration(seconds: 2));
     }
   }
 

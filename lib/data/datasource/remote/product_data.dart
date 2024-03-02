@@ -6,10 +6,24 @@ class ProductData {
 
   ProductData(this.crud);
 
-  getData(String userid,String cid) async {
-    var response = await crud.postData(AppLink.productView, {
-      'userid':userid,
-      'cid':cid
+  getData(String userId, String cId) async {
+    var response = await crud
+        .postData(AppLink.productView, {'userid': userId, 'cid': cId});
+    return response.fold((l) => l, (r) => r);
+  }
+
+  ratingPermission(String userId, String proId) async {
+    var response = await crud.postData(
+        AppLink.productRatingPermission, {'userid': userId, 'proid': proId});
+    return response.fold((l) => l, (r) => r);
+  }
+
+  sendRating(String value, String comment, String proId, String userId) async {
+    var response = await crud.postData(AppLink.productrate, {
+      'value': value,
+      'comment': comment,
+      'proid': proId,
+      'userid': userId,
     });
     return response.fold((l) => l, (r) => r);
   }

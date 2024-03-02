@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 abstract class BaseOffersController extends MySearchController {
   getData();
-  goToProductDetial(ProductModel productModel);
+  goToProductDetial(ProductModel productModel, String heroTag);
 }
 
 class OffersController extends BaseOffersController {
@@ -48,7 +48,7 @@ class OffersController extends BaseOffersController {
         statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      Get.snackbar('94'.tr, '96'.tr,duration:const Duration(seconds: 2));
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
       statusRequest = StatusRequest.serverFailure;
     }
 
@@ -56,9 +56,10 @@ class OffersController extends BaseOffersController {
   }
 
   @override
-  goToProductDetial(ProductModel productModel) {
+  goToProductDetial(ProductModel productModel, heroTag) {
     Get.toNamed(AppRoute.productdetail, arguments: {
       'productmodel': productModel,
+      'herotag': heroTag,
     });
   }
 }

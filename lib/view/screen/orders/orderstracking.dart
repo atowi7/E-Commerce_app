@@ -23,7 +23,7 @@ class OrderTrackingScreen extends StatelessWidget {
                 child: GoogleMap(
                   mapType: MapType.hybrid,
                   initialCameraPosition: controller.kGooglePlex!,
-                  // polylines: controller.polylineSet,
+                  polylines: controller.polylineSet,
                   onMapCreated: (GoogleMapController mapcontroller) {
                     controller.mapcontroller = mapcontroller;
                   },

@@ -24,7 +24,12 @@ class AppLink {
   //product
   static const String productView = '$server/product/view.php';
   static const String productSearch = '$server/product/search.php';
+  static const String productRatingPermission =
+      '$server/product/ratingpermission.php';
   static const String productrate = '$server/product/rate.php';
+
+  //message
+  static const String messageAdd = '$server/message/add.php';
 
   //favorite
   static const String userfavorite = '$server/favorite/view.php';

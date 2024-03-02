@@ -16,11 +16,11 @@ abstract class BaseHomeScreenController extends GetxController {
 }
 
 class HomeScreenController extends BaseHomeScreenController {
-  final homeController = Get.lazyPut(() => HomeController());
-  final offersController = Get.lazyPut(() => OffersController());
-  final ordersController = Get.lazyPut(() => OrdersController());
-  final favoriteController = Get.lazyPut(() => FavoriteController());
-  final userFavoriteController = Get.lazyPut(() => UserFavoriteController());
+  // final homeController = Get.lazyPut(() => HomeController());
+  // final offersController = Get.lazyPut(() => OffersController());
+  // final ordersController = Get.lazyPut(() => OrdersController());
+  //final favoriteController = Get.lazyPut(() => FavoriteController());
+  // final userFavoriteController = Get.lazyPut(() => UserFavoriteController());
   int currentPage = -1;
   List icons = [
     {

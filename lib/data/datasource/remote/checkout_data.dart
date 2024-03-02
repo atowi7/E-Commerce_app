@@ -23,6 +23,7 @@ class CheckoutData {
       'orders_coupondiscount': couponDiscount,
       'orders_paymentmethod': paymentmethod,
       'orders_type': deliveryType,
+      'orders_createdat': DateTime.now().toIso8601String(),
       'orders_addressid': addressid,
       'orders_userid': userid,
     });

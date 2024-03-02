@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:ecommerce_app/core/class/status_request.dart';
 import 'package:ecommerce_app/core/constant/route.dart';
 import 'package:ecommerce_app/core/function/handle_data.dart';
@@ -27,7 +25,8 @@ class CartController extends BaseCartController {
   CouponModel? couponModel;
   int prosAmount = 0;
   double totalPrice = 0;
-  double shipping = 0;
+  double deliveryPrice = 0;
+  double shippingPrice = 0;
 
   String? couponId;
   String? couponName;
@@ -70,11 +69,13 @@ class CartController extends BaseCartController {
         Map amountAndprice = response['amountandprice'];
         prosAmount = int.parse(amountAndprice['amount']);
         totalPrice = double.parse(amountAndprice['totalprice']);
+        shippingPrice = double.parse(amountAndprice['shippingprice']);
+        deliveryPrice = double.parse(amountAndprice['deliveryprice']);
       } else {
         statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      //statusRequest = StatusRequest.serverFailure;
+      statusRequest = StatusRequest.serverFailure;
     }
     update();
   }
@@ -90,14 +91,15 @@ class CartController extends BaseCartController {
 
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
-        Get.snackbar('39'.tr, '104'.tr, duration: const Duration(seconds: 2));
+        // Get.snackbar('39'.tr, '104'.tr, duration: const Duration(seconds: 2));
         refreshPage();
       } else {
         Get.snackbar('39'.tr, '105'.tr, duration: const Duration(seconds: 2));
         // statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      statusRequest = StatusRequest.serverFailure;
+      // statusRequest = StatusRequest.serverFailure;
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
     }
   }
 
@@ -112,14 +114,15 @@ class CartController extends BaseCartController {
 
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
-        Get.snackbar('39'.tr, '106'.tr, duration: const Duration(seconds: 2));
+        // Get.snackbar('39'.tr, '106'.tr, duration: const Duration(seconds: 2));
         refreshPage();
       } else {
         Get.snackbar('39'.tr, '107'.tr, duration: const Duration(seconds: 2));
         // statusRequest = StatusRequest.noDataFailure;
       }
     } else {
-      statusRequest = StatusRequest.serverFailure;
+      // statusRequest = StatusRequest.serverFailure;
+      Get.snackbar('94'.tr, '96'.tr, duration: const Duration(seconds: 2));
     }
   }
 
@@ -167,6 +170,7 @@ class CartController extends BaseCartController {
     if (dataList.isEmpty) return Get.snackbar('39'.tr, '107'.tr);
     Get.toNamed(AppRoute.ordersCheckout, arguments: {
       'totalPrice': getTotalPrice().toString(),
+      'deliveryPrice': getTotalPrice().toString(),
       'couponId': couponId,
       'couponName': couponName,
       'couponDiscount': couponDiscount.toString(),

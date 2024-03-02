@@ -52,7 +52,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   onTapIcon: controller.showPassword(),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: Get.height * 0.2,
                 ),
                 CustomTextForm(
                   labelText: '37'.tr,
